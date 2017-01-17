@@ -1,0 +1,41 @@
+Kmom02:
+
+
+
+
+Skapa en webbplats på en Apache Virtual Host:
+
+###########-----------###########
+
+	Ladda ner via rsync:
+
+rsync -chavzP todai@178.62.110.17:/etc/apache2/sites-available/me.linux.se.conf /dbweb-kurser/linux/me/kmom02/vhost/
+
+###########-----------###########
+
+   Ladda upp via rsync (och ssh):
+
+rsync -avH me.html -e ssh todai@178.62.110.17:/home/todai/vhosts/me.linux.se/htdocs/
+
+###########-----------###########
+
+	    Lynx:
+
+Som ni kan se ovan så har jag laddat upp me.html
+till htdocs, så mitt lynx kommando ser ut så här:
+
+lynx me.linux.se/me.html
+
+###########-----------###########
+
+	    Dump:
+
+Min dump ligger i kmom02/
+Det finns även en asciinema som visar hur jag kör igenom lynx här:
+https://asciinema.org/a/csouacnvv3zn9yw5tbqs9ibbu
+
+###########-----------###########
+
+
+
+Strukturera filer, kataloger och rättigheter i en webbplats:

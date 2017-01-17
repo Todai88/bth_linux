@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bash 1 - linux</title>
+<style>
+body {
+    margin: 8px auto;
+    max-width: 700px;
+}
+
+div.answer {
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  margin-bottom: 1em;
+}
+
+.fail {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+table, th, td {
+    border: 1px solid #666;
+}
+
+code {
+    background-color: #eee;
+    border: 1px solid #999;
+    padding: 1px;
+}
+
+pre code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+</style>
+</head>
+<body>
+
+<pre>
+67b36afa638c1aa3cf08fd1765af66c6
+linux
+bash1
+jobk16
+2017-01-17 13:27:30
+v2.2.25 (2017-01-16)
+</pre>
+
+<p><i>Generated 2017-01-17 14:27:30 by <a href="https://github.com/mosbth/lab">dbwebb lab-utility</a> v2.2.25 (2017-01-16).</i></p>
+<hr>
+
+<h1>Bash 1 - linux</h1>
+<p>En lab där du använder Unix kommandon som finns tillgängliga via kommandoraden för att lista, hitta, skriva ut information om filer och ändra i en katalogstruktur.</p>
+
+<p>Labben använder sig av en apache2 katalogstruktur som finns på denna sökväg &#8216;./apache2&#8217;.</p>
+
+
+<h2>1. ls</h2>
+<p>I denna del använder vi kommandot <code>ls</code> för att lista filer och kataloger.</p>
+
+
+<h3>Exercise 1.1 (1 points)</h3>
+<p>Använd kommandot <code>ls</code> för att lista filerna i apache2 katalogen, lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+<p>Tips: Använd kommandot <code>man ls</code> för att se de olika flaggor man kan använda för ls.</p>
+
+
+
+
+
+
+<h3>Exercise 1.2 (1 points)</h3>
+<p>Använd kommandot <code>ls</code> för att lista filerna i apache2 katalogen, använd en flagga så alla kataloger får ett snedstreck (<code>/</code>) efter namnet. Lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+<p>Tips: Använd kommandot <code>man ls</code> för att se de olika flaggor man kan använda för ls.</p>
+
+
+
+
+
+
+<h3>Exercise 1.3 (1 points)</h3>
+<p>Gä först till katalogen <code>apache2/mods-available</code> och använd  här kommandot <code>ls</code> för att lista filerna i katalogen. Lista bara filer som börjar på &#8216;a&#8217; och har filändelsen &#8216;.conf&#8217;. Lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+<p>Du kan använda <code>&amp;&amp;</code> för att kedja ihop två eller fler kommandon på samma rad.</p>
+
+<p>Tips: Använd ett wildcard <code>*</code> för att matcha mot flera filer.</p>
+
+
+
+
+
+
+<h3>Exercise 1.4 (1 points)</h3>
+<p>Lista alla, även dolda, filer och kataloger i <code>apache2/sites-available</code> katalogen, lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+
+
+
+
+
+<h3>Exercise 1.5 (1 points)</h3>
+<p>Lista filer och kataloger i <code>apache2/conf-available</code>, sortera filerna i storleksordning med den minsta filen först. Lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+<p>Visa inte dolda filer.</p>
+
+
+
+
+
+
+
+<h2>2. file</h2>
+<p>I denna del använder vi kommandot <code>file</code> för att ta reda på information om filerna i katalogstrukturen.</p>
+
+
+<h3>Exercise 2.1 (1 points)</h3>
+<p>Använd kommandot <code>file</code> för att skriva ut filtypen för alla filer och kataloger i <code>apache2</code>.</p>
+
+
+
+
+
+
+<h3>Exercise 2.2 (1 points)</h3>
+<p>Använd kommandot <code>file</code> för att skriva ut filtypen för alla filer och kataloger i <code>apache2</code>. Denna gång skriv bara ut filtypen utan filnamn.</p>
+
+
+
+
+
+
+
+<h2>3. cp, mv, mkdir och rm</h2>
+<p>I denna del använder vi kommandona  <code>cp</code>, <code>mv</code>, <code>mkdir</code> och <code>rm</code> för att ändra i en katalogstruktur.</p>
+
+
+<h3>Exercise 3.1 (1 points)</h3>
+<p>Använd kommandot <code>mkdir</code> för att skapa en katalog med namnet <code>backup/</code> om katalogen inte redan finns. Kopiera alla filer som har filändelsen <code>.conf</code> i <code>apache2/mods-available</code> till en ny katalog i <code>backup/</code> med namnet <code>conf/</code>.</p>
+
+<p>Lista filerna i den nya <code>backup/conf/</code> katalogen, sortera filerna i storleksordning med den största filen först. Lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+<p>Tips: Använd <code>&amp;&amp;</code> för att exekverera flera kommandon i rad och <code>man mkdir</code> för att hitta rätt flagga.</p>
+
+
+
+
+
+
+<h3>Exercise 3.2 (1 points)</h3>
+<p>Använd kommandot <code>mkdir</code> för att skapa en ny underkatalog <code>backup/php/</code> om den inte redan finns.
+Använd kommandot <code>mv</code> för att flytta alla filer som börjar med &#8216;php&#8217; från <code>backup/conf</code> till den nya katalogen <code>backup/php/</code>.</p>
+
+<p>Lista filerna i <code>backup/conf/</code> katalogen så varje ny fil hamnar på en egen rad.</p>
+
+
+
+
+
+
+<h3>Exercise 3.3 (1 points)</h3>
+<p>Ta bort alla filer som börjar med &#8216;proxy&#8217; från <code>backup/conf</code>.</p>
+
+<p>Lista filerna i <code>backup/conf</code> katalogen så varje ny fil hamnar på en egen rad.</p>
+
+
+
+
+
+
+<h3>Exercise 3.4 (1 points)</h3>
+<p>Använd kommandot <code>cp</code> för att flytta alla filer från <code>backup/php</code> till <code>backup</code> och ta sedan bort hela <code>backup/php</code> katalogen.</p>
+
+<p>Lista filer och kataloger i <code>backup</code> katalogen, använd en flagga så alla kataloger får ett snedstreck (<code>/</code>) efter namnet. Lista filerna så varje ny fil hamnar på en egen rad.</p>
+
+
+
+
+
+
+
+<h2>4. find</h2>
+<p>I denna del använder vi kommandot <code>find</code> för att ta hitta i en katalogstruktur.</p>
+
+<p>I denna del av labben arbetar du med ursprungskatalogen <code>apache2/</code>.</p>
+
+
+<h3>Exercise 4.1 (1 points)</h3>
+<p>Använd kommandot <code>find</code> för att hitta filen <code>apache2.conf</code> i <code>apache2/</code> katalogen.</p>
+
+
+
+
+
+
+<h3>Exercise 4.2 (1 points)</h3>
+<p>Använd kommandot <code>find</code> för att hitta alla tomma filer i <code>apache2/</code> katalogen.</p>
+
+
+
+
+
+
+<h3>Exercise 4.3 (1 points)</h3>
+<p>Använd kommandot <code>find</code> för att hitta alla kataloger som har &#8216;conf&#8217; i filnamnet i <code>apache2/</code> katalogen.
+Sök endast i <code>apache2/</code> katalogen och inte i de underliggande katalogerna.</p>
+
+
+
+
+
+
+<h3>Exercise 4.4 (1 points)</h3>
+<p>Använd kommandot <code>find</code> för att hitta alla filer som har <code>ssl</code> i filnamnet och har filändelsen <code>.conf</code>, sök i de två katalogerna <code>apache2/sites-available</code> och <code>apache2/mods-available</code>.</p>
+
+
+
+
+
+
+
+<hr>
+<code>67b36afa638c1aa3cf08fd1765af66c6</code>
+
+</body>
+</html>
