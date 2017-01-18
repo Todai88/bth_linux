@@ -148,7 +148,9 @@ assertEqual "1.4" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+			tail -n 4 $File
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.5" false "$ANSWER"
@@ -167,7 +169,9 @@ assertEqual "1.5" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		head -n 1 $File | grep "Log opened"
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.6" false "$ANSWER"
@@ -185,7 +189,9 @@ assertEqual "1.6" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep -m 3 "<@wasa>" $File | tail -n 1
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.7" false "$ANSWER"
@@ -203,7 +209,9 @@ assertEqual "1.7" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep -c "11:15" $File
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.8" false "$ANSWER"
@@ -221,7 +229,9 @@ assertEqual "1.8" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep -A 10 "Wed Jun 17 2015" $File | tail -n 10
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.9" false "$ANSWER"
@@ -240,8 +250,9 @@ assertEqual "1.9" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
-
+ANSWER=$(
+		grep "Forumet" ircLog.txt | grep "htmlphp" | grep "projektet"
+		)
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.10" false "$ANSWER"
 
@@ -258,7 +269,9 @@ assertEqual "1.10" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep "Bobbzorzen" ircLog.txt | grep "cewl" -B 2 | head -n 1	
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.11" false "$ANSWER"
@@ -277,10 +290,12 @@ assertEqual "1.11" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep "Mon Jun 08 2015" ircLog.txt -A 9 | tail -n 6 | wc -w
+		)
 
 # I will now test your answer - change false to true to get a hint.
-assertEqual "1.12" false "$ANSWER"
+assertEqual "1.12" true "$ANSWER"
 
 #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # Exercise 1.13 (3 points) 
@@ -295,7 +310,9 @@ assertEqual "1.12" false "$ANSWER"
 
 
 
-ANSWER="Replace this text with the variable holding the answer."
+ANSWER=$(
+		grep "07:48" $File | grep "pansar" | head -n 1
+		)
 
 # I will now test your answer - change false to true to get a hint.
 assertEqual "1.13" false "$ANSWER"
