@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $1 -eq 5 ];
+if [ "$1" -eq 5 ];
 then
 	echo "Same!";
 else

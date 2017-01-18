@@ -15,6 +15,6 @@ while [ "$1" != "" ]; do
 	
 done
 
-echo $out 
+echo "$out" 
 
 
