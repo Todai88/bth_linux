@@ -13,7 +13,7 @@ VERSION="1.0.0a"
 # Usage / help message.
 #
 
-function usage_help ()
+function usage_help
 {
 	local txt=(
 	"Use this script to:"
@@ -41,7 +41,7 @@ function usage_help ()
 # Message to show when incorrect usage
 #
 
-function incorrect_usage ()
+function incorrect_usage
 {
 	local message="$1"
 	local txt=(
@@ -58,7 +58,7 @@ function incorrect_usage ()
 # Message to display version
 #
 
-function version ()
+function version
 {
 	local txt=(
 	"$SCRIPT version $VERSION"
@@ -79,7 +79,8 @@ function is_prime () {
 			flag=1
 		fi
 	done
-	if [ ! "$flag" ]; then
+	if [ ! "$flag" ];
+		then
 			return 0
 		else
 			return 1
@@ -90,13 +91,14 @@ function is_prime () {
 # Main assignment, reverses submitted string - if possible.
 #
 
-function app-reverse ()
+function app-reverse
 {
-	if [ "$1" ]; then
+	if [ "$1" != "" ];
+	then
 		echo "$1" | rev
 	else
 		echo "Empty argument, try again!"
-	fi
+	fi;
 }
 
 #
@@ -104,7 +106,7 @@ function app-reverse ()
 # Uses is_prime as helper function.
 #
 
-function app-factors ()
+function app-factors
 {
 	re='^[0-9]+$' #numerical numbers
 	final_out=""
@@ -115,29 +117,26 @@ function app-factors ()
 		while [ "$1" != "" ];
 		do
 			out="$1: "$'\t'
-			FACTOR_ARRAY=()
-			test_number=$1
 			if [[ $1 =~ $re ]]; then
 				found=
-				for ((j=2; j<=test_number; j++))
+				for ((j=2; j<=$1; j++))
 					do
-						if  is_prime "$j"; then
-
-								if (( test_number % j == 0)); then
-										test_number=$(($test_number / $j))
-										FACTOR_ARRAY+=("$j")
-										j=1
+						if  is_prime "$j";
+							then
+								if (( $1 % j == 0));
+									then
+										out="$out $j"
+										found=1
 								fi
-
 						fi
 					done
-					if ((${#FACTOR_ARRAY[@]} < 1 )); then
-						FACTOR_ARRAY[0]="has no prime factorals."
+					if [ ! "$found" ]; then
+						out="$out has no prime factorals."
 					fi
 			else
 				out="$out non-numerical parameter."
 			fi
-			final_out="${final_out}"$'\n'"$out ${FACTOR_ARRAY[@]}"
+			final_out="${final_out}"$'\n'"${out}"
 			shift
 		done
 		echo "$final_out"
@@ -148,7 +147,7 @@ function app-factors ()
 # Extra-assignment, for further credits.
 #
 
-function app-starwars ()
+function app-starwars
 {
 	telnet towel.blinkenlights.nl
 }
@@ -189,3 +188,42 @@ done
 
 incorrect_usage
 exit 1
+# if [ "$1" == "reverse" ];
+# then
+# 	if [ "$2" != "" ];
+# 	then
+# 		echo "$2" | rev
+# 	else
+# 		echo "Empty argument, try again!"
+# 	fi;
+#
+# elif [ "$1" == "factors" ];
+# then
+# 	re='^[0-9]+$' #numerical numbers
+# 	final_out=""
+# 	while [ "$2" != "" ];
+# 	do
+# 		out="$2: "
+# 		if [[ $2 =~ $re ]]; then
+# 			for ((j=2; j<$2; j++))
+# 				do
+# 					is_prime "$j"
+# 					if [ $? != 1 ];
+# 						then
+# 							if (( $2%$j == 0));
+# 								then
+# 									out="$out $i"
+# 							fi;
+# 					fi;
+# 				done
+# 		else
+# 			out="$out non-numerical parameter."
+# 		fi;
+# 		final_out="${final_out}"$'\n'"${out}"
+# 		shift
+# 	done
+# 	echo "$final_out"
+#
+# elif [ "$1" == "starwars" ]; then
+# 	telnet towel.blinkenlights.nl
+# fi;
