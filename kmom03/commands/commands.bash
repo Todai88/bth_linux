@@ -49,7 +49,7 @@ function incorrect_usage ()
 	"$SCRIPT --help"
 	)
 
-	[[ $message ]] && printf "$message\n"
+	[[ $message ]] && printf "%s\n" "$message"
 
 	printf "%s\n" "${txt[@]}"
 }
@@ -124,7 +124,7 @@ function app-factors ()
 						if  is_prime "$j"; then
 
 								if (( test_number % j == 0)); then
-										test_number=$(($test_number / $j))
+										test_number=$((test_number / j))
 										FACTOR_ARRAY+=("$j")
 										j=1
 								fi
@@ -137,7 +137,7 @@ function app-factors ()
 			else
 				out="$out non-numerical parameter."
 			fi
-			final_out="${final_out}"$'\n'"$out ${FACTOR_ARRAY[@]}"
+			final_out="${final_out}"$'\n'"$out ${FACTOR_ARRAY[*]}"
 			shift
 		done
 		echo "$final_out"
@@ -176,7 +176,7 @@ do
 		|	starwars)
 			command=$1
 			shift
-			app-$command $*
+			app-"$command" "$@"
 			exit 0
 		;;
 

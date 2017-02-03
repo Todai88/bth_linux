@@ -49,7 +49,7 @@ function incorrect_usage
 	"$SCRIPT --help"
 	)
 
-	[[ $message ]] && printf "$message\n"
+	[[ $message ]] && printf "%s\n" "$message\n"
 
 	printf "%s\n" "${txt[@]}"
 }
@@ -175,7 +175,7 @@ do
 		|	starwars)
 			command=$1
 			shift
-			app-$command $*
+			app-"$command" "$@"
 			exit 0
 		;;
 
