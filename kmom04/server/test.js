@@ -10,5 +10,4 @@ var util  = require('util'),
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
 
-    });
 });
