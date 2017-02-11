@@ -11,5 +11,5 @@ else
     LINUX_PORT=1337
 	export LINUX_PORT
 	set LINUX_PORT
-	printf "LINUX_PORT in 'env': %s" "${!LINUX_PORT}"
+	printf "LINUX_PORT in 'env': %s\n" "${LINUX_PORT}"
 fi;
