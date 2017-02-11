@@ -1,5 +1,5 @@
 var util  = require('util'),
-    spawn = require('child_process').exec,
+    exec = require('child_process').exec,
     supporting = exec('. ./supporting.bash', (error, stdout, stderr) => {
 
         if(error){
