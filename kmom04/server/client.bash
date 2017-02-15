@@ -37,6 +37,20 @@ function usage_help ()
 	printf "%s\n" "${txt[@]}"
 }
 
+function incorrect_usage ()
+{
+	local message="$1"
+	local txt=(
+	"For an overview of the command, execute:"
+	"$SCRIPT --help"
+	)
+
+	[[ $message ]] && printf "%s\n" "$message"
+
+	printf "%s\n" "${txt[@]}"
+}
+
+
 function app-check_values()
 {
 if [[ $LINUX_PORT ]]; then
@@ -76,7 +90,7 @@ fi;
 #
 # Checking and setting values.
 #
-app-check_values()
+app-check_values
 
 #
 # Main script-body, iterates through submitted parameters
