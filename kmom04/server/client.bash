@@ -127,7 +127,16 @@ function app-status()
 
 function app-sum()
 {
-	echo $@
+	final_out="?"
+	while [ "$1" != "" ];
+		do
+		if [ "$2" == "" ]; then
+			final_out+="$1"
+		else
+			final_out+="$1&"
+		fi
+	done
+	echo $final_out
 	curl "${LINUX_SERVER}:${LINUX_PORT}/sum $@"
 }
 
