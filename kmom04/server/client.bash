@@ -219,7 +219,7 @@ do
 			echo " "
 			echo "*** Response-Header: ***"
 			curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
-			echo "\n*** Response-Body: ***"
+			echo "*** Response-Body: ***"
 			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			exit 1
 		;;
