@@ -101,6 +101,27 @@ function app-hello()
 
 
 #
+# app-html
+# cURLs the URL on the '/index.html' route
+#
+
+function app-html()
+{
+		curl "${LINUX_SERVER}:${LINUX_PORT}/index.html"
+}
+
+#
+# app-status
+# cURLs the URL on the '/status' route.
+#
+
+function app-status()
+{
+		curl "${LINUX_SERVER}:${LINUX_PORT}/status"
+}
+
+
+#
 # Checking and setting values.
 #
 app-check_values
