@@ -181,12 +181,6 @@ function app-filter()
 }
 
 #
-# Checking and setting values.
-#
-
-app-check_values
-
-#
 # Main script-body, iterates through submitted parameters
 #
 
@@ -209,6 +203,10 @@ do
 		|	status \
 		|	sum		\
 		|	filter)
+			#
+			# Checking and setting values.
+			#
+			app-check_values
 			command=$1
 			shift
 			app-"$command" "$@"
