@@ -214,8 +214,12 @@ do
 		;;
 
 		*)
+			echo "using '/incorrect'"
 			incorrect_usage "Options/command not recognized."
+			echo "\n*** Header: ***"
 			curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
+			echo "\n*** Body: ***"
+			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			exit 1
 		;;
 	esac
