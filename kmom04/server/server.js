@@ -16,7 +16,8 @@ var server = http.createServer((req, res) => {
     var ipAddress,
         route,
         query,
-        queryString;
+        queryString,
+        urlParts;
 
     // Log incoming requests
     ipAddress = req.connection.remoteAddress;
@@ -73,6 +74,7 @@ var server = http.createServer((req, res) => {
        break;
 
        case "/sum":
+           urlParts = url.parse(req.url, true);
            query = urlParts.query;
            queryString = qs.stringify(query);
            Object.keys(query).forEach( key => {
