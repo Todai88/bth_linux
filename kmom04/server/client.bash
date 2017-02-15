@@ -181,6 +181,18 @@ function app-filter()
 }
 
 #
+# app-all
+# runs all the commands
+# described above
+#
+
+function app-all()
+{
+	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
+	app-filter(${final_out})
+}
+
+#
 # Main script-body, iterates through submitted parameters
 #
 
@@ -202,7 +214,8 @@ do
 		|	html \
 		|	status \
 		|	sum		\
-		|	filter)
+		|	filter	 \
+		|	all)
 			#
 			# Checking and setting values.
 			#
