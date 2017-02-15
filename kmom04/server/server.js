@@ -97,7 +97,7 @@ var server = http.createServer((req, res) => {
            queryString = qs.stringify(query);
            var arr = [];
            Object.keys(query).forEach( key => {
-                if (parseInt(`${key}`) =< 42){
+                if (parseInt(`${key}`) <= 42){
                     arr.push(parseInt(`${key}`));
                 }
             });
