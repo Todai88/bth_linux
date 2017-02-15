@@ -58,8 +58,12 @@ var server = http.createServer((req, res) => {
                 }
 
                 // Write the result of standard output as plain text.
+                var out = {
+                    "uname" : stdout
+                };
+                var jsonObj = JSON.stringify(out);
                 res.writeHead(200, { "Content-Type": "text/json" });
-                res.end(stdout);
+                res.end(jsonObj);
 
             });
 
