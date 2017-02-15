@@ -221,6 +221,7 @@ do
 			curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			echo "*** Response-Body: ***"
 			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
+			echo " "
 			exit 1
 		;;
 	esac
