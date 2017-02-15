@@ -1,14 +1,13 @@
 var util  = require('util'),
-    spawn = require('child_process').spawn,
-    bs    = spawn('bash', ['supporting.bash']);
-    un	  = spawn('bash', ['unset LINUX_PORT']);
+    exec = require('child_process').exec,
+    supporting = exec('. ./supporting.bash', (error, stdout, stderr) => {
 
-bs.stdout.on('data', function (data) {    // register one or more handlers
-  console.log('stdout: ' + data);
-});
+        if(error){
+            console.error(`exec error: ${error}`);
+            return;
+        }
 
-un.stdout.on('data', function(data) {
-
-console.log('stdout: ' + data);
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
 
 });

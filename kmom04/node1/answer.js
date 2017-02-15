@@ -99,7 +99,12 @@ dbwebb.assert("1.2", ANSWER, false);
  */
 
 function meaningOfLife (x = 42) {
+<<<<<<< HEAD
 	return 'The meaning of life is ' + x;
+=======
+
+    return 'The meaning of life is ' + x;
+>>>>>>> 24281b3a7fa9d25f77a779a43f854836f65c43d3
 }
 
 
@@ -237,9 +242,13 @@ var stringArray = ['Jim Lovell', 'Jack Swigert', 'Fred Haise'];
 
 
 
-stringArray.forEach(function(element, index, array){
+stringArray.forEach(function(element, index, array) {
 
+<<<<<<< HEAD
 	array[index] = element + ' was on the apollo 13';
+=======
+    array[index] = element + ' was on the apollo 13';
+>>>>>>> 24281b3a7fa9d25f77a779a43f854836f65c43d3
 
 });
 
@@ -285,13 +294,14 @@ dbwebb.assert("3.2", ANSWER, false);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
-var maybePrimeNumber = [73,78,83,88,97,102,103,106,109], out = 0;
+var maybePrimeNumber = [73, 78, 83, 88, 97, 102, 103, 106, 109], out = 0;
 
 
-maybePrimeNumber.forEach(function(element){
+maybePrimeNumber.forEach(function(element) {
 
-	for(var i = 2; i < (element / 2); i++){
+    for (var i = 2; i < (element / 2); i++) {
 
+<<<<<<< HEAD
 		if (element % i === 0) {
 
 			return 0;
@@ -300,6 +310,16 @@ maybePrimeNumber.forEach(function(element){
 	}
 	out+= element;
 	return element;
+=======
+        if (element % i === 0) {
+
+            return 0;
+
+        }
+    }
+    out+= element;
+    return element;
+>>>>>>> 24281b3a7fa9d25f77a779a43f854836f65c43d3
 });
 
 console.log(out);
@@ -325,6 +345,7 @@ dbwebb.assert("3.3", ANSWER, true);
  */
 
 
+<<<<<<< HEAD
 function isNotPrime(val){
 	for(var i = 2; i < (val / 2); i++){
 
@@ -337,6 +358,20 @@ function isNotPrime(val){
 	}
 
 	return 0;
+=======
+function isNotPrime(val) {
+    for (var i = 2; i < (val / 2); i++) {
+
+        if (val % i === 0) {
+
+            return val;
+
+        }
+
+    }
+
+    return 0;
+>>>>>>> 24281b3a7fa9d25f77a779a43f854836f65c43d3
 }
 
 
