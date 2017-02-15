@@ -120,10 +120,22 @@ function app-status()
 		curl "${LINUX_SERVER}:${LINUX_PORT}/status"
 }
 
+#
+# app-
+#
+#
+
+function app-sum()
+{
+	curl "${LINUX_SERVER}:${LINUX_PORT}/sum $@"
+}
+
+
 
 #
 # Checking and setting values.
 #
+
 app-check_values
 
 #
@@ -157,6 +169,7 @@ do
 
 		*)
 			incorrect_usage "Options/command not recognized."
+			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			exit 1
 		;;
 	esac
