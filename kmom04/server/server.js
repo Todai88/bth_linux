@@ -50,7 +50,7 @@ var server = http.createServer((req, res) => {
 
        case "/status":
 
-       child.exec("username -a", (error, stdout, stderr) => {
+       child.exec("uname -a", (error, stdout, stderr) => {
 
                 if (error || stderr) {
                    // Do something with the error(s)
