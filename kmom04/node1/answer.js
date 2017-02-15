@@ -99,7 +99,6 @@ dbwebb.assert("1.2", ANSWER, false);
  */
 
 function meaningOfLife (x = 42) {
-
 	return 'The meaning of life is ' + x;
 }
 
@@ -179,7 +178,7 @@ dbwebb.assert("1.5", ANSWER, false);
 
 
 
-ANSWER = numbersArray.filter(function(val) { return val <= 42});
+ANSWER = numbersArray.filter(function(val) { return val <= 42;});
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.1", ANSWER, false);
@@ -240,7 +239,7 @@ var stringArray = ['Jim Lovell', 'Jack Swigert', 'Fred Haise'];
 
 stringArray.forEach(function(element, index, array){
 
-	array[index] = element + ' was on the apollo 13';	
+	array[index] = element + ' was on the apollo 13';
 
 });
 
@@ -293,13 +292,13 @@ maybePrimeNumber.forEach(function(element){
 
 	for(var i = 2; i < (element / 2); i++){
 
-		if (element % i == 0) {
+		if (element % i === 0) {
 
 			return 0;
-		
+
 		}
 	}
-	out+= element;	
+	out+= element;
 	return element;
 });
 
@@ -328,15 +327,15 @@ dbwebb.assert("3.3", ANSWER, true);
 
 function isNotPrime(val){
 	for(var i = 2; i < (val / 2); i++){
-	
-		if (val % i == 0){
-	
+
+		if (val % i === 0){
+
 			return val;
-	
+
 		}
 
 	}
-	
+
 	return 0;
 }
 
