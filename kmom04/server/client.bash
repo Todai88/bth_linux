@@ -18,9 +18,9 @@ function usage_help ()
 	local txt=(
 	"Use this script to:"
 	""
-	"1.		Help you reverse strings."
-	"2.		Get the prime factors of numbers."
-	"3.		Watch ASCII StarWars (ep IV)."
+	"1.		Test the service's routes."
+	"2.		Test the 'sum' of an unspecified amount of numbers."
+	"3.		Test the filter functionality (filter all numbers <= 42)."
 	""
 	"USAGE: $SCRIPT [options] <command> [arguments]"
 	""
@@ -29,9 +29,12 @@ function usage_help ()
 	" --version, 	 -v			Print version."
 	""
 	"COMMAND: arguments in paranthesis ()"
-	" reverse(string s)		Reverses and prints string s"
-	" factors(args)			Prints the primefactors of submitted arguments."
-	" starwars()			Shows you an ASCII version of starwars over telnet."
+	" hello					cURLs the '/' route.  		Expected result: 'Hello World.'"
+	" html					cURLs the /index.html. 		Expected result: contents of index.html"
+	" status				cURLs the /status route.	Expected result: contents of 'uname -a'."
+	" sum					cURLs the /sum route.		Expected result: the sum of all numbers."
+	" filter				cURLs the /filter route.	Expected result: returns an array of all numbers <= 42."
+	" all					Runs all the above commands."
 	)
 
 	printf "%s\n" "${txt[@]}"
