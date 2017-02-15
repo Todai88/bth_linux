@@ -112,7 +112,7 @@ var server = http.createServer((req, res) => {
        default:
            // Not found route.
            res.writeHead(404, { "Content-Type": "text/plain" });
-           res.end("404. No route matching.\n");
+           res.end("The resource does not exist.\n");
        break;
    }
 
