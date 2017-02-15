@@ -81,7 +81,7 @@ var server = http.createServer((req, res) => {
            queryString = qs.stringify(query);
            var sum = 0;
            Object.keys(query).forEach( key => {
-                sum += `"${key}"`;
+                sum += `${key}`;
             });
             out = {
                 "sum" : sum
