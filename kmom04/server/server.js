@@ -18,7 +18,8 @@ var server = http.createServer((req, res) => {
         route,
         query,
         queryString,
-        urlParts;
+        urlParts,
+        out;
 
     // Log incoming requests
     ipAddress = req.connection.remoteAddress;
@@ -63,7 +64,7 @@ var server = http.createServer((req, res) => {
                 }
 
                 // Write the result of standard output as plain text.
-                var out = {
+                out = {
                     "uname" : stdout
                 };
                 var jsonObj = JSON.stringify(out);
@@ -78,10 +79,16 @@ var server = http.createServer((req, res) => {
            urlParts = url.parse(req.url, true);
            query = urlParts.query;
            queryString = qs.stringify(query);
+           var sum = 0;
            Object.keys(query).forEach( key => {
-                console.log(`"${key}" : "${query[key]}"`);
+                sum += `"${key}"`;
             });
-
+            out = {
+                "sum" : sum
+            };
+            var jsonObj = JSON.stringify(out);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(jsonObj);
        break;
        default:
            // Not found route.
