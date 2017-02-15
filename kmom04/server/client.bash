@@ -56,7 +56,7 @@ function incorrect_usage ()
 
 function app-check_values()
 {
-	echo "###############################"
+	printf "%s\n" "###############################"
 
 if [[ $LINUX_PORT ]]; then
 
@@ -72,7 +72,7 @@ else
 	printf "LINUX_PORT in 'env': %s\n" "${LINUX_PORT}"
 fi;
 
-	echo "------------#######------------"
+	printf "\n%s\n" "------------#######------------"
 
 if [[ $LINUX_SERVER ]]; then
 
@@ -88,7 +88,7 @@ else
 	printf "LINUX_PORT in 'env': %s\n" "${LINUX_SERVER}"
 fi;
 
-echo "###############################"
+printf "\n%s" "###############################"
 }
 
 
