@@ -216,9 +216,10 @@ do
 		*)
 			echo "using '/incorrect'"
 			incorrect_usage "Options/command not recognized."
-			echo "\n*** Header: ***"
+			echo " "
+			echo "*** Response-Header: ***"
 			curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
-			echo "\n*** Body: ***"
+			echo "\n*** Response-Body: ***"
 			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			exit 1
 		;;
