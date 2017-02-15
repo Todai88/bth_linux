@@ -14,12 +14,15 @@ const child = require("child_process");
 var server = http.createServer((req, res) => {
 
     var ipAddress,
-        route;
+        route,
+        query,
+        queryString;
 
     // Log incoming requests
     ipAddress = req.connection.remoteAddress;
     route = url.parse(req.url).pathname;
     console.log("Incoming request from ip " + ipAddress);
+
 
     // Switch (route) on the path.
    switch (route) {
@@ -65,6 +68,15 @@ var server = http.createServer((req, res) => {
                 res.writeHead(200, { "Content-Type": "application/json" });
                 res.end(jsonObj);
 
+            });
+
+       break;
+
+       case "/sum":
+           query = urlParts.query;
+           queryString = qs.stringify(query);
+           Object.keys(query).forEach( key => {
+                console.log(`"${key}" : "${query[key]}"`);
             });
 
        break;
