@@ -35,7 +35,7 @@ var server = http.createServer((req, res) => {
        case "/index.html":
            // About page route.
            var filename = path.join(__dirname, 'index.html'), data;
-           fs.readFile(filename, "utf8", (err, data){
+           fs.readFile(filename, "utf8", (err, data) => {
                if (err) {
                    res.writeHead(500, { "Content-Type": "text/plain"});
                    res.end("Internal server error");
