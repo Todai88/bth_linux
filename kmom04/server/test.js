@@ -1,6 +1,6 @@
 var util  = require('util'),
     exec = require('child_process').exec,
-    supporting = exec('. ./supporting.bash', (error, stdout, stderr) => {
+    supporting = exec('echo $LINUX_PORT', (error, stdout, stderr) => {
 
         if(error){
             console.error(`exec error: ${error}`);

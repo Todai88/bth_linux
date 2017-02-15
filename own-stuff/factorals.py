@@ -23,6 +23,10 @@ def isprime(n):
 
     return True
 
+"""
+Setting up a list to hold the primes between 1-100
+"""
+
 prime_list = []
 
 
@@ -30,8 +34,20 @@ for i in range(1,100):
   if isprime(i):
     prime_list.append(i)
 
-print prime_list
+print prime_list """Controlling the list """
+
 output = 1
+
+"""
+Looping over the list of prime numbers.
+
+Logic:
+1.  Iterates over the list of prime-numbers,
+2.  If the number < 10 it means that it might occur as a factoral
+    in multiple numbers, meaning it's necessary to find it's highest pow
+    that is lower than 100. (2^6, 3^4 etc)
+3.  Multiply the prime numbers or the sum of the prime-factorals.
+"""
 for prime in prime_list:
   if prime <= 10 and prime > 1:
     tmp = prime
