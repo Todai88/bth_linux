@@ -216,7 +216,7 @@ do
 		*)
 			echo "using '/incorrect'"
 			echo " "
-			echo "helper-string:"
+			echo "***Helper-String:***"
 			incorrect_usage "Options/command not recognized."
 			echo " "
 			echo "*** Response-Header: ***"
