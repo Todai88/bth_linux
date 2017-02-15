@@ -29,12 +29,12 @@ function usage_help ()
 	" --version, 	 -v			Print version."
 	""
 	"COMMAND: arguments in paranthesis ()"
-	" hello	  ->	cURLs the '/' route.  		Expected result: 'Hello World.'"
+	" hello	->	cURLs the '/' route.  		Expected result: 'Hello World.'"
 	" html	  ->	cURLs the /index.html. 		Expected result: contents of index.html"
 	" status	  ->	cURLs the /status route.	Expected result: contents of 'uname -a'."
 	" sum	  ->	cURLs the /sum route.		Expected result: the sum of all numbers."
 	" filter	  ->	cURLs the /filter route.	Expected result: returns an array of all numbers <= 42."
-	" all	  ->		Runs all the above commands."
+	" all	  ->	Runs all the above commands."
 	)
 
 	printf "%s\n" "${txt[@]}"
