@@ -28,59 +28,59 @@ var server = http.createServer((req, res) => {
 
 
     // Switch (route) on the path.
-   switch (route) {
-       case "/":
-           console.log("In /");
-           res.writeHead(200, { "Content-Type": "text/plain" });
-           res.end("Hello World!\n");
-       break;
+    switch (route) {
+        case "/":
+            console.log("In /");
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end("Hello World!\n");
+        break;
 
-       case "/index.html":
+        case "/index.html":
             console.log("In /index.html");
-           // About page route.
-           var filename = path.join(__dirname, 'index.html'), data;
-           fs.readFile(filename, "utf8", (err, data) => {
-               if (err) {
-                   res.writeHead(500, { "Content-Type": "text/plain"});
-                   res.end("Internal server error");
-                   console.log("Internal server error");
-                   throw err;
+            // About page route.
+            var filename = path.join(__dirname, 'index.html');
+            fs.readFile(filename, "utf8", (err, data) => {
+                    if (err) {
+                        res.writeHead(500, { "Content-Type": "text/plain"});
+                        res.end("Internal server error");
+                        console.log("Internal server error");
+                        throw err;
 
-               }
+                    }
 
-               res.writeHead(200, { "Content-Type": "text/html" });
-               res.end(data);
+                    res.writeHead(200, { "Content-Type": "text/html" });
+                    res.end(data);
 
                 });
-       break;
+        break;
 
-       case "/status":
+        case "/status":
 
-       child.exec("uname -a", (error, stdout, stderr) => {
+            child.exec("uname -a", (error, stdout, stderr) => {
 
-                if (error || stderr) {
-                   // Do something with the error(s)
-                   console.log("Something went wrong...", error, stderr);
-                }
+                    if (error || stderr) {
+                        // Do something with the error(s)
+                        console.log("Something went wrong...", error, stderr);
+                    }
 
-                // Write the result of standard output as plain text.
-                out = {
-                    "uname" : stdout.replace(/(\r\n|\n|\r)/gm, "")
-                };
-                var jsonObj = JSON.stringify(out);
-                res.writeHead(200, { "Content-Type": "application/json" });
-                res.end("\n" + jsonObj + "\n" + "\n");
+                    // Write the result of standard output as plain text.
+                    out = {
+                        "uname" : stdout.replace(/(\r\n|\n|\r)/gm, "")
+                    };
+                    var jsonObj = JSON.stringify(out);
+                    res.writeHead(200, { "Content-Type": "application/json" });
+                    res.end("\n" + jsonObj + "\n" + "\n");
 
-            });
+                });
 
-       break;
+        break;
 
-       case "/sum":
-           urlParts = url.parse(req.url, true);
-           query = urlParts.query;
-           queryString = qs.stringify(query);
-           var sum = 0;
-           Object.keys(query).forEach( key => {
+        case "/sum":
+            urlParts = url.parse(req.url, true);
+            query = urlParts.query;
+            queryString = qs.stringify(query);
+            var sum = 0;
+            Object.keys(query).forEach( key => {
                 sum += parseInt(`${key}`);
             });
             out = {
@@ -89,32 +89,32 @@ var server = http.createServer((req, res) => {
             var jsonObj = JSON.stringify(out);
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end("\n" + jsonObj + "\n" + "\n");
-       break;
+        break;
 
-       case "/filter":
-           urlParts = url.parse(req.url, true);
-           query = urlParts.query;
-           queryString = qs.stringify(query);
-           var arr = [];
-           Object.keys(query).forEach( key => {
-                if (parseInt(`${key}`) <= 42){
+        case "/filter":
+            urlParts = url.parse(req.url, true);
+            query = urlParts.query;
+            queryString = qs.stringify(query);
+            var arr = [];
+            Object.keys(query).forEach( key => {
+                if (parseInt(`${key}`) <= 42) {
                     arr.push(parseInt(`${key}`));
                 }
             });
             out = {
                 "filter" : arr
             };
-            var jsonObj = JSON.stringify(out);
+            jsonObj = JSON.stringify(out);
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end("\n" + jsonObj + "\n" + "\n");
-       break;
+        break;
 
-       default:
-           // Not found route.
-           res.writeHead(404, { "Content-Type": "text/plain" });
-           res.end("The resource does not exist.\n");
-       break;
-   }
+        default:
+            // Not found route.
+            res.writeHead(404, { "Content-Type": "text/plain" });
+            res.end("The resource does not exist.\n");
+        break;
+    }
 
 });
 

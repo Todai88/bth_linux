@@ -53,6 +53,14 @@ function incorrect_usage ()
 	printf "%s\n" "${txt[@]}"
 }
 
+function version ()
+{
+	local txt=(
+	"$SCRIPT version $VERSION"
+	)
+
+	printf "%s\n" "${txt[@]}"
+}
 
 function app-check_values()
 {
