@@ -65,7 +65,7 @@ var server = http.createServer((req, res) => {
 
                 // Write the result of standard output as plain text.
                 out = {
-                    "uname" : stdout.replace(/(\r\n|\n|\r)/gm, "");
+                    "uname" : stdout.replace(/(\r\n|\n|\r)/gm, "")
                 };
                 var jsonObj = JSON.stringify(out);
                 res.writeHead(200, { "Content-Type": "application/json" });
