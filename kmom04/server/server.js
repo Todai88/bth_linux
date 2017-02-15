@@ -7,6 +7,8 @@
 const http = require("http");
 const url = require("url");
 const fs = require("fs");
+const path = require("path");
+
 // Use the createServer function to create the simple server
 var server = http.createServer((req, res) => {
 
