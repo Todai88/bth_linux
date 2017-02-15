@@ -87,7 +87,17 @@ fi;
 }
 
 
+#
+# app-hello.
+# Simply cURLs the URL '/'
+#
 
+function app-hello()
+{
+
+	curl "%s:%s/" "${LINUX_SERVER}" "${LINUX_PORT}"
+
+}
 
 
 #
