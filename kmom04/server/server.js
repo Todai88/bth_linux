@@ -65,11 +65,11 @@ var server = http.createServer((req, res) => {
 
                 // Write the result of standard output as plain text.
                 out = {
-                    "uname" : stdout
+                    "uname" : stdout.replace(/(\r\n|\n|\r)/gm, "");
                 };
                 var jsonObj = JSON.stringify(out);
                 res.writeHead(200, { "Content-Type": "application/json" });
-                res.end(jsonObj + "\n" + "\n");
+                res.end("\n" + jsonObj + "\n" + "\n");
 
             });
 
@@ -88,7 +88,7 @@ var server = http.createServer((req, res) => {
             };
             var jsonObj = JSON.stringify(out);
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(jsonObj + "\n" + "\n");
+            res.end("\n" + jsonObj + "\n" + "\n");
        break;
        default:
            // Not found route.
