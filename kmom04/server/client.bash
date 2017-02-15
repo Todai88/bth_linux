@@ -56,6 +56,8 @@ function incorrect_usage ()
 
 function app-check_values()
 {
+	echo "###############################"
+
 if [[ $LINUX_PORT ]]; then
 
 	printf "LINUX_PORT already exists in 'env': %s\n" "${LINUX_PORT}"
@@ -70,6 +72,7 @@ else
 	printf "LINUX_PORT in 'env': %s\n" "${LINUX_PORT}"
 fi;
 
+	echo "------------#######------------"
 
 if [[ $LINUX_SERVER ]]; then
 
@@ -84,6 +87,8 @@ else
 	set LINUX_SERVER
 	printf "LINUX_PORT in 'env': %s\n" "${LINUX_SERVER}"
 fi;
+
+echo "###############################"
 }
 
 
