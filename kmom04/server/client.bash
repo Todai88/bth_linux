@@ -127,6 +127,7 @@ function app-status()
 
 function app-sum()
 {
+	echo $@
 	curl "${LINUX_SERVER}:${LINUX_PORT}/sum $@"
 }
 
