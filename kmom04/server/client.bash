@@ -121,9 +121,12 @@ function app-status()
 }
 
 #
-# app-
+# app-sum
+# uses all the submitted arguments
+# and loops over them, creating the
+# paramaters.
 #
-#
+
 
 function app-sum()
 {
@@ -137,11 +140,32 @@ function app-sum()
 			fi
 			shift
 		done
-	echo $final_out
+
 	curl "${LINUX_SERVER}:${LINUX_PORT}/sum${final_out}"
 }
 
+#
+# app-filter
+# loops over all the submitted
+# arguments and creats
+# the parameters for the cURL.
+#
 
+function app-filter()
+{
+	final_out="?"
+	while [ "$1" != "" ];
+		do
+			if [ "$2" == "" ]; then
+				final_out+="$1"
+			else
+				final_out+="$1&"
+			fi
+			shift
+		done
+
+	curl "${LINUX_SERVER}:${LINUX_PORT}/filter${final_out}"
+}
 
 #
 # Checking and setting values.
