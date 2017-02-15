@@ -90,6 +90,25 @@ var server = http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end("\n" + jsonObj + "\n" + "\n");
        break;
+
+       case "/filter":
+           urlParts = url.parse(req.url, true);
+           query = urlParts.query;
+           queryString = qs.stringify(query);
+           var arr = [];
+           Object.keys(query).forEach( key => {
+                if (parseInt(`${key}`) < 42){
+                    arr.push(parseInt(`${key}`));
+                }
+            });
+            out = {
+                "filter" : arr
+            };
+            var jsonObj = JSON.stringify(out);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end("\n" + jsonObj + "\n" + "\n");
+       break;
+
        default:
            // Not found route.
            res.writeHead(404, { "Content-Type": "text/plain" });
