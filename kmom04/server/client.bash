@@ -215,7 +215,7 @@ do
 
 		*)
 			incorrect_usage "Options/command not recognized."
-			curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
+			curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
 			exit 1
 		;;
 	esac
