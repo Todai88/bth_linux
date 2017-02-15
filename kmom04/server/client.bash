@@ -138,7 +138,7 @@ function app-sum()
 			shift
 		done
 	echo $final_out
-	curl "${LINUX_SERVER}:${LINUX_PORT}/sum $@"
+	curl "${LINUX_SERVER}:${LINUX_PORT}/sum${final_out}"
 }
 
 
