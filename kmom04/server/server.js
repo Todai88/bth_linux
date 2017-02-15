@@ -8,6 +8,7 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
+const child = require("child_process");
 
 // Use the createServer function to create the simple server
 var server = http.createServer((req, res) => {
@@ -47,6 +48,22 @@ var server = http.createServer((req, res) => {
                 });
        break;
 
+       case "/status":
+
+       child.exec("username -a", (error, stdout, stderr) => {
+
+                if (error || stderr) {
+                   // Do something with the error(s)
+                   console.log("Something went wrong...", error, stderr);
+                }
+
+                // Write the result of standard output as plain text.
+                res.writeHead(200, { "Content-Type": "text/json" });
+                res.end(stdout);
+
+            });
+
+       break;
        default:
            // Not found route.
            res.writeHead(404, { "Content-Type": "text/plain" });
