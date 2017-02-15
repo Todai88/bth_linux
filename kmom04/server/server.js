@@ -69,7 +69,7 @@ var server = http.createServer((req, res) => {
                 };
                 var jsonObj = JSON.stringify(out);
                 res.writeHead(200, { "Content-Type": "application/json" });
-                res.end(jsonObj);
+                res.end(jsonObj + "\n" + "\n");
 
             });
 
@@ -88,7 +88,7 @@ var server = http.createServer((req, res) => {
             };
             var jsonObj = JSON.stringify(out);
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(jsonObj);
+            res.end(jsonObj + "\n" + "\n");
        break;
        default:
            // Not found route.
