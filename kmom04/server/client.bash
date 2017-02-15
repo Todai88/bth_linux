@@ -95,7 +95,7 @@ fi;
 function app-hello()
 {
 
-	curl "%s:%s/" "${LINUX_SERVER}" "${LINUX_PORT}"
+	curl "${LINUX_SERVER}:${LINUX_PORT}/"
 
 }
 
