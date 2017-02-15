@@ -20,21 +20,16 @@ var server = http.createServer((req, res) => {
     route = url.parse(req.url).pathname;
     console.log("Incoming request from ip " + ipAddress);
 
-    // Write header with text/plain as content type and 200 HTTP status code
-    res.writeHead(200, { "Content-Type": "text/plain" });
-
-    // Reply with a string
-    res.end("Hello World\n");
-
     // Switch (route) on the path.
    switch (route) {
        case "/":
-           // Home page route.
+           console.log("In /");
            res.writeHead(200, { "Content-Type": "text/plain" });
            res.end("Hello World!\n");
        break;
 
        case "/index.html":
+            console.log("In /index.html");
            // About page route.
            var filename = path.join(__dirname, 'index.html'), data;
            fs.readFile(filename, "utf8", (err, data) => {
