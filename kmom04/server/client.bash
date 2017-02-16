@@ -189,10 +189,45 @@ function app-filter()
 function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
-	echo "-------- Filter --------"
+
+	echo "-------- HELLO --------"
+	printf "Input:\n %s\n" "No parameters being passed"
+	printf "Output:%s" ""
+	app-hello
+
+	echo "-------- HTML --------"
+	printf "Input:\n %s\n" "No parameters being passed"
+	printf "Output:%s" ""
+	app-html
+
+	echo "-------- STATUS --------"
+	printf "Input:\n %s\n" "No parameters being passed"
+	printf "Output:%s" ""
+	app-status
+
+	echo "-------- SUM --------"
+	printf "Input:\n %s\n" "${final_out}"
+	printf "Output:%s" ""
+	app-sum "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
+
+	echo "-------- FILTER --------"
 	printf "Input:\n %s\n" "${final_out}"
 	printf "Output:%s" ""
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
+
+	echo "-------- ERROR --------"
+	printf "Input:\n %s\n" "No paramaters being passed"
+	printf "Output:%s" ""
+	echo "using '/incorrect'"
+	echo " "
+	echo "***Helper-String:***"
+	incorrect_usage "Options/command not recognized."
+	echo " "
+	echo "*** Response-Header: ***"
+	curl -I "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
+	echo "*** Response-Body: ***"
+	curl "${LINUX_SERVER}:${LINUX_PORT}/incorrect"
+	echo " "
 }
 
 #
