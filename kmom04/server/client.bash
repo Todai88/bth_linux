@@ -190,7 +190,7 @@ function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 
-	printf "\n%s\n%s\n%s\n%s\n" "#" "# Running all" "#" "###############################"
+	printf "\n%s\n%s\n%s\n%s\n" "#" "# RUNNING ALL" "#" "###############################"
 
 	echo "-------- HELLO --------"
 	printf "Input:\n %s\n" "No parameters being passed"
@@ -223,9 +223,8 @@ function app-all()
 
 	printf "\n%s\n" "###############################"
 	echo "-------- ERROR --------"
-	printf "Input:\n %s\n" "No paramaters being passed"
+	printf "Input:\n %s\n" "No paramaters being passed (using '/incorrect')"
 	printf "Output:%s" ""
-	echo "using '/incorrect'"
 	echo " "
 	echo "***Helper-String:***"
 	incorrect_usage "Options/command not recognized."
