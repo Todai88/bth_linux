@@ -193,29 +193,34 @@ function app-all()
 	printf "\n%s\n%s\n%s\n\n\n%s\n" "#" "# RUNNING ALL" "#" "###############################"
 
 	echo "-------- HELLO --------"
+	printf "Usage: \n%s" "bash client.bash hello ('/')"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-hello
 
 	printf "\n%s\n" "###############################"
 	echo "-------- HTML --------"
+	printf "Usage: \n%s" "bash client.bash html ('/index.html')"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-html
 
 	printf "\n%s\n" "###############################"
 	echo "-------- STATUS --------"
+	printf "Usage: \n%s" "bash client.bash status ('/status')"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-status
 
 	printf "\n%s\n" "###############################"
 	echo "-------- SUM --------"
+	printf "Usage: \n%s" "bash client.bash sum ('/sum')"
 	printf "Input:\n %s\n" "${final_out}"
 	printf "Output:%s" ""
 	app-sum "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 
 	printf "\n%s\n" "###############################"
+	printf "Usage: \n%s" "bash client.bash filter ('/filter')"
 	echo "-------- FILTER --------"
 	printf "Input:\n %s\n" "${final_out}"
 	printf "Output:%s" ""
@@ -223,7 +228,8 @@ function app-all()
 
 	printf "\n%s\n" "###############################"
 	echo "-------- ERROR --------"
-	printf "Input:\n %s\n" "No paramaters being passed (using '/incorrect')"
+	printf "Usage: \n%s" "bash client.bash incorrect ('/incorrect')"
+	printf "Input:\n %s\n" "No paramaters being passed"
 	printf "Output:%s" ""
 	echo " "
 	echo "***Helper-String:***"
