@@ -191,7 +191,7 @@ function app-all()
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 	echo "-------- Filter --------"
 	printf "Input:\n %s\n" "${final_out}"
-	echo "Output:"
+	printf "Output:\n%s" ""
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 }
 
