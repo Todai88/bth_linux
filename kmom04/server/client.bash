@@ -190,31 +190,38 @@ function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 
+	printf "%s\n\n" "###############################"
+
 	echo "-------- HELLO --------"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-hello
 
+	printf "%s\n\n" "###############################"
 	echo "-------- HTML --------"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-html
 
+	printf "%s\n\n" "###############################"
 	echo "-------- STATUS --------"
 	printf "Input:\n %s\n" "No parameters being passed"
 	printf "Output:%s" ""
 	app-status
 
+	printf "%s\n\n" "###############################"
 	echo "-------- SUM --------"
 	printf "Input:\n %s\n" "${final_out}"
 	printf "Output:%s" ""
 	app-sum "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 
+	printf "%s\n\n" "###############################"
 	echo "-------- FILTER --------"
 	printf "Input:\n %s\n" "${final_out}"
 	printf "Output:%s" ""
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 
+	printf "%s\n\n" "###############################"
 	echo "-------- ERROR --------"
 	printf "Input:\n %s\n" "No paramaters being passed"
 	printf "Output:%s" ""
