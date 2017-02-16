@@ -190,7 +190,7 @@ function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 
-	printf "\n%s\n%s\n" "----  Running all  ----" "###############################"
+	printf "\n%s\n%s\n%s\n%s\n" "#" "# Running all" "#" "###############################"
 
 	echo "-------- HELLO --------"
 	printf "Input:\n %s\n" "No parameters being passed"
