@@ -166,7 +166,7 @@ function app-sum()
 
 function app-filter()
 {
-	echo "$@"
+	printf "All parameters: %s\nThe first parameter: %s" "$@" "$1" 
 	final_out="?"
 	while [ "$1" != "" ];
 		do
