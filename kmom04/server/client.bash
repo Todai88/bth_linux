@@ -188,7 +188,7 @@ function app-filter()
 
 function app-all()
 {
-	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
+	out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 
 	printf "\n%s\n%s\n%s\n\n\n%s\n" "#" "# RUNNING ALL" "#" "###############################"
 
@@ -215,14 +215,15 @@ function app-all()
 	printf "\n%s\n" "###############################"
 	echo "-------- SUM --------"
 	printf "Usage: \n%s\n" "bash client.bash sum ('/sum')"
-	printf "Input:\n %s\n" "${final_out}"
+	printf "Input:\n %s\n" "${out}"
 	printf "Output:%s" ""
 	app-sum "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 
+
 	printf "\n%s\n" "###############################"
-	printf "Usage: \n%s\n" "bash client.bash filter ('/filter')"
 	echo "-------- FILTER --------"
-	printf "Input:\n %s\n" "${final_out}"
+	printf "Usage: \n%s\n" "bash client.bash filter ('/filter')"
+	printf "Input:\n %s\n" "${out}"
 	printf "Output:%s" ""
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 
