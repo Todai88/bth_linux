@@ -166,7 +166,6 @@ function app-sum()
 
 function app-filter()
 {
-	printf "All parameters: %s\nThe first parameter: %s" "$@" "$1"
 	final_out="?"
 	while [ "$1" != "" ];
 		do
@@ -190,7 +189,9 @@ function app-filter()
 function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
-	printf "Filter - using %s as our parameter" "${final_out}"
+	printf "-------- Filter --------"
+	printf "Input:\n %s" "${final_out}"
+	echo "Output:"
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 }
 
