@@ -227,10 +227,13 @@ do
 			app-"$command" "$@"
 			exit 0
 		;;
+
 		all )
 			app-check_values
 			app-"$1"
 			exit 0
+		;;
+
 		*)
 			echo "using '/incorrect'"
 			echo " "
