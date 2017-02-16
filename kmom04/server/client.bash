@@ -190,7 +190,7 @@ function app-all()
 {
 	final_out="1 2 3 4 5 10 20 30 40 41 42 43 44 45 50 60 70 80 90"
 	printf "-------- Filter --------"
-	printf "Input:\n %s" "${final_out}"
+	printf "Input:\n %s\n" "${final_out}"
 	echo "Output:"
 	app-filter "1" "2" "3" "4" "5" "10" "20" "30" "40" "41" "42" "43" "44" "45" "50" "60" "70" "80" "90"
 }
@@ -217,8 +217,7 @@ do
 		|	html \
 		|	status \
 		|	sum		\
-		|	filter	 \
-		|	all)
+		|	filter	 )
 			#
 			# Checking and setting values.
 			#
@@ -228,7 +227,10 @@ do
 			app-"$command" "$@"
 			exit 0
 		;;
-
+		all )
+			app-check_values
+			app-"$1"
+			exit 0
 		*)
 			echo "using '/incorrect'"
 			echo " "
