@@ -24,7 +24,10 @@ console.log(dbwebb.prompt + "Ready to begin.");
 //global constants
 const fs = require('fs');
 const path = require('path');
+const readLine = require('readline');
 const ircLog = path.join(__dirname, 'ircLog.txt');
+const qs = require('querystring');
+var highlights = path.join(__dirname, 'highlights.txt');
 var input;
 
 /** ======================================================================
@@ -61,10 +64,9 @@ var input;
  */
 
 input = fs.readFileSync(ircLog, 'utf-8');
-console.log(input);
 
 
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = input.length;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("1.1", ANSWER, false);
@@ -78,12 +80,10 @@ dbwebb.assert("1.1", ANSWER, false);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
+var split = input.split("\n", 4)[3];
 
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = split;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("1.2", ANSWER, false);
@@ -100,12 +100,10 @@ dbwebb.assert("1.2", ANSWER, false);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
+fs.writeFileSync(highlights, split, 'utf-8');
 
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = fs.readFileSync(highlights, 'utf-8').slice(6,9);
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("1.3", ANSWER, false);
@@ -137,7 +135,7 @@ dbwebb.assert("1.3", ANSWER, false);
 
 
 
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['mission'];
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.1", ANSWER, false);
@@ -157,7 +155,11 @@ dbwebb.assert("2.1", ANSWER, false);
 
 
 
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER =qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['first_name'] +
+            " " +
+            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['last_name'] +
+            " was on the " +
+            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['mission'];
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.2", ANSWER, false);
