@@ -1,6 +1,8 @@
+"use strict";
 
 const path = require("path");
 const fs = require("fs");
+const server = require("./server.js");
 const process = require("process");
 
 // Check if LINUX_PORT env is defined, else use predefined port 1337.
