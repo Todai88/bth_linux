@@ -5,13 +5,14 @@ const path = require("path");
 const child = require("child_process");
 const qs = require("querystring");
 
-var query,
-    queryString,
-    urlParts,
-    out;
+var Routes = function () {};
 
+var Routes.prototype.find_route = function(route) {
 
-var fun = function(route) {
+    var query,
+        queryString,
+        urlParts,
+        out;
 
     // Switch (route) on the path.
     switch (route) {
@@ -102,3 +103,5 @@ var fun = function(route) {
         break;
     }
 }
+
+module.exports = new Routes();
