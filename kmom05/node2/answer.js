@@ -24,7 +24,6 @@ console.log(dbwebb.prompt + "Ready to begin.");
 //global constants
 const fs = require('fs');
 const path = require('path');
-const readLine = require('readline');
 const ircLog = path.join(__dirname, 'ircLog.txt');
 const qs = require('querystring');
 var highlights = path.join(__dirname, 'highlights.txt');
@@ -135,7 +134,7 @@ dbwebb.assert("1.3", ANSWER, false);
 
 
 
-ANSWER = qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['mission'];
+ANSWER = qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13').mission;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.1", ANSWER, false);
@@ -155,11 +154,11 @@ dbwebb.assert("2.1", ANSWER, false);
 
 
 
-ANSWER =qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['first_name'] +
+ANSWER =qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13').first_name +
             " " +
-            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['last_name'] +
+            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13').last_name +
             " was on the " +
-            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13')['mission'];
+            qs.parse('first_name=Jim&last_name=Lovell&mission=Apollo13').mission;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.2", ANSWER, false);

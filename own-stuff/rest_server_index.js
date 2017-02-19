@@ -1,11 +1,11 @@
 /*
 
-	Main program to run a ./server.js 
+	Main program to run a ./server.js
 
 */
 
 
-import server from './server.js'
+import server from './server.js';
 
 server.listen(1337);
 

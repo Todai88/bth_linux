@@ -1,5 +1,5 @@
 // Get module for http
-
+"use strict";
 var http = require('http');
 
 // Use the variable to create a server
