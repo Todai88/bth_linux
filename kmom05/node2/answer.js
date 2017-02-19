@@ -102,7 +102,7 @@ dbwebb.assert("1.2", ANSWER, false);
 fs.writeFileSync(highlights, split, 'utf-8');
 
 
-ANSWER = fs.readFileSync(highlights, 'utf-8').slice(6,9);
+ANSWER = fs.readFileSync(highlights, 'utf-8').slice(6, 9);
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("1.3", ANSWER, false);

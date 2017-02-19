@@ -1,4 +1,6 @@
-const http = require("http");
+"use strict";
+
+//const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
@@ -102,6 +104,6 @@ Routes.prototype.find_route = function(route, req, res) {
             res.end("The resource does not exist.\n");
         break;
     }
-}
+};
 
 module.exports = new Routes();
