@@ -1,3 +1,8 @@
+
+const path = require("path");
+const fs = require("fs");
+const process = require("process");
+
 // Check if LINUX_PORT env is defined, else use predefined port 1337.
 if (process.env.LINUX_PORT !== undefined) {
     console.log("Found port environment variable: " + process.env.LINUX_PORT);
