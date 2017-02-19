@@ -22,7 +22,7 @@ var server = http.createServer((req, res) => {
     ipAddress = req.connection.remoteAddress;
     route = url.parse(req.url).pathname;
     console.log("Incoming request from ip " + ipAddress);
-    uti.find_route(route);
+    uti.find_route(route, res);
 
 
     // // Switch (route) on the path.

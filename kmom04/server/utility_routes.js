@@ -7,7 +7,7 @@ const qs = require("querystring");
 
 var Routes = function () {};
 
-Routes.prototype.find_route = function(route) {
+Routes.prototype.find_route = function(route, res) {
 
     var query,
         queryString,
