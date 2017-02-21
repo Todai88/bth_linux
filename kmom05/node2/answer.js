@@ -183,11 +183,16 @@ dbwebb.assert("2.2", ANSWER, false);
  */
 
 
+var obj {
+    "url"     : "https://dbwebb.se",
+    "id"      : 415,
+    "payload" : "aHR0cHM6Ly9kYndlYmIuc2Uv",
+    "type"    : "xml"
+};
 
 
 
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = qs.stringify(obj);
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("2.3", ANSWER, false);
