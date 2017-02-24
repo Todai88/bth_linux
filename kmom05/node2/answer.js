@@ -26,6 +26,7 @@ const fs = require('fs');
 const path = require('path');
 const ircLog = path.join(__dirname, 'ircLog.txt');
 const qs = require('querystring');
+const crypto = require('crypto');
 var highlights = path.join(__dirname, 'highlights.txt');
 var input;
 
@@ -183,8 +184,8 @@ dbwebb.assert("2.2", ANSWER, false);
  */
 
 
-var obj {
-    "url"     : "https://dbwebb.se",
+var obj = {
+    "url"     : "https://dbwebb.se/",
     "id"      : 415,
     "payload" : "aHR0cHM6Ly9kYndlYmIuc2Uv",
     "type"    : "xml"
@@ -221,11 +222,11 @@ dbwebb.assert("2.3", ANSWER, false);
  */
 
 
+const hash = crypto.createHash('sha256');
 
+hash.update('Forever trusting who we are');
 
-
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = hash.digest('hex');
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("3.1", ANSWER, false);
@@ -245,12 +246,16 @@ dbwebb.assert("3.1", ANSWER, false);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
+var cryptoStrings = ['Forever trusting who we are', 'And nothing else matters',
+                    'Never opened myself this way',
+                    'Life is ours, we live it our way'];
 
 
+var output = cryptoStrings.filter(val =>
+    val.indexOf('nothing else matters') > 0
+);
 
-
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = output;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("3.2", ANSWER, false);
@@ -270,14 +275,19 @@ dbwebb.assert("3.2", ANSWER, false);
  */
 
 
+var out = output.map(function (val){
+     var new_hash = crypto.createHash('sha256');
+     new_hash.update(val);
+     return new_hash.digest('hex');
+ });
 
 
 
+ANSWER = out;
 
-ANSWER = "Replace this text with the variable holding the answer.";
 
 // I will now test your answer - change false to true to get a hint.
-dbwebb.assert("3.3", ANSWER, false);
+dbwebb.assert("3.3", ANSWER, true);
 
 /**
  * Exercise 3.4
@@ -293,15 +303,23 @@ dbwebb.assert("3.3", ANSWER, false);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
+output = cryptoStrings.filter(function(val){
+    console.log("String: " + val + "\n" +
+                "Search: " + val.search(/[i][e][m]/i));
+        if (val.search(/[i][e][m]/i) === -1){
+            var new_hash = crypto.createHash('sha256');
+            new_hash.update(val);
+            return new_hash.digest('hex');
+        }
+});
 
 
 
 
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = output;
 
 // I will now test your answer - change false to true to get a hint.
-dbwebb.assert("3.4", ANSWER, false);
+dbwebb.assert("3.4", ANSWER, true);
 
 /**
  * Exercise 3.5
