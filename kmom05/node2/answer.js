@@ -275,11 +275,11 @@ dbwebb.assert("3.2", ANSWER, false);
  */
 
 
-var out = output.map(function (val){
-     var new_hash = crypto.createHash('sha256');
-     new_hash.update(val);
-     return new_hash.digest('hex');
- });
+var out = output.map(function (val) {
+    var new_hash = crypto.createHash('sha256');
+    new_hash.update(val);
+    return new_hash.digest('hex');
+});
 
 
 
@@ -302,21 +302,20 @@ dbwebb.assert("3.3", ANSWER, true);
  *
  * Write your code below and put the answer into the variable ANSWER.
  */
+out = [];
+output = cryptoStrings.filter(function(val) {
 
-output = cryptoStrings.filter(function(val){
-    console.log("String: " + val + "\n" +
-                "Search: " + val.search(/[i][e][m]/i));
-        if (val.search(/[i][e][m]/i) === -1){
-            var new_hash = crypto.createHash('sha256');
-            new_hash.update(val);
-            return new_hash.digest('hex');
-        }
+    if (val.search(/^(?=.*e).*(?=.*m).*(?=.*i).*$/i) >= 0) {
+        var new_hash = crypto.createHash('sha256');
+        new_hash.update(val);
+        out.push(new_hash.digest('hex'));
+    }
 });
 
 
 
 
-ANSWER = output;
+ANSWER = out;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("3.4", ANSWER, true);
@@ -336,12 +335,31 @@ dbwebb.assert("3.4", ANSWER, true);
  * Write your code below and put the answer into the variable ANSWER.
  */
 
+out = [];
+const hmac = crypto.createHmac('sha256', 'metallica');
+
+output = cryptoStrings.filter(function(val) {
+
+    if (val.search(/matters/i) >= 0) {
+        hmac.on('readable', () => {
+
+            const data = hmac.read();
+            if (data) {
+
+                out.push(data.toString('base64'));
+
+            }
+        });
+
+        hmac.write(val);
+        hmac.end();
+    }
+});
 
 
 
 
-
-ANSWER = "Replace this text with the variable holding the answer.";
+ANSWER = out;
 
 // I will now test your answer - change false to true to get a hint.
 dbwebb.assert("3.5", ANSWER, false);
