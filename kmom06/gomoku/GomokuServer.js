@@ -11,7 +11,7 @@ var gameBoard = new GomokuBoard();
 
 // A better router to create a handler for all routes
 //import Router from "./router";
-import Router from "../router/router";
+import Router from "./router";
 var router = new Router();
 
 

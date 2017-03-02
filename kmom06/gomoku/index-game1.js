@@ -135,21 +135,19 @@ function placeRandomMarker() {
 }
 
 function placeMarker(x_val, y_val) {
-    var x, y,
-        player = gameBoard.playerInTurn();
+    var player = gameBoard.playerInTurn();
 
-    while (!gameBoard.isFull()) {
-        x = getRandomIntInclusive(0, size);
-        y = getRandomIntInclusive(0, size);
-
-        if (!gameBoard.isPositionTaken(x, y)) {
-            break;
-        }
-    }
-
-    gameBoard.place(x, y);
-    console.log(">>> " + player + " places " + x + " " + y + "\n");
+    gameBoard.place(x_val, y_val);
+    console.log(">>> " + player + " places " + x_val + " " + y_val + "\n");
     console.log(gameBoard.asAscii());
+}
+
+function testPosition(x_val, y_val){
+
+    if (!gameBoard.isPositionTaken(x_val, y_val)) {
+        return true;
+    } else return false;
+
 }
 
 function is_numerical(input){
@@ -173,7 +171,11 @@ rl.on("line", function(line) {
         a number will be discarded (like whitespaces between the two numbers).
         */
         var markers_array = line.trim().split(" ");
-        markers_array = markers_array.filter(Number);
+        markers_array = markers_array.filter(function(val){
+            if(parseInt(val) >= 0) {
+                return val;
+            }
+        });
 
         /*
 
@@ -206,8 +208,14 @@ Randomizing...
             if (is_numerical(markers_array)){
                 console.log(markers_array[0] + " , " + markers_array[1]);
                 console.log(size);
-                    if (markers_array[0] <= size && markers_array[1] <= size) {
-
+                var numone = parseInt(markers_array[0]);
+                var numtwo = parseInt(markers_array[1]);
+                    if (numone <= size  && numone >= 0 && numtwo >= 0 && numtwo <= size) {
+                        if (testPosition(numone, numtwo)){
+                            placeMarker(numone, numtwo);
+                        } else {
+                            console.log(`Position ${numone}, ${numtwo} is already taken.. Try again!`);
+                        }
                     } else {
                         console.log(`
                             The numbers you provided were out of bounds: ${line}. ${markers_array}
