@@ -116,7 +116,7 @@ function getRandomIntInclusive(min, max) {
 /**
  * Place a marker on the board.
  */
-function placeMarker() {
+function placeRandomMarker() {
     var x, y,
         player = gameBoard.playerInTurn();
 
@@ -133,20 +133,103 @@ function placeMarker() {
     console.log(">>> " + player + " places " + x + " " + y + "\n");
     console.log(gameBoard.asAscii());
 }
+
+function placeMarker(x_val, y_val) {
+    var x, y,
+        player = gameBoard.playerInTurn();
+
+    while (!gameBoard.isFull()) {
+        x = getRandomIntInclusive(0, size);
+        y = getRandomIntInclusive(0, size);
+
+        if (!gameBoard.isPositionTaken(x, y)) {
+            break;
+        }
+    }
+
+    gameBoard.place(x, y);
+    console.log(">>> " + player + " places " + x + " " + y + "\n");
+    console.log(gameBoard.asAscii());
+}
+
+function is_numerical(input){
+
+    if(!isNaN(input[0]) && !isNaN(input[1])){
+        return true;
+    } else return false;
+}
+
 rl.on("line", function(line) {
     switch (line.trim()) {
         case "exit":
             console.log("Bye!");
             process.exit(0);
             break;
-        default:
-        if(line.length == 0){
-            console.log("Too low, randomizing!");
-            placeMarker();
+        default: // all other cases are treated as a place-action.
+
+        /*
+        Trim the read line from white-spaces
+        and then filter on numbers, meaning anything that isn't
+        a number will be discarded (like whitespaces between the two numbers).
+        */
+        var markers_array = line.trim().split(" ");
+        markers_array = markers_array.filter(Number);
+
+        /*
+
+        First check there are only two items in the array, if not we are
+        treating it as a randomizing action.
+
+        */
+
+        if(markers_array.length !== 2){
+            /*
+
+            Print string to explain we are randomizing, then random.
+
+            */
+            console.log(`
+Incorrect amount of arguments, we require two (2), separated by a space " ".
+You wrote ${line}.
+Example: '10 10' places a marker on x:10, y:10.
+Randomizing...
+`);
+            placeRandomMarker();
+
+
         } else {
-            console.log("Seems OK: " + line);
+
+            /*
+            Check if both the elements in the array are indeed numbers.
+            */
+
+            if (is_numerical(markers_array)){
+                console.log(markers_array[0] + " , " + markers_array[1]);
+                console.log(size);
+                    if (markers_array[0] <= size && markers_array[1] <= size) {
+
+                    } else {
+                        console.log(`
+                            The numbers you provided were out of bounds: ${line}. ${markers_array}
+                            Range is between 0-${size}
+                            `);
+                    }
+
+                } else {
+                /*
+
+                Print string to explain that we require *ONLY*
+                numerical values on the line.
+
+                */
+                    console.log(
+`Incorrect input. ${line}
+You should enter two NUMBERS with a space inbetween.
+Correct   usage: 10 10
+Incorrect usage: 10, 10`);
+                }
+            }
         }
-    }
     rl.prompt();
 });
 
