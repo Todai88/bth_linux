@@ -74,8 +74,18 @@ class GomokuBoard {
 
         this.placeMarker(position)
             .nextPlayer();
+        this.isWin(x, y);
     }
-
+    // check if the move wins
+    isWin(x, y){
+        var win_flag = false;
+        console.log("Checking horizontally");
+        var x_diff = (x - 5 < 0) ? 0 : (x - 5)
+        for(var i = x; i !== (x - 5); i--) {
+            if()
+        }
+        console.log(this.board);
+    }
 
 
     /**
