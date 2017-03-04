@@ -174,6 +174,7 @@ class GomokuBoard {
                 OK_flag = true;
             }
     }
+}
 
     /**
      * Place a marker at the internal board position.
