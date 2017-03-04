@@ -170,6 +170,14 @@ router.get("/place/random", (req, res) => {
             OK_flag = true;
         }
     }
+    sendJSONResponse(res, {
+        "action": "Trying to place " + x + ", " + y,
+        "message": message,
+        "boardSize": gameBoard.getSize(),
+        "nextPlayer": gameBoard.playerInTurn(),
+        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
+        "boardIsFull": gameBoard.isFull()
+    });
 });
 
 /**
