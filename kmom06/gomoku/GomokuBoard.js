@@ -169,8 +169,8 @@ class GomokuBoard {
             var x = Number.parseInt(Math.floor(Math.random() * this.size));
             var y = Number.parseInt(Math.floor(Math.random() * this.size));
 
-            if(!isPositionTaken(x, y)) {
-                place(x, y);
+            if(!this.isPositionTaken(x, y)) {
+                this.place(x, y);
                 OK_flag = true;
             }
     }
