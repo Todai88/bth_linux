@@ -74,18 +74,29 @@ class GomokuBoard {
 
         this.placeMarker(position)
             .nextPlayer();
-        //this.isWin(x, y);
+        this.isWin(x, y);
     }
-    // check if the move wins
-    // isWin(x, y){
-    //     var win_flag = false;
-    //     console.log("Checking horizontally");
-    //     var x_diff = (x - 5 < 0) ? 0 : (x - 5)
-    //     for(var i = x; i !== (x - 5); i--) {
-    //         if()
-    //     }
-    //     console.log(this.board);
-    // }
+    //check if the move wins
+    isWin(x, y){
+        var win_flag = false;
+        var x_diff = (x >= 5) ? 5 : x;
+        var y_diff = (y >= 5) ? 5 : y;
+        var marker = this.player;
+        console.log("Checking horizontally");
+        for(var i = x - x_diff; i !== x; i++) {
+            var count = 0;
+            for(var j = i; j !== i + 5; j++) {
+                if (count = 5) {
+                    console.log(`Player ${marker} has won!`);
+                }
+                if (this.board[getPosition(j, y)] === marker) {
+                    count++;
+                    console.log("Found one! Count is now: " + count);
+                }
+            }
+        }
+        console.log(this.board);
+    }
 
 
     /**

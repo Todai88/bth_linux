@@ -46,7 +46,20 @@ Options:
  --server <url>   Set the server url to use.`);
 }
 
+/*
+    Setting up default variables to point to localhost.
+*/
 
+var port = 1337;
+var server = "localhost";
+
+if(process.env.LINUX_PORT) {
+    port = process.env.LINUX_PORT; // if env variable is set we are using it.
+}
+
+if(process.env.LINUX_SERVER) {
+    server = "http://" + process.env.LINUX_SERVER + ":" + port; // if env variable is set we are using it.
+}
 
 /**
  * Display helptext about bad usage.
@@ -162,22 +175,38 @@ rl.on("line", function(line) {
             break;
 
         case "place":
-            var x = args[1];
-            var y = args[2];
 
-            gomoku.place(x, y)
-            .then(value => {
-                console.log(value);
-                rl.prompt();
-            })
-            .catch(err => {
-                console.log("FAILED: Could not place the marker.\nDetails: " + err);
-                rl.prompt();
-            });
+            if(args[1] === 'random'){
+                gomoku.random()
+                .then(value => {
+                    console.log(value);
+                    rl.prompt();
+                })
+                .catch(err => {
+                    console.log("FAILED: Could not place the marker.\nDetails: " + err);
+                    rl.prompt();
+                });
+
+            }
+            else {
+                var x = args[1];
+                var y = args[2];
+
+                gomoku.place(x, y)
+                .then(value => {
+                    console.log(value);
+                    rl.prompt();
+                })
+                .catch(err => {
+                    console.log("FAILED: Could not place the marker.\nDetails: " + err);
+                    rl.prompt();
+                });
+
+            }
             break;
 
         case "url":
-            console.log("Click this url to view the game in a browser.\n" + server + "/view/ascii");
+            console.log(`Use this URL to view the game board in your browser: ${server}/view/ascii`);
             rl.prompt();
             break;
 
