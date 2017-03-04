@@ -167,19 +167,24 @@ router.get("/place/random", (req, res) => {
         var x = Number.parseInt(Math.floor(Math.random() * size));
         var y = Number.parseInt(Math.floor(Math.random() * size));
         console.log(`X: ${x}, Y: ${y}`);
-        if(!gameBoard.isPositionTaken(x, y)){
-            gameBoard.place(x,y);
+        var message = "Ok.";
+        try {
+            gameBoard.place(x, y);
             OK_flag = true;
+        } catch (e) {
+            message = e.message;
         }
+
+        sendJSONResponse(res, {
+            "action": "Trying to place " + x + ", " + y,
+            "message": message,
+            "boardSize": gameBoard.getSize(),
+            "nextPlayer": gameBoard.playerInTurn(),
+            "nextPlayerMarker": gameBoard.playerInTurnMarker(),
+            "boardIsFull": gameBoard.isFull()
+        });
     }
-    sendJSONResponse(res, {
-        "action": "Trying to place " + x + ", " + y,
-        "message": message,
-        "boardSize": gameBoard.getSize(),
-        "nextPlayer": gameBoard.playerInTurn(),
-        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull()
-    });
+
 });
 
 /**
