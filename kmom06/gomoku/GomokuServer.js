@@ -166,14 +166,14 @@ router.get("/place/random", (req, res) => {
     }
 
     sendJSONResponse(res, {
-        "action": "Trying to place " + x + ", " + y,
+        "action": "Trying to place random piece",
         "message": message,
         "boardSize": gameBoard.getSize(),
         "nextPlayer": gameBoard.playerInTurn(),
         "nextPlayerMarker": gameBoard.playerInTurnMarker(),
         "boardIsFull": gameBoard.isFull()
     });
-    
+
     //
     // var size = gameBoard.getSize();
     // var OK_flag = false;
