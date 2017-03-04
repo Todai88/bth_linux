@@ -163,7 +163,17 @@ class GomokuBoard {
         });
     }
 
+    placeRandom() {
+        var OK_flag = false;
+        while (!OK_flag) {
+            var x = Number.parseInt(Math.floor(Math.random() * this.size));
+            var y = Number.parseInt(Math.floor(Math.random() * this.size));
 
+            if(!isPositionTaken(x, y)) {
+                place(x, y);
+                OK_flag = true;
+            }
+    }
 
     /**
      * Place a marker at the internal board position.

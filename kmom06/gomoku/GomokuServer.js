@@ -158,33 +158,46 @@ router.get("/place/:x/:y", (req, res) => {
 
 router.get("/place/random", (req, res) => {
 
-    var size = gameBoard.getSize();
-    console.log("Size is: " + size);
-    var OK_flag = false;
-
-    while (!OK_flag) {
-        console.log("I'm inside the loop.")
-        var x = Number.parseInt(Math.floor(Math.random() * size));
-        var y = Number.parseInt(Math.floor(Math.random() * size));
-        console.log(`X: ${x}, Y: ${y}`);
-        var message = "Ok.";
-        try {
-            gameBoard.place(x, y);
-            OK_flag = true;
-        } catch (e) {
-            message = e.message;
-        }
-
-        sendJSONResponse(res, {
-            "action": "Trying to place " + x + ", " + y,
-            "message": message,
-            "boardSize": gameBoard.getSize(),
-            "nextPlayer": gameBoard.playerInTurn(),
-            "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-            "boardIsFull": gameBoard.isFull()
-        });
+    var message = "Ok.";
+    try {
+        gameBoard.place(x, y);
+    } catch (e) {
+        message = e.message;
     }
 
+    sendJSONResponse(res, {
+        "action": "Trying to place " + x + ", " + y,
+        "message": message,
+        "boardSize": gameBoard.getSize(),
+        "nextPlayer": gameBoard.playerInTurn(),
+        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
+        "boardIsFull": gameBoard.isFull()
+    });
+    
+    //
+    // var size = gameBoard.getSize();
+    // var OK_flag = false;
+    //
+    // while (!OK_flag) {
+    //     var x = Number.parseInt(Math.floor(Math.random() * size));
+    //     var y = Number.parseInt(Math.floor(Math.random() * size));
+    //     var message = "Ok.";
+    //     try {
+    //         gameBoard.place(x, y);
+    //         OK_flag = true;
+    //     } catch (e) {
+    //         message = e.message;
+    //     }
+    //
+    //     sendJSONResponse(res, {
+    //         "action": "Trying to place " + x + ", " + y,
+    //         "message": message,
+    //         "boardSize": gameBoard.getSize(),
+    //         "nextPlayer": gameBoard.playerInTurn(),
+    //         "nextPlayerMarker": gameBoard.playerInTurnMarker(),
+    //         "boardIsFull": gameBoard.isFull()
+    //     });
+    // }
 });
 
 /**
