@@ -162,10 +162,11 @@ router.get("/place/random", (req, res) => {
     var OK_flag = false;
 
     while (!OK_flag) {
+        console.log("I'm inside the loop.")
         var x = Number.parseInt(Math.floor(Math.random() * size));
         var y = Number.parseInt(Math.floor(Math.random() * size));
-
-        if(!gameBoard.isPositionTaken(x, y)){
+        console.log(`X: ${x}, Y: ${y}`);
+        if(gameBoard.isPositionTaken(x, y)){
             gameBoard.place(x,y);
             OK_flag = true;
         }
