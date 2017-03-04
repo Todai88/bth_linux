@@ -158,7 +158,7 @@ router.get("/place/:x/:y", (req, res) => {
 
 router.get("/place/random", (req, res) => {
 
-    var size = gamBoard.getSize();
+    var size = gameBoard.getSize();
     var OK_flag = false;
 
     while (!OK_flag) {
