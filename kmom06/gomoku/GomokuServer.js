@@ -160,7 +160,7 @@ router.get("/place/random", (req, res) => {
 
     var message = "Ok.";
     try {
-        gameBoard.place(x, y);
+        gameBoard.placeRandom();
     } catch (e) {
         message = e.message;
     }
