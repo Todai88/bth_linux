@@ -159,6 +159,7 @@ router.get("/place/:x/:y", (req, res) => {
 router.get("/place/random", (req, res) => {
 
     var size = gameBoard.getSize();
+    console.log("Size is: " + size);
     var OK_flag = false;
 
     while (!OK_flag) {
@@ -166,7 +167,7 @@ router.get("/place/random", (req, res) => {
         var x = Number.parseInt(Math.floor(Math.random() * size));
         var y = Number.parseInt(Math.floor(Math.random() * size));
         console.log(`X: ${x}, Y: ${y}`);
-        if(gameBoard.isPositionTaken(x, y)){
+        if(!gameBoard.isPositionTaken(x, y)){
             gameBoard.place(x,y);
             OK_flag = true;
         }
