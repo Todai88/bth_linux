@@ -156,7 +156,21 @@ router.get("/place/:x/:y", (req, res) => {
     });
 });
 
+router.get("/place/random", (req, res) => {
 
+    var size = gamBoard.getSize();
+    var OK_flag = false;
+
+    while (!OK_flag) {
+        var x = Number.parseInt(Math.floor(Math.random() * size));
+        var y = Number.parseInt(Math.floor(Math.random() * size));
+
+        if(!gameBoard.isPositionTaken(x, y)){
+            gameBoard.place(x,y);
+            OK_flag = true;
+        }
+    }
+});
 
 /**
  * Create and export the server
