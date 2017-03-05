@@ -180,6 +180,13 @@ rl.on("line", function(line) {
                 gomoku.random()
                 .then(value => {
                     console.log(value);
+
+                    var val = JSON.parse(value);
+                    if (val.boardIsWon.includes("won")) {
+                        console.log(val);
+                        process.exit(0);
+                    }
+
                     rl.prompt();
                 })
                 .catch(err => {
@@ -196,7 +203,10 @@ rl.on("line", function(line) {
                 .then(value => {
                     console.log(value);
                     var val = JSON.parse(value);
-                    console.log(val.boardIsWon);
+                    if (val.boardIsWon.includes("won")) {
+                        console.log(val);
+                        process.exit(0);
+                    }
                     rl.prompt();
                 })
                 .catch(err => {
