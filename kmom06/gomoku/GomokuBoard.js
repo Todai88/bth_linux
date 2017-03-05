@@ -259,7 +259,8 @@ class GomokuBoard {
     //             OK_flag = true;
     //         }
     // }
-    advanced_random();
+    var place = advanced_random();
+    this.place(place[0], place[1]);
 }
     advanced_random(){
         best_move  = [0, 0];
@@ -268,9 +269,13 @@ class GomokuBoard {
         var opponent_marker = (this.player === 1) ? 1 : 2;
         for(var col = 0; col < this.size; col++) {
             for(var row = 0; row < this.size; row++) {
+
+
                 var this_score = 0;
                 var this_position = [col, row];
-                if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
+
+                if(!this.isPositionTaken(col, row)) {
+                    if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
                     var left_marker = this.board[this.getPosition(col -1, row)];
                     for(var i = col; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(i, row)] === left_marker){
@@ -303,7 +308,7 @@ class GomokuBoard {
                             this_score++;
                         }
                     }
-                }
+                }}
 
                 if (this_score > best_score) {
                     best_move = this_position;
