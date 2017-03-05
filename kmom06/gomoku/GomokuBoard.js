@@ -121,7 +121,8 @@ class GomokuBoard {
         var iteration = 0;
         console.log("Testing first diagonal!");
         for(var i = x - x_diff; i !== x + 1; i++) {
-            var count = 0;
+            var count = 0
+            console.log(`Testing x ${i}`);
             for(var j = i; j !== i + 5; j++) {
                 var diff = (y - x_diff) + iteration;
                     console.log(`Running ${j}, ${(y - x_diff) + iteration}.`)
