@@ -90,12 +90,11 @@ class GomokuBoard {
             for(var j = i; j !== i + 5; j++) {
                 console.log(`I'm checking ${j}, ${y}: ${this.board[this.getPosition(j, y)]}
 Currently count is ${count}`);
-                if (count === 5) {
-                    console.log(`Player ${marker} has won!`);
-                }
                 if (this.board[this.getPosition(j, y)] === marker) {
                     count++;
-                    console.log("Found one! Count is now: " + count);
+                    if (count === 5) {
+                        console.log(`Player ${marker} has won!`);
+                    }
                 } else {
                     count = 0;
                     break;
