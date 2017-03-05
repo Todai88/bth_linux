@@ -309,6 +309,7 @@ class GomokuBoard {
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
                     for(var i = row; i !== this.size; i++) { //going left first
+                        console.log("checking down");
                         if (this.board[this.getPosition(i, row)] === btm_marker){
                             this_score++;
                         }
@@ -317,6 +318,7 @@ class GomokuBoard {
             }
 
                 if (this_score > best_score) {
+                    console.log("Found a better position " + this_position);
                     best_move = this_position;
                 }
                 }
