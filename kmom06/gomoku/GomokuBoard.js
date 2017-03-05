@@ -126,7 +126,9 @@ class GomokuBoard {
             console.log(`y: ${y_diff}, x:${x_diff}`);
             for(var j = i; j !== i + 5; j++) {
                 console.log(`Running ${j}, ${(y - x_diff) + iteration}.`)
-                if (this.board[this.getPosition(j, (y - y_diff) + iteration)] === marker) {
+                var diff = (y - y_diff) + iteration;
+                if (diff >= 0){
+                if (this.board[this.getPosition(j, diff] === marker) {
                     count++;
                     if (count === 5) {
                         return `Player ${marker} has won!`;
@@ -134,6 +136,7 @@ class GomokuBoard {
                 } else {
                     count = 0;
                     break;
+                }
                 }
             }
             iteration++;
