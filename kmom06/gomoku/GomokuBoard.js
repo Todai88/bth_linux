@@ -270,15 +270,13 @@ class GomokuBoard {
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
         for(let col = 0; col < this.size - 1; col++) {
-            console.log("Testing column: " + col);
             for(var row = 0; row < this.size - 1; row++) {
-                console.log("Testing position: " + col + ", " + row);
 
                 var this_score = 0;
                 var this_position = [col, row];
 
                 if(!this.isPositionTaken(col, row)) {
-                    console.log("checking left");
+
                 if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
                     var left_marker = this.board[this.getPosition(col -1, row)];
                     for(var i = col; i !== 0; i--) { //going left first
@@ -289,7 +287,7 @@ class GomokuBoard {
                         }
                     }
                 }
-                    console.log("checking right");
+
                 if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
                     var right_marker = this.board[this.getPosition(col + 1, row)];
                     for(var i = col; i !== this.size - 1; i++) { //going left first
@@ -311,11 +309,10 @@ class GomokuBoard {
                         }
                     }
                 }
-                    console.log("checking down");
+
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
                     for(var i = row; i !== this.size - 1; i++) { //going left first
-                        console.log("checking down");
                         if (this.board[this.getPosition(i, row)] === btm_marker){
                             this_score++;
                         } else {
@@ -323,7 +320,6 @@ class GomokuBoard {
                         }
                     }
                 }
-                    console.log("Finished");
             }
                 console.log(`Score for ${col}, ${row}:     ${this_score}`);
                 if (this_score > best_score) {
