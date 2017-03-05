@@ -97,7 +97,6 @@ class GomokuBoard {
                 }
             }
         }
-        console.log(this.board);
     }
 
 
