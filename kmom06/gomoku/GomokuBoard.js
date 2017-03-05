@@ -263,8 +263,8 @@ class GomokuBoard {
     this.place(place[0], place[1]);
 }
     advanced_random(){
-        best_move  = [0, 0];
-        best_score = 0;
+        var best_move  = [0, 0];
+        var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
         for(var col = 0; col < this.size; col++) {
