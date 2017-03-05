@@ -152,7 +152,8 @@ router.get("/place/:x/:y", (req, res) => {
         "boardSize": gameBoard.getSize(),
         "nextPlayer": gameBoard.playerInTurn(),
         "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull()
+        "boardIsFull": gameBoard.isFull(),
+        "boardIsWon" : gameBoard.isWon(x, y)
     });
 });
 
@@ -171,7 +172,8 @@ router.get("/place/random", (req, res) => {
         "boardSize": gameBoard.getSize(),
         "nextPlayer": gameBoard.playerInTurn(),
         "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull()
+        "boardIsFull": gameBoard.isFull(),
+        "boardIsWon" : gameBoard.isWon()
     });
 
     //

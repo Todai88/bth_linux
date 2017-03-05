@@ -73,12 +73,12 @@ class GomokuBoard {
         }
 
         this.placeMarker(position)
-        this.isWin(x, y);
+        //this.isWin(x, y);
         this.nextPlayer();
 
     }
     //check if the move wins
-    isWin(x, y){
+    isWon(x, y){
         var win_flag = false;
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
@@ -97,6 +97,7 @@ class GomokuBoard {
                 }
             }
         }
+        return "No winning player.";
     }
 
 
