@@ -85,6 +85,7 @@ class GomokuBoard {
         console.log(`Checking from ${x}, ${y} for player ${marker}`);
         for(var i = x - x_diff; i !== x; i++) {
             var count = 0;
+            console.log(`Checking ${i}, ${y}`);
             for(var j = i; j !== i + 5; j++) {
                 if (count === 5) {
                     console.log(`Player ${marker} has won!`);
