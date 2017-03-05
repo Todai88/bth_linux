@@ -280,7 +280,7 @@ class GomokuBoard {
                 if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
                     var left_marker = this.board[this.getPosition(col -1, row)];
                     console.log("Checking left for: " + left_marker);
-                    for(var i = col; i !== 0; i--) { //going left first
+                    for(var i = col - 1; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(i, row)] === left_marker){
                             this_score += 1;
                         } else {
@@ -292,7 +292,7 @@ class GomokuBoard {
                 if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
                     var right_marker = this.board[this.getPosition(col + 1, row)];
                     console.log("Checking right for: " + right_marker);
-                    for(var i = col; i !== this.size - 1; i++) { //going left first
+                    for(var i = col + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(i, row)] === right_marker){
                             this_score += 1;
                         } else {
@@ -303,8 +303,7 @@ class GomokuBoard {
 
                 if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
                     var top_marker = this.board[this.getPosition(col, row -1)];
-                    console.log("Checking top for: " + top_marker);
-                    for(var i = row; i !== 0; i--) { //going left first
+                    for(var i = row - 1; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(col, i)] === top_marker){
                             this_score += 1;
                         } else {
@@ -315,8 +314,7 @@ class GomokuBoard {
 
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
-                    console.log("Checking bottom for: " + btm_marker);
-                    for(var i = row; i !== this.size - 1; i++) { //going left first
+                    for(var i = row + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(col, i)] === btm_marker){
                             this_score += 1;
                         } else {
