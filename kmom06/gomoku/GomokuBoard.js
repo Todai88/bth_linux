@@ -123,9 +123,31 @@ class GomokuBoard {
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             var extra = 0;
-            console.log(`Testing x ${i}`);
             for(var j = i; j !== i + 5; j++) {
                 var diff = (y - x_diff) + iteration + extra;
+                    if (this.board[this.getPosition(j, diff)] === marker) {
+                        count++;
+                        extra++;
+                        if (count === 5) {
+                            return `Player ${marker} has won!`;
+                        }
+                    } else {
+                        extra = 0;
+                        count = 0;
+                        break;
+                    }
+            }
+            iteration++;
+        }
+
+        var iteration = 0;
+        console.log("Testing second diagonal!");
+        for(var i = x - x_diff; i !== x + 1; i++) {
+            var count = 0;
+            var extra = 0;
+            console.log(`Testing x ${i}`);
+            for(var j = i; j !== i + 5; j++) {
+                var diff = (y + x_diff) - iteration - extra;
                     console.log(`Running ${j}, ${diff}. Looking for ${marker}`)
                     if (this.board[this.getPosition(j, diff)] === marker) {
                         count++;
