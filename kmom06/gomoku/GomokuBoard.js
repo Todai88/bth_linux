@@ -120,10 +120,10 @@ class GomokuBoard {
         //var tmp_x = (tmp_y  >=  5) ? tmp_y  : x_diff;
         var iteration = 0;
         console.log("Testing first diagonal!");
-        for(var i = x - tmp_x; i !== x + 1; i++) {
+        for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             console.log("Looping");
-            //console.log(`tmp_y: ${tmp_y}, tmp_x:${tmp_x}`);
+            console.log(`y: ${y_diff}, x:${x_diff}`);
             for(var j = i; j !== i + 5; j++) {
                 console.log(`Running ${j}, ${(y - y_diff) + iteration}.`)
                 if (this.board[this.getPosition(j, (y - y_diff) + iteration)] === marker) {
