@@ -125,6 +125,7 @@ class GomokuBoard {
             var extra = 0;
             for(var j = i; j !== i + 5; j++) {
                 var diff = (((y - x_diff) + iteration + extra) < this.size) ? this.size : ((y + x_diff) - iteration - extra);
+                if (diff >= 0 && diff < this.size) {
                     if (this.board[this.getPosition(j, diff)] === marker) {
                         count++;
                         extra++;
@@ -136,6 +137,7 @@ class GomokuBoard {
                         count = 0;
                         break;
                     }
+                }
             }
             iteration++;
         }
