@@ -272,7 +272,7 @@ class GomokuBoard {
         for(let col = 0; col < this.size - 1; col++) {
             console.log("Testing column: " + col);
             for(var row = 0; row < this.size - 1; row++) {
-                console.log("Testing row: " + row);
+                console.log("Testing position: " + col + ", " + row);
 
                 var this_score = 0;
                 var this_position = [col, row];
@@ -319,7 +319,7 @@ class GomokuBoard {
                     best_move = this_position;
                 }
                 }
-            } 
+            }
             console.log(best_move);
             return best_move;
         }
