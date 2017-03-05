@@ -183,7 +183,7 @@ rl.on("line", function(line) {
 
                     var val = JSON.parse(value);
                     if (val.boardIsWon.includes("won")) {
-                        console.log(val);
+                        console.log(`${val.boardIsWon}. Closing game-loop!`);
                         process.exit(0);
                     }
 
@@ -204,7 +204,7 @@ rl.on("line", function(line) {
                     console.log(value);
                     var val = JSON.parse(value);
                     if (val.boardIsWon.includes("won")) {
-                        console.log(val);
+                        console.log(`${val.boardIsWon}. Closing game-loop!`);
                         process.exit(0);
                     }
                     rl.prompt();

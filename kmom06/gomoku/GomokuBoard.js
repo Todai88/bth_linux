@@ -84,12 +84,28 @@ class GomokuBoard {
         var y_diff = (y >= 5) ? 5 : y;
         var marker = (this.player === 1) ? 2 : 1;
         console.log(`Placed ${x}, ${y} with ${marker}`);
+        console.log("Testing horizontally!");
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             console.log("Looping");
             for(var j = i; j !== i + 5; j++) {
-                console.log(`Testing ${j}, ${y}: ${this.board[this.getPosition(j, y)]}`);
                 if (this.board[this.getPosition(j, y)] === marker) {
+                    count++;
+                    if (count === 5) {
+                        return `Player ${marker} has won!`;
+                    }
+                } else {
+                    count = 0;
+                    break;
+                }
+            }
+        }
+        console.log("Testing vertically!");
+        for(var i = y - y_diff; i !== y + 1; i++) {
+            var count = 0;
+            console.log("Looping");
+            for(var j = i; j !== i + 5; j++) {
+                if (this.board[this.getPosition(x, j)] === marker) {
                     count++;
                     if (count === 5) {
                         return `Player ${marker} has won!`;
