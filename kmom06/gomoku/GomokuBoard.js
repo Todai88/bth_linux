@@ -73,17 +73,17 @@ class GomokuBoard {
         }
 
         this.placeMarker(position)
-            .nextPlayer();
         this.isWin(x, y);
+            .nextPlayer();
+
     }
     //check if the move wins
     isWin(x, y){
         var win_flag = false;
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
-        var player = this.player;
         var marker = this.player;
-        console.log(`Checking from ${x}, ${y} for player ${player}, marker ${marker}`);
+        console.log(`Checking from ${x}, ${y} for player ${marker}, marker ${marker}`);
         for(var i = x - x_diff; i !== x; i++) {
             var count = 0;
             console.log(`Checking ${i}, ${y}`);
@@ -165,7 +165,9 @@ Currently count is ${count}`);
         return x + y * this.size;
     }
 
-
+    getPositionMarker(position) {
+        return this.board[getPosition];
+    }
 
     /**
      * Check if there is a free place to put a marker or if the board is full.
