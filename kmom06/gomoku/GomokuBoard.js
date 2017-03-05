@@ -282,7 +282,7 @@ class GomokuBoard {
                     console.log("Checking left for: " + left_marker);
                     for(var i = col; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(i, row)] === left_marker){
-                            this_score++;
+                            this_score += 1;
                         } else {
                             break;
                         }
@@ -294,7 +294,7 @@ class GomokuBoard {
                     console.log("Checking right for: " + right_marker);
                     for(var i = col; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(i, row)] === right_marker){
-                            this_score++;
+                            this_score += 1;
                         } else {
                             break;
                         }
@@ -306,7 +306,7 @@ class GomokuBoard {
                     console.log("Checking top for: " + top_marker);
                     for(var i = row; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(col, i)] === top_marker){
-                            this_score++;
+                            this_score += 1;
                         } else {
                             break;
                         }
@@ -318,7 +318,7 @@ class GomokuBoard {
                     console.log("Checking bottom for: " + btm_marker);
                     for(var i = row; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(col, i)] === btm_marker){
-                            this_score++;
+                            this_score += 1;
                         } else {
                             break;
                         }
