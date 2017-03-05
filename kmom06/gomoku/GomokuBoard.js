@@ -147,7 +147,7 @@ class GomokuBoard {
             var extra = 0;
             console.log(`Testing x ${i}`);
             for(var j = i; j !== i + 5; j++) {
-                var diff = (y + x_diff) - iteration - extra;
+                var diff = (((y + x_diff) - iteration - extra) > this.size) ? this.size : ((y + x_diff) - iteration - extra);
                     console.log(`Running ${j}, ${diff}. Looking for ${marker}`)
                     if (this.board[this.getPosition(j, diff)] === marker) {
                         count++;
