@@ -116,10 +116,11 @@ class GomokuBoard {
                 }
             }
         }
-        var tmp_y = y_diff;
+        var tmp_y = (x_diff <= 5)  ? x_diff : y_diff;
+        var tmp_x = (tmp_y  <= 5)  ? tmp_y  : x_diff;
         var iteration = 0;
         console.log("Testing first diagonal!");
-        for(var i = x - x_diff; i !== x + 1; i++) {
+        for(var i = x - tmp_x; i !== x + 1; i++) {
             var count = 0;
             console.log("Looping");
             for(var j = i; j !== i + 5; j++) {
