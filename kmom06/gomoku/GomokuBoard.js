@@ -90,7 +90,7 @@ class GomokuBoard {
                 if (count === 5) {
                     console.log(`Player ${marker} has won!`);
                 }
-                if (this.board[getPosition(j, y)] === marker) {
+                if (this.board[this.getPosition(j, y)] === marker) {
                     count++;
                     console.log("Found one! Count is now: " + count);
                 } else {
