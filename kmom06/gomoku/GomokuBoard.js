@@ -86,6 +86,7 @@ class GomokuBoard {
         console.log(`Placed ${x}, ${y} with ${marker}`);
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
+            console.log("Looping");
             for(var j = i; j !== i + 5; j++) {
                 console.log(`Testing ${j}, ${y}: ${this.board[this.getPosition(j, y)]}`);
                 if (this.board[this.getPosition(j, y)] === marker) {
