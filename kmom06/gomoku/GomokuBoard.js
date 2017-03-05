@@ -82,7 +82,7 @@ class GomokuBoard {
         var win_flag = false;
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
-        var marker = this.player;
+        var marker = (this.player === 1) ? 2 : 1;
         console.log(`Placed ${x}, ${y} with ${marker}`);
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
