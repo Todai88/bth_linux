@@ -259,7 +259,7 @@ class GomokuBoard {
     //             OK_flag = true;
     //         }
     // }
-    var place = advanced_random();
+    var place = this.advanced_random();
     this.place(place[0], place[1]);
 }
     advanced_random(){
