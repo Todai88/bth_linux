@@ -249,17 +249,17 @@ class GomokuBoard {
     }
 
     placeRandom() {
-        // var OK_flag = false;
-        // while (!OK_flag) {
-        //     var x = Number.parseInt(Math.floor(Math.random() * this.size));
-        //     var y = Number.parseInt(Math.floor(Math.random() * this.size));
-        //
-        //     if(!this.isPositionTaken(x, y)) {
-        //         this.place(x, y);
-        //         OK_flag = true;
-        advanced_random();
-            }
-    }
+    //     var OK_flag = false;
+    //     while (!OK_flag) {
+    //         var x = Number.parseInt(Math.floor(Math.random() * this.size));
+    //         var y = Number.parseInt(Math.floor(Math.random() * this.size));
+    //
+    //         if(!this.isPositionTaken(x, y)) {
+    //             this.place(x, y);
+    //             OK_flag = true;
+    //         }
+    // }
+    advanced_random();
 }
     advanced_random(){
         best_move  = [0, 0];
