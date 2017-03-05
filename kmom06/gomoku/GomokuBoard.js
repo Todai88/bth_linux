@@ -83,7 +83,7 @@ class GomokuBoard {
         var y_diff = (y >= 5) ? 5 : y;
         var player = this.player;
         var marker = this.marker;
-        console.log(`Checking from ${x}, ${y} for player ${player}`);
+        console.log(`Checking from ${x}, ${y} for player ${player}, marker ${marker}`);
         for(var i = x - x_diff; i !== x; i++) {
             var count = 0;
             console.log(`Checking ${i}, ${y}`);
