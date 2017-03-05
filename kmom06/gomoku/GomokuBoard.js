@@ -269,7 +269,7 @@ class GomokuBoard {
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
-        for(var col = 0; col < this.size; col++) {
+        for(let col = 0; col < this.size; col++) {
             console.log("Testing column: " + col);
             for(var row = 0; row < this.size; row++) {
                 console.log("Testing row: " + row);
@@ -278,7 +278,8 @@ class GomokuBoard {
                 var this_position = [col, row];
 
                 if(!this.isPositionTaken(col, row)) {
-                    if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
+
+                if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
                     var left_marker = this.board[this.getPosition(col -1, row)];
                     for(var i = col; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(i, row)] === left_marker){
@@ -311,7 +312,8 @@ class GomokuBoard {
                             this_score++;
                         }
                     }
-                }}
+                }
+            }
 
                 if (this_score > best_score) {
                     best_move = this_position;
