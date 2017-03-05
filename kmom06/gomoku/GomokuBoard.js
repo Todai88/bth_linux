@@ -72,14 +72,12 @@ class GomokuBoard {
             throw new Error("The position is already taken.");
         }
 
-        this.placeMarker(position)
-        //this.isWin(x, y);
+        this.placeMarker(position);
         this.nextPlayer();
 
     }
     //check if the move wins
     isWon(x, y){
-        var win_flag = false;
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
         var marker = (this.player === 1) ? 2 : 1;
@@ -101,10 +99,10 @@ class GomokuBoard {
             }
         }
         console.log("Testing vertically!");
-        for(var i = y - y_diff; i !== y + 1; i++) {
-            var count = 0;
+        for(i = y - y_diff; i !== y + 1; i++) {
+            count = 0;
             console.log("Looping");
-            for(var j = i; j !== i + 5; j++) {
+            for(j = i; j !== i + 5; j++) {
                 if (this.board[this.getPosition(x, j)] === marker) {
                     count++;
                     if (count === 5) {
@@ -120,10 +118,10 @@ class GomokuBoard {
         //var tmp_x = (tmp_y  >=  5) ? tmp_y  : x_diff;
         var iteration = 0;
         console.log("Testing first diagonal!");
-        for(var i = x - x_diff; i !== x + 1; i++) {
-            var count = 0;
+        for(i = x - x_diff; i !== x + 1; i++) {
+            count = 0;
             var extra = 0;
-            for(var j = i; j !== i + 5; j++) {
+            for(j = i; j !== i + 5; j++) {
                 var diff = (((y - x_diff) + iteration + extra) < this.size) ? this.size : ((y + x_diff) - iteration - extra);
                 if (diff >= 0 && diff < this.size) {
                     if (this.board[this.getPosition(j, diff)] === marker) {
@@ -142,15 +140,15 @@ class GomokuBoard {
             iteration++;
         }
 
-        var iteration = 0;
+        iteration = 0;
         console.log("Testing second diagonal!");
-        for(var i = x - x_diff; i !== x + 1; i++) {
-            var count = 0;
-            var extra = 0;
+        for(i = x - x_diff; i !== x + 1; i++) {
+            count = 0;
+            extra = 0;
             console.log(`Testing x ${i}`);
-            for(var j = i; j !== i + 5; j++) {
-                var diff = (((y + x_diff) - iteration - extra) > this.size) ? this.size : ((y + x_diff) - iteration - extra);
-                    console.log(`Running ${j}, ${diff}. Looking for ${marker}`)
+            for(j = i; j !== i + 5; j++) {
+                diff = (((y + x_diff) - iteration - extra) > this.size) ? this.size : ((y + x_diff) - iteration - extra);
+                    console.log(`Running ${j}, ${diff}. Looking for ${marker}`);
                     if (diff >= 0 && diff < this.size) {
                         if (this.board[this.getPosition(j, diff)] === marker) {
                         count++;
@@ -232,9 +230,9 @@ class GomokuBoard {
         return x + y * this.size;
     }
 
-    getPositionMarker(position) {
-        return this.board[getPosition];
-    }
+    // getPositionMarker() {
+    //     return this.board[getPosition];
+    // }
 
     /**
      * Check if there is a free place to put a marker or if the board is full.
@@ -268,7 +266,6 @@ class GomokuBoard {
         var best_move  = [5, 5];
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
-        var opponent_marker = (this.player === 1) ? 1 : 2;
         for(let col = 0; col < this.size - 1; col++) {
             for(var row = 0; row < this.size - 1; row++) {
 
@@ -296,9 +293,9 @@ class GomokuBoard {
                 if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
                     var right_marker = this.board[this.getPosition(col + 1, row)];
                     console.log("Checking right for: " + right_marker);
-                    for(var i = col + 1; i !== this.size - 1; i++) { //going left first
+                    for(i = col + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(i, row)] === right_marker){
-                            if(left_marker === player_marker){
+                            if(right_marker === player_marker){
                                 this_score += 2;
                             } else {
                                 this_score += 1;
@@ -311,9 +308,9 @@ class GomokuBoard {
 
                 if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
                     var top_marker = this.board[this.getPosition(col, row -1)];
-                    for(var i = row - 1; i !== 0; i--) { //going left first
+                    for(i = row - 1; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(col, i)] === top_marker){
-                            if(left_marker === player_marker){
+                            if(top_marker === player_marker){
                                 this_score += 2;
                             } else {
                                 this_score += 1;
@@ -326,9 +323,9 @@ class GomokuBoard {
 
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
-                    for(var i = row + 1; i !== this.size - 1; i++) { //going left first
+                    for(i = row + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(col, i)] === btm_marker){
-                            if(left_marker === player_marker){
+                            if(btm_marker === player_marker){
                                 this_score += 2;
                             } else {
                                 this_score += 1;
