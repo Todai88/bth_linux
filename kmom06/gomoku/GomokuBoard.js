@@ -82,7 +82,7 @@ class GomokuBoard {
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
         var marker = this.player;
-        console.log("Checking horizontally");
+        console.log(`Checking from ${x}, ${y} for player ${marker}`);
         for(var i = x - x_diff; i !== x; i++) {
             var count = 0;
             for(var j = i; j !== i + 5; j++) {
