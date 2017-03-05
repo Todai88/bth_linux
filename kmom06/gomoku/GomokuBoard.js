@@ -265,7 +265,7 @@ class GomokuBoard {
 }
     advanced_random(){
         console.log("I've entered");
-        var best_move  = [0, 0];
+        var best_move  = [5, 5];
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
@@ -318,6 +318,7 @@ class GomokuBoard {
                 }
                 }
             }
+            console.log(col);
             console.log(best_move);
             return best_move;
         }
