@@ -315,6 +315,7 @@ class GomokuBoard {
                         }
                     }
                 }
+                    console.log("Finished");
             }
 
                 if (this_score > best_score) {
