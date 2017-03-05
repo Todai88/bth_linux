@@ -249,17 +249,69 @@ class GomokuBoard {
     }
 
     placeRandom() {
-        var OK_flag = false;
-        while (!OK_flag) {
-            var x = Number.parseInt(Math.floor(Math.random() * this.size));
-            var y = Number.parseInt(Math.floor(Math.random() * this.size));
-
-            if(!this.isPositionTaken(x, y)) {
-                this.place(x, y);
-                OK_flag = true;
+        // var OK_flag = false;
+        // while (!OK_flag) {
+        //     var x = Number.parseInt(Math.floor(Math.random() * this.size));
+        //     var y = Number.parseInt(Math.floor(Math.random() * this.size));
+        //
+        //     if(!this.isPositionTaken(x, y)) {
+        //         this.place(x, y);
+        //         OK_flag = true;
+        advanced_random();
             }
     }
 }
+    advanced_random(){
+        best_move  = [0, 0];
+        best_score = 0;
+        var player_marker = (this.player === 1) ? 2 : 1;
+        var opponent_marker = (this.player === 1) ? 1 : 2;
+        for(var col = 0; col < this.size; col++) {
+            for(var row = 0; row < this.size; row++) {
+                var this_score = 0;
+                var this_position = [col, row];
+                if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
+                    var left_marker = this.board[this.getPosition(col -1, row)];
+                    for(var i = col; i !== 0; i--) { //going left first
+                        if (this.board[this.getPosition(i, row)] === left_marker){
+                            this_score++;
+                        }
+                    }
+                }
+                if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
+                    var right_marker = this.board[this.getPosition(col + 1, row)];
+                    for(var i = col; i !== this.size - 1; i++) { //going left first
+                        if (this.board[this.getPosition(i, row)] === right_marker){
+                            this_score++;
+                        }
+                    }
+                }
+
+                if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
+                    var top_marker = this.board[this.getPosition(col, row -1)];
+                    for(var i = row; i !== 0; i--) { //going left first
+                        if (this.board[this.getPosition(i, row)] === top_marker){
+                            this_score++;
+                        }
+                    }
+                }
+
+                if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
+                    var btm_marker = this.board[this.getPosition(col, row + 1)];
+                    for(var i = row; i !== this.size; i++) { //going left first
+                        if (this.board[this.getPosition(i, row)] === btm_marker){
+                            this_score++;
+                        }
+                    }
+                }
+
+                if (this_score > best_score) {
+                    best_move = this_position;
+                }
+                }
+            }
+            return best_move;
+        }
 
     /**
      * Place a marker at the internal board position.
