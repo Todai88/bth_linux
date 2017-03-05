@@ -282,7 +282,11 @@ class GomokuBoard {
                     console.log("Checking left for: " + left_marker);
                     for(var i = col - 1; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(i, row)] === left_marker){
-                            this_score += 1;
+                            if(left_marker === player_marker){
+                                this_score += 2;
+                            } else {
+                                this_score += 1;
+                            }
                         } else {
                             break;
                         }
@@ -294,7 +298,11 @@ class GomokuBoard {
                     console.log("Checking right for: " + right_marker);
                     for(var i = col + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(i, row)] === right_marker){
-                            this_score += 1;
+                            if(left_marker === player_marker){
+                                this_score += 2;
+                            } else {
+                                this_score += 1;
+                            }
                         } else {
                             break;
                         }
@@ -305,7 +313,11 @@ class GomokuBoard {
                     var top_marker = this.board[this.getPosition(col, row -1)];
                     for(var i = row - 1; i !== 0; i--) { //going left first
                         if (this.board[this.getPosition(col, i)] === top_marker){
-                            this_score += 1;
+                            if(left_marker === player_marker){
+                                this_score += 2;
+                            } else {
+                                this_score += 1;
+                            }
                         } else {
                             break;
                         }
@@ -316,7 +328,11 @@ class GomokuBoard {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
                     for(var i = row + 1; i !== this.size - 1; i++) { //going left first
                         if (this.board[this.getPosition(col, i)] === btm_marker){
-                            this_score += 1;
+                            if(left_marker === player_marker){
+                                this_score += 2;
+                            } else {
+                                this_score += 1;
+                            }
                         } else {
                             break;
                         }
