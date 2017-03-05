@@ -298,11 +298,11 @@ class GomokuBoard {
                         }
                     }
                 }
-                    console.log("checking up");
+
                 if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
                     var top_marker = this.board[this.getPosition(col, row -1)];
                     for(var i = row; i !== 0; i--) { //going left first
-                        if (this.board[this.getPosition(i, row)] === top_marker){
+                        if (this.board[this.getPosition(col, i)] === top_marker){
                             this_score++;
                         } else {
                             break;
@@ -313,7 +313,7 @@ class GomokuBoard {
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
                     for(var i = row; i !== this.size - 1; i++) { //going left first
-                        if (this.board[this.getPosition(i, row)] === btm_marker){
+                        if (this.board[this.getPosition(col, i)] === btm_marker){
                             this_score++;
                         } else {
                             break;
