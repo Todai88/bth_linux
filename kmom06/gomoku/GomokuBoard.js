@@ -87,7 +87,7 @@ class GomokuBoard {
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             console.log(`Checking ${i}, ${y}`);
-            for(var j = i; j !== i + 4; j++) {
+            for(var j = i; j !== i + 5; j++) {
                 console.log(`I'm checking ${j}, ${y}: ${this.board[this.getPosition(j, y)]}
 Currently count is ${count}`);
                 if (count === 5) {
