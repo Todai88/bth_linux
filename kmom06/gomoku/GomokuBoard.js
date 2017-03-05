@@ -83,17 +83,13 @@ class GomokuBoard {
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
         var marker = this.player;
-        console.log(`Checking from ${x}, ${y} for player ${marker}, marker ${marker}`);
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
-            console.log(`Checking ${i}, ${y}`);
             for(var j = i; j !== i + 5; j++) {
-                console.log(`I'm checking ${j}, ${y}: ${this.board[this.getPosition(j, y)]}
-Currently count is ${count}`);
                 if (this.board[this.getPosition(j, y)] === marker) {
                     count++;
                     if (count === 5) {
-                        console.log(`Player ${marker} has won!`);
+                        return `Player ${marker} has won!`;
                     }
                 } else {
                     count = 0;
