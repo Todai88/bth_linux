@@ -74,7 +74,7 @@ class GomokuBoard {
 
         this.placeMarker(position)
         this.isWin(x, y);
-            .nextPlayer();
+        this.nextPlayer();
 
     }
     //check if the move wins
