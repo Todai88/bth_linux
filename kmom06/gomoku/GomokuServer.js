@@ -172,8 +172,8 @@ router.get("/place/random", (req, res) => {
         "boardSize": gameBoard.getSize(),
         "nextPlayer": gameBoard.playerInTurn(),
         "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull(),
-        "boardIsWon" : gameBoard.isWon()
+        "boardIsFull": gameBoard.isFull()
+        //"boardIsWon" : gameBoard.isWon()
     });
 
     //
