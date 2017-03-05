@@ -325,7 +325,7 @@ class GomokuBoard {
                 }
                     console.log("Finished");
             }
-
+                console.log(`Score for ${col}, ${row}:     ${this_score}`);
                 if (this_score > best_score) {
                     console.log("Found a better position " + this_position);
                     best_move = this_position;
