@@ -83,9 +83,11 @@ class GomokuBoard {
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
         var marker = this.player;
+        console.log(`Placed ${x}, ${y} with ${marker}`);
         for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             for(var j = i; j !== i + 5; j++) {
+                console.log(`Testing ${j}, ${y}: ${this.board[this.getPosition(j, y)]}`);
                 if (this.board[this.getPosition(j, y)] === marker) {
                     count++;
                     if (count === 5) {
