@@ -264,13 +264,15 @@ class GomokuBoard {
     this.place(move[0], move[1]);
 }
     advanced_random(){
+        console.log("I've entered");
         var best_move  = [0, 0];
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
         for(var col = 0; col < this.size; col++) {
+            console.log("Testing column: " + col);
             for(var row = 0; row < this.size; row++) {
-
+                console.log("Testing row: " + row);
 
                 var this_score = 0;
                 var this_position = [col, row];
