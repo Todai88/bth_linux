@@ -195,6 +195,7 @@ rl.on("line", function(line) {
                 gomoku.place(x, y)
                 .then(value => {
                     console.log(value);
+                    console.log(value.boardIsWon);
                     rl.prompt();
                 })
                 .catch(err => {
