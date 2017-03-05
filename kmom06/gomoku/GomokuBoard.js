@@ -319,8 +319,7 @@ class GomokuBoard {
                     best_move = this_position;
                 }
                 }
-            }
-            console.log(col);
+            } 
             console.log(best_move);
             return best_move;
         }
