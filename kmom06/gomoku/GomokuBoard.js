@@ -278,7 +278,7 @@ class GomokuBoard {
                 var this_position = [col, row];
 
                 if(!this.isPositionTaken(col, row)) {
-
+                    console.log("checking left");
                 if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
                     var left_marker = this.board[this.getPosition(col -1, row)];
                     for(var i = col; i !== 0; i--) { //going left first
@@ -287,6 +287,7 @@ class GomokuBoard {
                         }
                     }
                 }
+                    console.log("checking right");
                 if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
                     var right_marker = this.board[this.getPosition(col + 1, row)];
                     for(var i = col; i !== this.size - 1; i++) { //going left first
@@ -295,7 +296,7 @@ class GomokuBoard {
                         }
                     }
                 }
-
+                    console.log("checking up");
                 if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
                     var top_marker = this.board[this.getPosition(col, row -1)];
                     for(var i = row; i !== 0; i--) { //going left first
@@ -304,7 +305,7 @@ class GomokuBoard {
                         }
                     }
                 }
-
+                    console.log("checking down");
                 if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
                     var btm_marker = this.board[this.getPosition(col, row + 1)];
                     for(var i = row; i !== this.size; i++) { //going left first
