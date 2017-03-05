@@ -259,8 +259,9 @@ class GomokuBoard {
     //             OK_flag = true;
     //         }
     // }
-    var place = this.advanced_random();
-    this.place(place[0], place[1]);
+    var move = this.advanced_random();
+    console.log("Trying to place: " + move);
+    this.place(move[0], move[1]);
 }
     advanced_random(){
         var best_move  = [0, 0];
@@ -315,6 +316,7 @@ class GomokuBoard {
                 }
                 }
             }
+            console.log(best_move);
             return best_move;
         }
 
