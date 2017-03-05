@@ -116,6 +116,27 @@ class GomokuBoard {
                 }
             }
         }
+        var tmp_y = y_diff;
+        var iteration = 0;
+        console.log("Testing first diagonal!");
+        for(var i = x - x_diff; i !== x + 1; i++) {
+            var count = 0;
+            console.log("Looping");
+            for(var j = i; j !== i + 5; j++) {
+                console.log(`Running ${j}, ${y_diff + iteration}.`)
+                if (this.board[this.getPosition(j, y_diff + iteration)] === marker) {
+                    count++;
+                    if (count === 5) {
+                        return `Player ${marker} has won!`;
+                    }
+                } else {
+                    count = 0;
+                    break;
+                }
+            }
+            iteration++;
+        }
+
         return "No winning player.";
     }
 
