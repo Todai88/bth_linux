@@ -92,6 +92,8 @@ class GomokuBoard {
                 if (this.board[getPosition(j, y)] === marker) {
                     count++;
                     console.log("Found one! Count is now: " + count);
+                } else {
+                    break;
                 }
             }
         }
