@@ -269,9 +269,9 @@ class GomokuBoard {
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
         var opponent_marker = (this.player === 1) ? 1 : 2;
-        for(let col = 0; col < this.size; col++) {
+        for(let col = 0; col < this.size - 1; col++) {
             console.log("Testing column: " + col);
-            for(var row = 0; row < this.size; row++) {
+            for(var row = 0; row < this.size - 1; row++) {
                 console.log("Testing row: " + row);
 
                 var this_score = 0;
