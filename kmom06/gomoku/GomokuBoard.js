@@ -84,10 +84,10 @@ class GomokuBoard {
         var y_diff = (y >= 5) ? 5 : y;
         var marker = this.player;
         console.log(`Checking from ${x}, ${y} for player ${marker}, marker ${marker}`);
-        for(var i = x - x_diff; i !== x; i++) {
+        for(var i = x - x_diff; i !== x + 1; i++) {
             var count = 0;
             console.log(`Checking ${i}, ${y}`);
-            for(var j = i; j !== i + 5; j++) {
+            for(var j = i; j !== i + 4; j++) {
                 console.log(`I'm checking ${j}, ${y}: ${this.board[this.getPosition(j, y)]}
 Currently count is ${count}`);
                 if (count === 5) {
@@ -97,6 +97,7 @@ Currently count is ${count}`);
                     count++;
                     console.log("Found one! Count is now: " + count);
                 } else {
+                    count = 0;
                     break;
                 }
             }
