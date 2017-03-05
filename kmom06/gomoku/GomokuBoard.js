@@ -123,8 +123,8 @@ class GomokuBoard {
             var count = 0;
             console.log("Looping");
             for(var j = i; j !== i + 5; j++) {
-                console.log(`Running ${j}, ${y_diff + iteration}.`)
-                if (this.board[this.getPosition(j, y_diff + iteration)] === marker) {
+                console.log(`Running ${j}, ${y_diff - iteration}.`)
+                if (this.board[this.getPosition(j, y_diff - iteration)] === marker) {
                     count++;
                     if (count === 5) {
                         return `Player ${marker} has won!`;
