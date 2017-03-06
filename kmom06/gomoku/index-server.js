@@ -21,7 +21,7 @@ import server from "./GomokuServer.js";
 
 var port = 1337; // default port.
 
-if(process.env.LINUX_PORT) {
+if (process.env.LINUX_PORT) {
     port = process.env.LINUX_PORT; // if env variable is set we are using it.
 }
 

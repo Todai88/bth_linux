@@ -48,10 +48,10 @@ Available Options:
 
 }
 
-function version(){
+function version() {
 
     console.log(`Script: ${scriptName}.
-Version: ${VERSION}`)
+Version: ${VERSION}`);
 }
 
 var remaining = [];
@@ -73,7 +73,7 @@ args.forEach((arg) => {
     }
 });
 
-if(remaining.length == 1){
+if (remaining.length == 1) {
     size = remaining[0];
 } else {
     console.log(`
@@ -142,19 +142,21 @@ function placeMarker(x_val, y_val) {
     console.log(gameBoard.asAscii());
 }
 
-function testPosition(x_val, y_val){
+function testPosition(x_val, y_val) {
 
     if (!gameBoard.isPositionTaken(x_val, y_val)) {
         return true;
-    } else return false;
+    } else {return false;}
 
 }
 
-function is_numerical(input){
+function is_numerical(input) {
 
-    if(!isNaN(input[0]) && !isNaN(input[1])){
+    if (!isNaN(input[0]) && !isNaN(input[1])) {
         return true;
-    } else return false;
+    } else {
+        return false;
+    }
 }
 
 rl.on("line", function(line) {
@@ -165,53 +167,53 @@ rl.on("line", function(line) {
             break;
         default: // all other cases are treated as a place-action.
 
-        /*
-        Trim the read line from white-spaces
-        and then filter on numbers, meaning anything that isn't
-        a number will be discarded (like whitespaces between the two numbers).
-        */
-        var markers_array = line.trim().split(" ");
-        markers_array = markers_array.filter(function(val){
-            if(parseInt(val) >= 0) {
-                return val;
-            }
-        });
+            /*
+            Trim the read line from white-spaces
+            and then filter on numbers, meaning anything that isn't
+            a number will be discarded (like whitespaces between the two numbers).
+            */
+            var markers_array = line.trim().split(" ");
+            markers_array = markers_array.filter(function(val) {
+                if (parseInt(val) >= 0) {
+                    return val;
+                }
+            });
 
-        /*
-
-        First check there are only two items in the array, if not we are
-        treating it as a randomizing action.
-
-        */
-
-        if(markers_array.length !== 2){
             /*
 
-            Print string to explain we are randomizing, then random.
+            First check there are only two items in the array, if not we are
+            treating it as a randomizing action.
 
             */
-            console.log(`
+
+            if (markers_array.length !== 2) {
+                /*
+
+                Print string to explain we are randomizing, then random.
+
+                */
+                console.log(`
 Incorrect amount of arguments, we require two (2), separated by a space " ".
 You wrote ${line}.
 Example: '10 10' places a marker on x:10, y:10.
 Randomizing...
 `);
-            placeRandomMarker();
+                placeRandomMarker();
 
 
-        } else {
+            } else {
 
-            /*
-            Check if both the elements in the array are indeed numbers.
-            */
+                /*
+                Check if both the elements in the array are indeed numbers.
+                */
 
-            if (is_numerical(markers_array)){
-                console.log(markers_array[0] + " , " + markers_array[1]);
-                console.log(size);
-                var numone = parseInt(markers_array[0]);
-                var numtwo = parseInt(markers_array[1]);
+                if (is_numerical(markers_array)) {
+                    console.log(markers_array[0] + " , " + markers_array[1]);
+                    console.log(size);
+                    var numone = parseInt(markers_array[0]);
+                    var numtwo = parseInt(markers_array[1]);
                     if (numone <= size  && numone >= 0 && numtwo >= 0 && numtwo <= size) {
-                        if (testPosition(numone, numtwo)){
+                        if (testPosition(numone, numtwo)) {
                             placeMarker(numone, numtwo);
                         } else {
                             console.log(`Position ${numone}, ${numtwo} is already taken.. Try again!`);
@@ -224,12 +226,12 @@ Randomizing...
                     }
 
                 } else {
-                /*
+                    /*
 
-                Print string to explain that we require *ONLY*
-                numerical values on the line.
+                    Print string to explain that we require *ONLY*
+                    numerical values on the line.
 
-                */
+                    */
                     console.log(
 `Incorrect input. ${line}
 You should enter two NUMBERS with a space inbetween.
@@ -237,7 +239,7 @@ Correct   usage: 10 10
 Incorrect usage: 10, 10`);
                 }
             }
-        }
+    }
     rl.prompt();
 });
 

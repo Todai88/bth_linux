@@ -275,7 +275,69 @@
         <div id="Kmom06" class="panel-collapse collapse">
             <div class="panel-body">
                     <ul>
+                        <li><b>Hur väl har du fått ordning på begreppen kring klient och server?</b></li>
+                        Det har känts rätt klockrent från början egentligen. Jag jobbar ju med både klienter och servrar på heltid annars, så begreppet känns rätt klart för mig.
+                        Jag kan dock förstå att det kan tänkas vara lite krångligt för personer som inte är fullt insatta i utveckling som tänker att det endast handlar
+                        om att utveckla på klient-sidan. Speciellt när det gäller JavaScript! :)
+                        Det har varit riktigt kul att jobba lite mer med NodeJS på servern, dock. Sett fram emot detta rätt ordentligt, faktiskt. Så det har känts bra och
+                        funkat rätt bra! :)
 
+                        <li><b>Hur känns det att utveckla i Node.js och den asynkrona programmeringsmodellen?</b></li>
+                        Jadu, det känns rätt bra egentligen. Det mesta som körts har ju ändå varit rätt synkront egentligen. Inget som har varit ordentligt nytt enligt mig egentligen.
+                        Det blev ju överlag ganska sekventiellt ändå! :)
+                        Men att jobba asynkront är definitvt kul. Synd bara att det inte riktigt är möjligt att jobba med fler trådar. Känns som 'asynkron' programmering i
+                        NodeJS är lite 'fulsälj' egentligen, då det egentligen handlar om att sätta upp 'flaggor' i serverns minne med hjälp av typ 'promises' så att
+                        flow-staten (eller vad mna vill kalla den..) kan nås vid senare tillfällen. Jag hade ju gärna sett att mna kunde programera med lite fler trådar osv! :)
+
+                        <li><b>Gick det bra med dina CLI-program i Node.js, några reflektioner kring dem?</b></li>
+                        Jodå, det gick bra. Jag kan ju knappast säga att jobba i CLI är något som jag aldrig gjort förut, så det kändes rätt klockrent detta också.
+                        Efter Python-kursen så är det ju nästan second-to-nature egentligen. Riktigt kul att se hur man kan skapa en CLI för NodeJS för att hantera
+                        klient-sidan och styra upp kontakten med servern, dock! Det var riktigt kul!
+                        Det svåra, enligt mig, med denna uppgiften var att jobba med AI:n och att hantera vinst-förhållandena! :)
+
+                        <li><b>Gjorde du något extra i uppgiften, eller förändrade grundkoden i Gomoku-spelet?</b></li>
+                        Yes, jag gjorde samtliga i uppgiften, men har inte 'förberett mig för Gomocup', dock tänker jag helt klart göra det - fast i ett annat språk.
+                        Känns inte riktigt helt nödvändigt att skapa en AI inom JS, enligt mig då. Mycket för att det går att vara betydligt mer energisnål med andra språk,
+                        vilket verkar vara grundtanken kring GomoCup (att skapa en AI som klarar av att göra beslut även med väldigt lite minne och prestanda).
+                        <br>
+                        Sen skrev jag ingen kod för den tredje uppgiften <b>"Om du hade byggt ut servern så att den styr upp klienterna så att de bara kan lägga om det är deras tur, samt stödja flera spel samtidigt. Hur hade du då gjort? Förklara i redovisningstexten, eller skriv koden för det."</b>
+                        <br>
+                        Dock skulle jag gärna vilja förklara hur jag hade löst det. Först och främst hade jag gjort som vi gjorde i förra kursmomentet där vi allokerade en spelare ett ID
+                        fast i detta fall skulle ID:t vara allokerat till ett spel. Så man startar alltså med att skicka en /init/ till servern som skickar tillbaka en request med ditt spels ID.
+                        Sen har man även ett ID för var spelare, så att man inte kan spela på sin gång. Så en curl-request till servern kan alltså se ut så här:
+                        <br>
+                        /gameid/playerid/place/x/y
+                        <br>
+                        Där gameid är ditt spels id (ett längre nummer som 18394), playerid är ditt spelarid (antingen 1 eller 2) och place/x/y som spelet specificerat.
+                        PlayerID fungerar alltså som en slags flagga för att säkerställa att det är rätt spelares tur. Så här kan en mer konkret request se ut:
+                        <br>
+                        /18394/1/place/3/5
+                        <br>
+                        Så när denna request skickats så ändras en flagga i serverns flow-state för att säkerställa att nästa spelare är player 2. Om jag försöker skicka en
+                        till request så säger den alltså ifrån, eftersom min klient blivit allokerad player 2. Som ni kanske förstår är detta int ehelt säkert, så det finns risk för
+                        fusk utifall du exempelvis skickar en manuell curl-request. Om man vill ha det mer säkert så kan man allokera ett spelarid (längre sträng)
+                        som är associerad med en IP eller inlogg. På så vis kan man koppla upp sig med sitt spelarid till servern och så får servern hantera vilket spelares tur det
+                        är.
+
+                        <br>
+                        <br>
+                        När det gäller koden i GomokuBoard är rätt mycket kod ändrad. Randomfunktionen använder sig av en rätt simpel algoritm som söker sig igenom hela brädet
+                        för att hitta en ruta som är ledig samt har högst poäng. Poängen räknas ut genom att 'peeka' på de närliggande rutorna, om en ruta exempelvis har
+                        samma markering som spelaren som randomizar så får rutan +2 poäng, om det är moståndarens ruta så får rutan +1 poäng. Sen fortsätter algoritmen att peeka
+                        till nästa ruta för att se utifall rutan är av samma form som den tidigare, isf så inkrementeras poängen. Alltså om du står på ruta 5, 5 så testas
+                        alla närliggande rutor (4,5. 5,6. 5, 4. 5, 6). Säg att 4, 5 har X (och du är O), då får du alltså +1 poäng samt att algoritmen forstätter att gå uppåt tills den
+                        stöter på en av dina (O) eller en tom ruta. För varje extra ruta som är O så får du alltså +1 poäng. På så vis så letar sig algoritmen sig fram för att hitta
+                        en ruta som ligger nära många av dina eller fiendens rutor.
+                        Inte är den alltför smart, men den funkar någorlunda...
+
+                        När det gäller vinstförhållanden så letar algoritmen först från vänster till höger, sen från upp till ner och sist de två diagonalerna. Så om du har 5, 5 igen så tittar algoritmen
+                        alltså från 0, 5 och fem steg åt höger för varje steg (0-5, 1-6, 2-7, 3-8, 4-9, 5-10) tills dess att den hittar en bricka som är ledig eller som tillhör fienden. För varje
+                        bricka som är din så används en counter för att se utifall du har fem i rad, om du har fem i rad så vinner du. Algoritmen körs VARJE gång som du lagt ut en bricka och stoppar
+                        spelet om du har fem i rad med ett vinstmeddelande. Detta gäller bägge spelarna!
+
+                        <li><b>Känner du dig sugen, och redo, på att skriva en deltagare till Gomocup?</b></li>
+                        Jo, men det gör jag! Det ska jag helt klart göra. Dock blir det nog i Python eller C++ samt så får jag ju faktiskt tänka lite mer på algoritmen.
+                        Känns som att man kanske bör använda sig av någon mer konkret algoritm för att ens ha en minimal chans för att klara spelet.
 
                    </ul>
             </div>

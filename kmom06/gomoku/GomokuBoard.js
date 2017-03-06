@@ -1,10 +1,12 @@
+
+
+/* jshint ignore:start */
+
 /**
  * Class for Gomoku board.
  *
  */
 class GomokuBoard {
-
-
 
     /**
      * Constructor.
@@ -77,33 +79,38 @@ class GomokuBoard {
 
     }
     //check if the move wins
-    isWon(x, y){
+    isWon(x, y) {
         var x_diff = (x >= 5) ? 5 : x;
         var y_diff = (y >= 5) ? 5 : y;
+        var count = 0;
+        var j = 0;
+        var i = 0;
+        var extra = 0;
+        var diff = 0;
         var marker = (this.player === 1) ? 2 : 1;
         console.log(`Placed ${x}, ${y} with ${marker}`);
         console.log("Testing horizontally!");
-        for(var i = x - x_diff; i !== x + 1; i++) {
-            var count = 0;
+        for (var i = x - x_diff; i !== x + 1; i++) { // jshint ignore:line
+            count = 0; // jshint ignore:line
             console.log("Looping");
-            for(var j = i; j !== i + 5; j++) {
+            for (var j = i; j !== i + 5; j++) { // jshint ignore:line
                 if (this.board[this.getPosition(j, y)] === marker) {
-                    count++;
+                    count++; // jshint ignore:line
                     if (count === 5) {
                         return `Player ${marker} has won!`;
                     }
                 } else {
-                    count = 0;
+                    count = 0; // jshint ignore:line
                     break;
                 }
             }
         }
         console.log("Testing vertically!");
-        for(i = y - y_diff; i !== y + 1; i++) {
-            count = 0;
+        for (i = y - y_diff; i !== y + 1; i++) { // jshint ignore:line
+            count = 0; // jshint ignore:line
             console.log("Looping");
-            for(j = i; j !== i + 5; j++) {
-                if (this.board[this.getPosition(x, j)] === marker) {
+            for (j = i; j !== i + 5; j++) { // jshint ignore:line
+                if (this.board[this.getPosition(x, j)] === marker) { // jshint ignore:line
                     count++;
                     if (count === 5) {
                         return `Player ${marker} has won!`;
@@ -118,10 +125,10 @@ class GomokuBoard {
         //var tmp_x = (tmp_y  >=  5) ? tmp_y  : x_diff;
         var iteration = 0;
         console.log("Testing first diagonal!");
-        for(i = x - x_diff; i !== x + 1; i++) {
+        for (i = x - x_diff; i !== x + 1; i++) {
             count = 0;
             var extra = 0;
-            for(j = i; j !== i + 5; j++) {
+            for (j = i; j !== i + 5; j++) {
                 var diff = (((y - x_diff) + iteration + extra) < this.size) ? this.size : ((y + x_diff) - iteration - extra);
                 if (diff >= 0 && diff < this.size) {
                     if (this.board[this.getPosition(j, diff)] === marker) {
@@ -142,15 +149,15 @@ class GomokuBoard {
 
         iteration = 0;
         console.log("Testing second diagonal!");
-        for(i = x - x_diff; i !== x + 1; i++) {
+        for (i = x - x_diff; i !== x + 1; i++) {
             count = 0;
             extra = 0;
             console.log(`Testing x ${i}`);
-            for(j = i; j !== i + 5; j++) {
+            for (j = i; j !== i + 5; j++) {
                 diff = (((y + x_diff) - iteration - extra) > this.size) ? this.size : ((y + x_diff) - iteration - extra);
-                    console.log(`Running ${j}, ${diff}. Looking for ${marker}`);
-                    if (diff >= 0 && diff < this.size) {
-                        if (this.board[this.getPosition(j, diff)] === marker) {
+                console.log(`Running ${j}, ${diff}. Looking for ${marker}`);
+                if (diff >= 0 && diff < this.size) {
+                    if (this.board[this.getPosition(j, diff)] === marker) {
                         count++;
                         extra++;
                         if (count === 5) {
@@ -247,105 +254,95 @@ class GomokuBoard {
     }
 
     placeRandom() {
-    //     var OK_flag = false;
-    //     while (!OK_flag) {
-    //         var x = Number.parseInt(Math.floor(Math.random() * this.size));
-    //         var y = Number.parseInt(Math.floor(Math.random() * this.size));
-    //
-    //         if(!this.isPositionTaken(x, y)) {
-    //             this.place(x, y);
-    //             OK_flag = true;
-    //         }
-    // }
-    var move = this.advanced_random();
-    console.log("Trying to place: " + move);
-    this.place(move[0], move[1]);
-}
-    advanced_random(){
+        var move = this.advanced_random();
+        console.log("Trying to place: " + move);
+        this.place(move[0], move[1]);
+    }
+    advanced_random() {
         console.log("I've entered");
         var best_move  = [5, 5];
         var best_score = 0;
         var player_marker = (this.player === 1) ? 2 : 1;
-        for(let col = 0; col < this.size - 1; col++) {
-            for(var row = 0; row < this.size - 1; row++) {
+        for (let col = 0; col < this.size - 1; col++) {
+            for (var row = 0; row < this.size - 1; row++) {
 
                 var this_score = 0;
                 var this_position = [col, row];
 
-                if(!this.isPositionTaken(col, row)) {
-
-                if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
-                    var left_marker = this.board[this.getPosition(col -1, row)];
-                    console.log("Checking left for: " + left_marker);
-                    for(var i = col - 1; i !== 0; i--) { //going left first
-                        if (this.board[this.getPosition(i, row)] === left_marker){
-                            if(left_marker === player_marker){
-                                this_score += 2;
+                if (!this.isPositionTaken(col, row)) {
+                    if (col > 0 && this.board[this.getPosition(col - 1, row)] !== 0) { // can go left?
+                        var left_marker = this.board[this.getPosition(col -1, row)];
+                        console.log("Checking left for: " + left_marker);
+                        for (var i = col - 1; i !== 0; i--) { //going left first
+                            if (this.board[this.getPosition(i, row)] === left_marker) {
+                                if (left_marker === player_marker) {
+                                    this_score += 2;
+                                } else {
+                                    this_score += 1;
+                                }
                             } else {
-                                this_score += 1;
+                                break;
                             }
-                        } else {
-                            break;
+                        }
+                    }
+
+                    if (col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
+                        var right_marker = this.board[this.getPosition(col + 1, row)];
+                        console.log("Checking right for: " + right_marker);
+
+                        for (i = col + 1; i !== this.size - 1; i++) { //going left first
+                            if (this.board[this.getPosition(i, row)] === right_marker) {
+                                if (right_marker === player_marker) {
+                                    this_score += 2;
+                                } else {
+                                    this_score += 1;
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
+                        var top_marker = this.board[this.getPosition(col, row -1)];
+                        for (i = row - 1; i !== 0; i--) { //going left first
+                            if (this.board[this.getPosition(col, i)] === top_marker) {
+                                if (top_marker === player_marker) {
+                                    this_score += 2;
+                                } else {
+                                    this_score += 1;
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
+                        var btm_marker = this.board[this.getPosition(col, row + 1)];
+                        for (i = row + 1; i !== this.size - 1; i++) { //going left first
+                            if (this.board[this.getPosition(col, i)] === btm_marker) {
+                                if (btm_marker === player_marker) {
+                                    this_score += 2;
+                                } else {
+                                    this_score += 1;
+                                }
+                            } else {
+                                break;
+                            }
                         }
                     }
                 }
-
-                if(col < 20 && this.board[this.getPosition(col + 1, row)] !== 0) {
-                    var right_marker = this.board[this.getPosition(col + 1, row)];
-                    console.log("Checking right for: " + right_marker);
-                    for(i = col + 1; i !== this.size - 1; i++) { //going left first
-                        if (this.board[this.getPosition(i, row)] === right_marker){
-                            if(right_marker === player_marker){
-                                this_score += 2;
-                            } else {
-                                this_score += 1;
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                }
-
-                if(row > 0 && this.board[this.getPosition(col, row - 1)] !== 0) {
-                    var top_marker = this.board[this.getPosition(col, row -1)];
-                    for(i = row - 1; i !== 0; i--) { //going left first
-                        if (this.board[this.getPosition(col, i)] === top_marker){
-                            if(top_marker === player_marker){
-                                this_score += 2;
-                            } else {
-                                this_score += 1;
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                }
-
-                if(row < this.size && this.board[this.getPosition(col, row + 1)] !== 0) {
-                    var btm_marker = this.board[this.getPosition(col, row + 1)];
-                    for(i = row + 1; i !== this.size - 1; i++) { //going left first
-                        if (this.board[this.getPosition(col, i)] === btm_marker){
-                            if(btm_marker === player_marker){
-                                this_score += 2;
-                            } else {
-                                this_score += 1;
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            }
                 console.log(`Score for ${col}, ${row}:     ${this_score}`);
                 if (this_score > best_score) {
                     console.log("Found a better position " + this_position);
                     best_move = this_position;
                 }
-                }
             }
-            console.log(best_move);
-            return best_move;
         }
+        console.log(best_move);
+        return best_move;
+    }
 
     /**
      * Place a marker at the internal board position.
@@ -434,5 +431,5 @@ class GomokuBoard {
         return ascii;
     }
 }
-
 export default GomokuBoard;
+/* jshint ignore:end */

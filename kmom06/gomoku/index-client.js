@@ -53,11 +53,11 @@ Options:
 var port = 1337;
 var server = "localhost";
 
-if(process.env.LINUX_PORT) {
+if (process.env.LINUX_PORT) {
     port = process.env.LINUX_PORT; // if env variable is set we are using it.
 }
 
-if(process.env.LINUX_SERVER) {
+if (process.env.LINUX_SERVER) {
     server = "http://" + process.env.LINUX_SERVER + ":" + port; // if env variable is set we are using it.
 }
 
@@ -176,12 +176,12 @@ rl.on("line", function(line) {
 
         case "place":
 
-            if(args[1] === 'random'){
+            if (args[1] === 'random') {
                 gomoku.random()
                 .then(value => {
                     console.log(value);
 
-                    var val = JSON.parse(value);
+                    //var val = JSON.parse(value);
                     // if (val.boardIsWon.includes("won")) {
                     //     console.log(`${val.boardIsWon}. Closing game-loop!`);
                     //     process.exit(0);
