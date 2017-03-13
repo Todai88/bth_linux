@@ -71,7 +71,7 @@ router.get("/room/list", (req, res) => {
     // Init the Gomoku board
     var message = "Attempting to get a list of all rooms.";
     try {
-        server_body.listAll();
+        server_body.getList();
     } catch (e) {
         message = e.message;
     }
