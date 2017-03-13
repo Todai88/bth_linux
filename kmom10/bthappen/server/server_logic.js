@@ -9,8 +9,6 @@
 class server_logic {
 
     constructor () {
-        this.size = 0;
-        this.list = [];
         this.init();
     }
 
