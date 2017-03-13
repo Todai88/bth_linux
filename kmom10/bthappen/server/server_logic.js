@@ -27,14 +27,14 @@ class server_logic {
         this.reset();
         var fs = require('fs');
         console.log("Reading...");
-        var object = "";
+        var object;
         fs.readFile(__dirname + '/../salar.json', 'utf8', function (err, data) {
             if (err) throw err;
             object = JSON.parse(data);
         });
+        console.log(object);
         this.list = object;
         this.size = object.length;
-        console.log(object);
     }
 
     getList() {
