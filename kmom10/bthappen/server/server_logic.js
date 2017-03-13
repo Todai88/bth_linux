@@ -14,10 +14,11 @@ class server_logic {
 
     reset () {
         this.size = 0;
-        this.list;
+        this.list = [];
     }
 
     init () {
+        this.reset();
         this.readJSON();
     }
 
