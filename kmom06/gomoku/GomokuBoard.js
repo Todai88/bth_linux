@@ -7,7 +7,7 @@
  *
  */
 class GomokuBoard {
-
+    
     /**
      * Constructor.
      *

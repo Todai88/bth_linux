@@ -4,9 +4,8 @@
 "use strict";
 
 // The main class for the Gomoku game
-import GomokuBoard from "./GomokuBoard.js";
-var gameBoard = new GomokuBoard();
-
+import server_logic from "./server_logic.js";
+var server_body = new server_logic();
 
 
 // A better router to create a handler for all routes
@@ -64,15 +63,15 @@ router.get("/", (req, res) => {
  * @param Object req The request
  * @param Object res The response
  */
-router.get("/start/:size", (req, res) => {
+router.get("/room/list", (req, res) => {
 
     // get the value of the parameter :size
     var size = req.params.size;
 
     // Init the Gomoku board
-    var message = "The board is initialized.";
+    var message = "Attempting to get a list of all rooms.";
     try {
-        gameBoard.start(size);
+        server_body.listAll();
     } catch (e) {
         message = e.message;
     }
@@ -80,100 +79,8 @@ router.get("/start/:size", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "boardSize": gameBoard.getSize(),
-        "nextPlayer": gameBoard.playerInTurn(),
-        "nextPlayerMarker": gameBoard.playerInTurnMarker()
-    });
-});
-
-
-
-/**
- * View the gameboard
- *
- * @param Object req The request
- * @param Object res The response
- */
-router.get("/view", (req, res) => {
-
-    sendJSONResponse(res, {
-        "boardSize": gameBoard.getSize(),
-        "nextPlayer": gameBoard.playerInTurn(),
-        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardAscii": gameBoard.asAscii()
-    });
-});
-
-
-
-/**
- * View the gameboard as ascii.
- *
- * @param Object req The request
- * @param Object res The response
- */
-router.get("/view/ascii", (req, res) => {
-
-    res.writeHead(200, "Content-Type: text/plain");
-    res.write(gameBoard.asAscii() +
-        "\nPlayer in turn is '" +
-        gameBoard.playerInTurn() +
-        "' playing the marker " +
-        gameBoard.playerInTurnMarker() +
-        ".\n");
-    res.end();
-});
-
-
-
-/**
- * View the gameboard
- *
- * @param Object req The request
- * @param Object res The response
- */
-router.get("/place/:x/:y", (req, res) => {
-
-    // get the value of the parameter :x and :y
-    var x = Number.parseInt(req.params.x);
-    var y = Number.parseInt(req.params.y);
-
-    // Place the marker
-    var message = "Ok.";
-    try {
-        gameBoard.place(x, y);
-    } catch (e) {
-        message = e.message;
-    }
-
-    sendJSONResponse(res, {
-        "action": "Trying to place " + x + ", " + y,
-        "message": message,
-        "boardSize": gameBoard.getSize(),
-        "nextPlayer": gameBoard.playerInTurn(),
-        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull(),
-        "boardIsWon" : gameBoard.isWon(x, y)
-    });
-});
-
-router.get("/place/random", (req, res) => {
-
-    var message = "Ok.";
-    try {
-        gameBoard.placeRandom();
-    } catch (e) {
-        message = e.message;
-    }
-
-    sendJSONResponse(res, {
-        "action": "Trying to place random piece",
-        "message": message,
-        "boardSize": gameBoard.getSize(),
-        "nextPlayer": gameBoard.playerInTurn(),
-        "nextPlayerMarker": gameBoard.playerInTurnMarker(),
-        "boardIsFull": gameBoard.isFull()
-        //"boardIsWon" : gameBoard.isWon()
+        "rooms" : server_logic.getList(),
+        "boardSize": server_logic.getSize()
     });
 });
 
