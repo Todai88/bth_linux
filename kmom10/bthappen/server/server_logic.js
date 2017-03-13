@@ -7,7 +7,6 @@
 */
 
 class server_logic {
-    var fs = require('fs');
 
     constructor () {
         this.size = 0;
@@ -25,6 +24,7 @@ class server_logic {
     }
 
     readJSON() {
+        var fs = require('fs');
         fs.readFile(__dirname + '/../salar.json', 'utf8', function (err, data) {
             if (err) throw err;
             this.list = JSON.parse(data);
