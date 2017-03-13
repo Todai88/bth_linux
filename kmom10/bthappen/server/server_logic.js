@@ -34,9 +34,11 @@ class server_logic {
         });
         this.list = object;
         this.size = object.length;
+        console.log(object);
     }
 
     getList() {
+        console.log(this.list);
         return JSON.stringify(this.list);
     }
 
