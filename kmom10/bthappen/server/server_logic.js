@@ -20,15 +20,15 @@ class server_logic {
 
     init () {
         console.log("Initiating...");
-        this.reset();
         this.readJSON();
     }
 
     readJSON() {
+        this.reset();
         var fs = require('fs');
         console.log("Reading...");
         fs.readFile(__dirname + '/../salar.json', 'utf8', function (err, data) {
-            if (err) throw err; 
+            if (err) throw err;
             this.list = JSON.parse(data);
             this.size = this.list.length;
         });
