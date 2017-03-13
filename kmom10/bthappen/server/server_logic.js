@@ -20,7 +20,7 @@ class server_logic {
     }
 
     init () {
-        readJSON();
+        this.readJSON();
     }
 
     readJSON() {
