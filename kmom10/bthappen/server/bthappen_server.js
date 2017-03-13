@@ -79,8 +79,8 @@ router.get("/room/list", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "rooms" : server_logic.getList(),
-        "boardSize": server_logic.getSize()
+        "rooms" : server_body.getList(),
+        "boardSize": server_body.getSize()
     });
 });
 
