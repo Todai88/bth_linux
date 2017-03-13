@@ -32,10 +32,12 @@ class server_logic {
                 cbf(data); //calling callbackfunction (cbf) with return.
             });
         }
+        var obj;
         reader(__dirname + '/../salar.json', function(data){
-            this.list = data;
-            this.size = this.list.length;
+            obj = data; 
         });
+        this.list = obj;
+        this.size = this.list.length;
     }
 
     getList() {
