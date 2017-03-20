@@ -57,7 +57,7 @@ class server_logic {
 
     getRoom(id) {
         return this.list.filter((x) =>
-        if (x.Salsnr === id) {
+        if (x["Salsnr"] === id) {
             return x;
         }
     );
