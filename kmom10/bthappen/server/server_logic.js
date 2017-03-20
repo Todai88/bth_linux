@@ -58,7 +58,7 @@ class server_logic {
     getRoom(id) {
         console.log("Attempting to filter on: " + id);
         return this.list.filter(function (el){
-            console.log(el);
+            console.log(el.Salsnr);
             if (el.Salsnr === id) {
                 return el;
             }
