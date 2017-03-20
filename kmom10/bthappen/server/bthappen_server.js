@@ -93,8 +93,8 @@ router.get("/room/view/id/:number", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoom(id).Salsnr,
-        "namn"   : server_body.getRoom(id).Salsnamn 
+        "sal"    : server_body.getRoom(room).Salsnr,
+        "namn"   : server_body.getRoom(room).Salsnamn 
     });
 });
 
