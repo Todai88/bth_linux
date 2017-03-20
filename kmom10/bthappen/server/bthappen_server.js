@@ -82,7 +82,7 @@ router.get("/room/list", (req, res) => {
 
 router.get("/room/view/id/:number", (req, res) => {
 
-    var room = number;
+    var room = req.params.number;
     var message = "Attempting to get a list of all rooms.";
     try {
         server_body.getRoom(room);
