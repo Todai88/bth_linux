@@ -25,23 +25,28 @@ class server_logic {
     }
 
     readJSON() {
-        console.log("Reading...");
-        this.reset();
-        function reader(path, cbf){
-            var fs = require('fs');
-            fs.readFile(path, 'utf8', function (err, data) {
-                if (err) throw err;
-                cbf(data); //calling callbackfunction (cbf) with return.
-            });
-        }
-        var obj = "";
-        reader(__dirname + '/../salar.json', function(data){
-            //console.log(data);
-            obj = data;
+        // console.log("Reading...");
+        // this.reset();
+        // function reader(path, cbf){
+        //     var fs = require('fs');
+        //     fs.readFile(path, 'utf8', function (err, data) {
+        //         if (err) throw err;
+        //         cbf(data); //calling callbackfunction (cbf) with return.
+        //     });
+        // }
+        // var obj = "";
+        // reader(__dirname + '/../salar.json', function(data){
+        //     //console.log(data);
+        //     obj = data;
+        // });
+        // console.log(obj);
+        // this.list = obj;
+        // this.size = obj.length;
+        fs.readFile(__dirname + '/../salar.json', (err, data) => {
+            if (err) throw err;
+            this.list = data;
+            this.size = this.list.length;
         });
-        console.log(obj);
-        this.list = obj;
-        this.size = obj.length;
     }
 
     getList() {
