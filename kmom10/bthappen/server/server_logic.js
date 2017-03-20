@@ -51,9 +51,7 @@ class server_logic {
     }
 
     getList() {
-        this.readJSON();
-        console.log(this.list);
-        return JSON.stringify(this.list);
+        return JSON.stringify(this.list.Salsnamn);
     }
 
     getSize() {
