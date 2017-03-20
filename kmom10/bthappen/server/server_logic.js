@@ -56,11 +56,11 @@ class server_logic {
     }
 
     getRoom(id) {
-        return this.list.filter((x) =>
-        if (x["Salsnr"] === id) {
-            return x;
-        }
-    );
+        return this.list.filter(function (el){
+            if (el.Salsnr === id) {
+                return el;
+            }
+        });
     }
 
     getSize() {
