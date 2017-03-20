@@ -55,7 +55,7 @@ Use -h to get an overview of the command.`);
  * Display version.
  */
 function version() {
-    console.log(VERSION);
+    console.log("Version number: " + VERSION);
 }
 
 

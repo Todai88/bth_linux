@@ -9,7 +9,6 @@
 class server_logic {
 
     constructor () {
-        console.log("Constructing...");
         this.reset();
         this.init();
     }
@@ -19,8 +18,7 @@ class server_logic {
         this.list = [];
     }
 
-    init () {
-        console.log("Initiating...");
+    init () { 
         this.readJSON();
     }
 
