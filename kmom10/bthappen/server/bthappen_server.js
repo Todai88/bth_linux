@@ -97,6 +97,23 @@ router.get("/room/view/id/:number", (req, res) => {
     });
 });
 
+router.get("/room/view/house/:house", (req, res) => {
+
+    var house = req.params.number;
+    var message = "Attempting to get a list of all rooms.";
+    try {
+        server_body.getRoomsOfHouse(house);
+    } catch (e) {
+        message = e.message;
+    }
+
+    // Send the response
+    sendJSONResponse(res, {
+        "message": message,
+        "sal"    : server_body.getRoomsOfHouse(house)
+    });
+});
+
 
 /**
  * Create and export the server

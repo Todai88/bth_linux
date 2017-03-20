@@ -65,6 +65,14 @@ class server_logic {
         });
     }
 
+    getRoomsOfHouse(number) {
+        return this.list.filter(function (el){
+            if (el.Hus === number) {
+                return el;
+            }
+        });
+    }
+
     getSize() {
         return this.size;
     }
