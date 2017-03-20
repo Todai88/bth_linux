@@ -32,7 +32,7 @@ class server_logic {
                 cbf(data); //calling callbackfunction (cbf) with return.
             });
         }
-        var obj;
+        var obj = "";
         reader(__dirname + '/../salar.json', function(data){
             console.log(data);
             obj = data;
