@@ -10,6 +10,7 @@ class server_logic {
 
     constructor () {
         console.log("Constructing...");
+        this.reset();
         this.init();
     }
 
