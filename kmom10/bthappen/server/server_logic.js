@@ -65,9 +65,9 @@ class server_logic {
         });
     }
 
-    getRoomsOfHouse(number) {
+    getRoomsOfHouse(house) {
         return this.list.filter(function (el){
-            if (el.Hus === number) {
+            if (el.Hus.toLowerCase() === house.toLowerCase()) {
                 return el;
             }
         });
