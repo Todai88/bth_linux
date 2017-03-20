@@ -55,6 +55,14 @@ class server_logic {
         return this.list;
     }
 
+    getRoom(id) {
+        return this.list.filter((x) =>
+        if (x.Salsnr === id) {
+            return x;
+        }
+    );
+    }
+
     getSize() {
         return this.size;
     }

@@ -65,10 +65,6 @@ router.get("/", (req, res) => {
  */
 router.get("/room/list", (req, res) => {
 
-    // get the value of the parameter :size
-    var size = req.params.size;
-
-    // Init the Gomoku board
     var message = "Attempting to get a list of all rooms.";
     try {
         server_body.getList();
@@ -83,6 +79,25 @@ router.get("/room/list", (req, res) => {
         "boardSize": server_body.getSize()
     });
 });
+
+router.get("/room/view/id/:number", (req, res) => {
+
+    var room = Number.parseInt(req.params.number);
+    var message = "Attempting to get a list of all rooms.";
+    try {
+        server_body.getRoom(room);
+    } catch (e) {
+        message = e.message;
+    }
+
+    // Send the response
+    sendJSONResponse(res, {
+        "message": message,
+        "sal"    : server_body.getRoom(id).Salsnr,
+        "namn"   : server_body.getRoom(id).Salsnamn 
+    });
+});
+
 
 /**
  * Create and export the server
