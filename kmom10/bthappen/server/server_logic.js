@@ -45,7 +45,7 @@ class server_logic {
         var fs = require('fs');
         fs.readFile(__dirname + '/../salar.json', (err, data) => {
             if (err) throw err;
-            this.list = data;
+            this.list = JSON.Parse(data);
             this.size = this.list.length;
         });
     }
