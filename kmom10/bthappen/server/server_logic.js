@@ -25,6 +25,7 @@ class server_logic {
 
     readJSON() {
         console.log("Reading...");
+        this.reset();
         function reader(path, cbf){
             var fs = require('fs');
             fs.readFile(path, 'utf8', function (err, data) {
