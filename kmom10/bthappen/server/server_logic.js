@@ -34,9 +34,10 @@ class server_logic {
         }
         var obj = "";
         reader(__dirname + '/../salar.json', function(data){
-            console.log(data);
+            //console.log(data);
             obj = data;
         });
+        console.log(obj);
         this.list = obj;
         this.size = obj.length;
     }
