@@ -75,6 +75,57 @@ class server_logic {
         });
     }
 
+    getFromSearch(query) {
+        return this.list.filter(function (el){
+
+            if (el.Salsnr !== null) {
+                if (el.Salsnr.toLowerCase().includes(query.toLowerCase())) {
+                    return el;
+                }
+            }
+            if (el.Salsnamn !== null) {
+                if (el.Salsnamn.toLowerCase().includes(query.toLowerCase())) {
+                    return el;
+                }
+            }
+            if (el.Lat !== null) {
+                if (el.Lat.includes(query)) {
+                    return el;
+                }
+            }
+            if (el.Long !== null) {
+                if (el.Long.includes(query)) {
+                    return el;
+                }
+            }
+            if (el.Ort !== null) {
+                if (el.Ort.toLowerCase().includes(query.toLowerCase())) {
+                    return el;
+                }
+            }
+            if (el.Hus !== null){
+                if (el.Hus.toLowerCase().includes(query.toLowerCase())) {
+                    return el;
+                }
+            }
+            if (el.Våning !== null) {
+                if (el.Våning.includes(query)) {
+                    return el;
+                }
+            }
+            if (el.Typ !== null) {
+                if (el.Typ.toLowerCase().includes(query.toLowerCase())) {
+                    return el;
+                }
+            }
+            if (el.Storlek !== null) {
+                if (el.Storlek.includes(query)) {
+                    return el;
+                }
+            }
+        });
+    }
+
     getSize() {
         return this.size;
     }

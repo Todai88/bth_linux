@@ -114,6 +114,24 @@ router.get("/room/view/house/:house", (req, res) => {
     });
 });
 
+router.get("/room/search/:search", (req, res) => {
+
+    var query = req.params.search;
+    var message = "Searching all room details for substring hits on your query.";
+    try {
+        server_body.getFromSearch(query);
+    } catch (e) {
+        message = e.message;
+    }
+
+    // Send the response
+    sendJSONResponse(res, {
+        "message": message,
+        "query"  : query,
+        "sal"    : server_body.getFromSearch(query)
+    });
+});
+
 
 /**
  * Create and export the server
