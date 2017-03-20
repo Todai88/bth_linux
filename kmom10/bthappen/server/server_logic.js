@@ -42,7 +42,7 @@ class server_logic {
     }
 
     getList() {
-        readJSON();
+        this.readJSON();
         console.log(this.list);
         return JSON.stringify(this.list);
     }
