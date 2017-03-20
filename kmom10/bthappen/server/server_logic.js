@@ -18,34 +18,19 @@ class server_logic {
         this.list = [];
     }
 
-    init () { 
+    init () {
         this.readJSON();
     }
 
     readJSON() {
-        // console.log("Reading...");
-        // this.reset();
-        // function reader(path, cbf){
-        //     var fs = require('fs');
-        //     fs.readFile(path, 'utf8', function (err, data) {
-        //         if (err) throw err;
-        //         cbf(data); //calling callbackfunction (cbf) with return.
-        //     });
-        // }
-        // var obj = "";
-        // reader(__dirname + '/../salar.json', function(data){
-        //     //console.log(data);
-        //     obj = data;
-        // });
-        // console.log(obj);
-        // this.list = obj;
-        // this.size = obj.length;
+
         var fs = require('fs');
         fs.readFile(__dirname + '/../salar.json', (err, data) => {
             if (err) throw err;
             this.list = JSON.parse(data);
             this.size = this.list.length;
         });
+
     }
 
     getList() {
@@ -54,9 +39,7 @@ class server_logic {
     }
 
     getRoom(id) {
-        return this.list.filter(function (el){
-            console.log(id);
-            console.log(el.Salsnr);
+        return this.list.filter(function (el){ 
             if (el.Salsnr === id) {
                 return el;
             }
