@@ -150,14 +150,14 @@ class server_logic {
             if (object.hasOwnProperty(key)) {
                 console.log(key + " -> " + object[key]);
                 if(object[key] !== null) {
-                    if(object[key].includes(query)){
+                    if(object[key].toLowerCase().includes(query.toLowerCase())){
                         score+= this.keyPriority(key);
                     }
                 }
             }
             out_list.push([key, score]);
         }
-        //console.log(out_list);
+        console.log(out_list);
     }
     getFromSearch_prio(query) {
         var list = [];
