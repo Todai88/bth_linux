@@ -167,6 +167,9 @@ class server_logic {
             //list.push(getPriority(object, query));
             list.push(this.getPriority(object, query));
         }
+        list = list.sort(function(a, b) {
+            return b[1][1] - a[1][1];
+        });
         return list;
     }
 
