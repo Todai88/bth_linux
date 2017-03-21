@@ -151,7 +151,7 @@ class server_logic {
                 console.log(key + " -> " + object[key]);
                 if(object[key] !== null) {
                     if(object[key].toLowerCase().includes(query.toLowerCase())){
-                        score+= this.keyPriority(key);
+                        score+= this.keyPriority(key) + this.valuePriority(query, object[key]);
                     }
                 }
             }
