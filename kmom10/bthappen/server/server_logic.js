@@ -106,8 +106,8 @@ class server_logic {
             }
         });
     }
+    
     keyPriority(key) {
-        console.log("Testing: " + key);
         switch (key) {
             case "Salsnr":
                 return 25;
