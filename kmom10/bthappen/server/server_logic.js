@@ -106,12 +106,36 @@ class server_logic {
             }
         });
     }
+    keyPriority(key) {
+        if(key === "Salsnr") return 25;
+        if(key === "Salsnamn") return 20;
+        if(key === "Lat" || key === "Long") return 5;
+        if(key === "Ort") return 10;
+        if(key === "Hus") return 15;
+        if(key === "Våning") return 10;
+        if(key === "Typ") return 10;
+        if(key === "Storlek") return 5;
+    }
+    valuePriority(val, key_val){
+        if(key_val === val) return 50;
+        if(key_val.slice(0, val.length) === val) return 30;
+        return 10;
+    }
     getPriority (object, query) {
+        var out_list = [];
         for (var key in object) {
-          if (object.hasOwnProperty(key)) {
-            console.log(key + " -> " + object[key]);
-          }
+            var score = 0;
+            if (object.hasOwnProperty(key)) {
+                console.log(key + " -> " + object[key]);
+                if(object[key] !== null) {
+                    if(object[key].includes(query)){
+                        score+= keyPriority(key) + valuePriority(query, object[key]);
+                    }
+                }
+            }
+            out_list.push([key, score]);
         }
+        console.log(out_list);
     }
     getFromSearch_prio(query) {
         var list = [];
