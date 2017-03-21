@@ -108,14 +108,35 @@ class server_logic {
     }
     keyPriority(key) {
         console.log("Testing: " + key);
-        if(key === "Salsnr") return 25;
-        if(key === "Salsnamn") return 20;
-        if(key === "Lat" || key === "Long") return 5;
-        if(key === "Ort") return 10;
-        if(key === "Hus") return 15;
-        if(key === "Våning") return 10;
-        if(key === "Typ") return 10;
-        if(key === "Storlek") return 5;
+        switch (key) {
+            case "Salsnr":
+                return 25;
+                break;
+            case "Salsnamn":
+                return 20;
+                break;
+            case "Lat":
+                return 5;
+                break;
+            case "Long":
+                return 5;
+                break;
+            case "Ort":
+                return 10;
+                break;
+            case "Hus":
+                return 15;
+                break;
+            case "Våning":
+                return 10;
+                break;
+            case "Typ":
+                return 10;
+                break;
+            case "Storlek":
+                return 5;
+                break;
+        }
     }
     valuePriority(val, key_val){
         if(key_val === val) return 50;
@@ -136,7 +157,7 @@ class server_logic {
             }
             out_list.push([key, score]);
         }
-        console.log(out_list);
+        //console.log(out_list);
     }
     getFromSearch_prio(query) {
         var list = [];
