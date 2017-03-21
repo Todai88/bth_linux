@@ -247,13 +247,14 @@ rl.on("line", function(line) {
             .then(value => {
 
                 var search_result = JSON.parse(value);
-                var out = search_result.sal[0][0];
-                var out2 = search_result.sal[0][1];
-                console.log(search_result.sal[0]);
+                // var out = search_result.sal[0][0];
+                // var out2 = search_result.sal[0][1];
+                // console.log(search_result.sal[0]);
 
-                // for (var item of search_result.sal) {
-                //     printAll(item);
-                // }
+                for (var item of search_result.sal) {
+                    printAll(item[0]);
+                    console.log(`Highest priority based on key ${item[1][0]} with priority ${item[1][1] / 100}.`)
+                }
                 rl.prompt();
             })
             .catch(err => {
