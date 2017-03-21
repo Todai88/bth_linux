@@ -107,6 +107,7 @@ class server_logic {
         });
     }
     keyPriority(key) {
+        console.log("Testing: " key);
         if(key === "Salsnr") return 25;
         if(key === "Salsnamn") return 20;
         if(key === "Lat" || key === "Long") return 5;
@@ -129,7 +130,7 @@ class server_logic {
                 console.log(key + " -> " + object[key]);
                 if(object[key] !== null) {
                     if(object[key].includes(query)){
-                        score+= keyPriority(key) + valuePriority(query, object[key]);
+                        score+= this.keyPriority(key);
                     }
                 }
             }
