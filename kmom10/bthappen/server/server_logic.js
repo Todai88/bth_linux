@@ -139,8 +139,8 @@ class server_logic {
         }
     }
     valuePriority(val, key_val){
-        if(key_val === val) return 50;
-        if(key_val.slice(0, val.length) === val) return 30;
+        if(key_val.toLowerCase() === val.toLowerCase()) return 50;
+        if(key_val.slice(0, val.length).toLowerCase() === val.toLowerCase()) return 30;
         return 10;
     }
     getPriority (object, query) {
