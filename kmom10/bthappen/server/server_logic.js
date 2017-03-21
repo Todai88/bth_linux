@@ -157,7 +157,7 @@ class server_logic {
             out_list.push([key, score]);
         }
         out_list = out_list.sort(function(a, b) {
-            return a[1] - b[1];
+            return b[1] - a[1];
         });
         console.log(out_list);
         console.log("Highest: " + out_list[0]);
@@ -167,7 +167,7 @@ class server_logic {
         for (var object of this.list){
             //list.push(getPriority(object, query));
             this.getPriority(object, query);
-        } 
+        }
     }
 
     getSize() {
