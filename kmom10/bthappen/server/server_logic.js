@@ -117,7 +117,7 @@ class server_logic {
         var list = [];
         for (var object of this.list){
             //list.push(getPriority(object, query));
-            getPriority(object, query);
+            this.getPriority(object, query);
         }
         list = list.sort(function(a,b) {
             return b[1] - a[1];
