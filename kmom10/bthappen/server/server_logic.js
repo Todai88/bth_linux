@@ -107,16 +107,18 @@ class server_logic {
         });
     }
     getPriority (object, query) {
-
+        for (var key in object) {
+          if (object.hasOwnProperty(key)) {
+            console.log(key + " -> " + object[key]);
+          }
+        }
     }
     getFromSearch_prio(query) {
-        var index = 0;
         var list = [];
-        for (var item of this.list){
-            index++;
-            list.push(["test", index]);
+        for (var object of this.list){
+            //list.push(getPriority(object, query));
+            getPriority(object, query);
         }
-        console.log(list);
         list = list.sort(function(a,b) {
             return b[1] - a[1];
         });
