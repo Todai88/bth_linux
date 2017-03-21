@@ -241,6 +241,27 @@ rl.on("line", function(line) {
             });
             break;
 
+        case "searchp" :
+            var query_string = args[1];
+            client.getBasedOnAlgorithm(query_string)
+            .then(value => {
+
+                var search_result = JSON.parse(value);
+                var out = search_result.sal[0][0];
+                var out2 = search_result.sal[0][1];
+                console.log(search_result.sal[0]);
+
+                // for (var item of search_result.sal) {
+                //     printAll(item);
+                // }
+                rl.prompt();
+            })
+            .catch(err => {
+                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                rl.prompt();
+            });
+            break;
+
         case "url":
             console.log(`Use this URL to view the server in your browser: ${server}:${port}`);
             rl.prompt();

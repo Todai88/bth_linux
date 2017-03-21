@@ -82,8 +82,13 @@ class BthappenClient {
     getBasedOnHouse(house) {
         return this.httpGet("/room/view/house/" + house);
     }
+
     getBasedOnQuery(query) {
         return this.httpGet("/room/search/" + query);
+    }
+
+    getBasedOnAlgorithm(query) {
+        return this.httpGet("/room/searchp/" + query);
     }
 }
 
