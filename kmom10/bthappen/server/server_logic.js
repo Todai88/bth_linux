@@ -115,7 +115,7 @@ class server_logic {
         for (var item of this.list){
             index++;
             list.push(["test", index]);
-        });
+        }
         console.log(list);
         list = list.sort(function(a,b) {
             return b[1] - a[1];
