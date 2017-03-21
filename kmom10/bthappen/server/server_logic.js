@@ -111,9 +111,10 @@ class server_logic {
     }
     getFromSearch_prio(query) {
         var index = 0;
-        var list = this.list.filter(function (el){
+        var list = [];
+        for (var item of this.list){
             index++;
-            return ["test", index];
+            list.push(["test", index]);
         });
         console.log(list);
         list = list.sort(function(a,b) {
