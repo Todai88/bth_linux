@@ -106,7 +106,7 @@ class server_logic {
             }
         });
     }
-    
+
     keyPriority(key) {
         switch (key) {
             case "Salsnr":
@@ -170,6 +170,7 @@ class server_logic {
         list = list.sort(function(a, b) {
             return b[1][1] - a[1][1];
         });
+        console.log(list[0]);
         return list;
     }
 
