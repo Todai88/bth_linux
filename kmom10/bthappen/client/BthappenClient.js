@@ -79,6 +79,12 @@ class BthappenClient {
     getBasedOnNumber(number) {
         return this.httpGet("/room/view/id/" + number);
     }
+    getBasedOnHouse(house) {
+        return this.httpGet("/room/view/house/" + house);
+    }
+    getBasedOnQuery(query) {
+        return this.httpGet("/room/search/" + query);
+    }
 }
 
 export default BthappenClient;

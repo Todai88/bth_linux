@@ -41,10 +41,13 @@ function usage() {
     console.log(`Usage: ${scriptName} [options]
 
 Options:
- -h                 Display help text.
+ -h                 Display this text.
  -v                 Display the version.
- --server <url>     Set the server url to use. http:// is concatenated to the beginning of the server, so you don't need to add it!
- --port   <number>  Sets the port used to connect to the server.`);
+ --server <url>     Set the server url to use. http:// is concatenated to the beginning of the server, so you SHOULD NOT add it!
+ --port   <number>  Sets the port used to connect to the server.
+
+ Once connected use 'menu' to get further instructions on how to run the actual program!
+`);
 }
 
 /*
@@ -139,7 +142,7 @@ Commands available:
 function printAll(object) {
     console.log(`
 Room ID   : ${(object.Salsnr) ? object.Salsnr : "/* Not defined in the list. */"}
-Room Name : ${(object.Salsnamn) ? object.Salsnam : "/* Not defined in the list. */"}
+Room Name : ${(object.Salsnamn) ? object.Salsnamn : "/* Not defined in the list. */"}
 Lat       : ${(object.lat) ? object.lat : "/* Not defined in the list. */"}
 Long      : ${(object.long) ? object.long : "/* Not defined in the list. */"}
 Place     : ${(object.Ort) ? object.Ort : "/* Not defined in the list. */"}
@@ -150,9 +153,16 @@ Size      : ${(object.Storlek) ? object.Storlek : "/* Not defined in the list. *
 `)
 }
 
+function printRoomName(object) {
+    var out = (object.Salsnamn === "" || object.Salsnamn === undefined || object.Salsnamn === null) ? "Name not defined (null / undefined)" : object.Salsnamn;
+    console.log(out);
+}
+
 /**
  * Callbacks for game asking question.
  */
+
+
 rl.on("line", function(line) {
     // Split incoming line with arguments into an array
     var args = line.trim().split(" ");
@@ -197,74 +207,39 @@ rl.on("line", function(line) {
                 rl.prompt();
             });
             break;
-        // case "start":
-        //     var size = args[1] || 20;
-        //
-        //     gomoku.start(size)
-        //     .then(value => {
-        //         console.log(value);
-        //         rl.prompt();
-        //     })
-        //     .catch(err => {
-        //         console.log("FAILED: Could not start the game.\nDetails: " + err);
-        //         rl.prompt();
-        //     });
-        //     break;
-        //
-        // case "view":
-        //     gomoku.view()
-        //     .then(value => {
-        //         console.log(value);
-        //         rl.prompt();
-        //     })
-        //     .catch(err => {
-        //         console.log("FAILED: Could not view the game.\nDetails: " + err);
-        //         rl.prompt();
-        //     });
-        //     break;
-        //
-        // case "place":
-        //
-        //     if (args[1] === 'random') {
-        //         gomoku.random()
-        //         .then(value => {
-        //             console.log(value);
-        //
-        //             //var val = JSON.parse(value);
-        //             // if (val.boardIsWon.includes("won")) {
-        //             //     console.log(`${val.boardIsWon}. Closing game-loop!`);
-        //             //     process.exit(0);
-        //             // }
-        //
-        //             rl.prompt();
-        //         })
-        //         .catch(err => {
-        //             console.log("FAILED: Could not place the marker.\nDetails: " + err);
-        //             rl.prompt();
-        //         });
-        //
-        //     }
-        //     else {
-        //         var x = args[1];
-        //         var y = args[2];
-        //
-        //         gomoku.place(x, y)
-        //         .then(value => {
-        //             console.log(value);
-        //             var val = JSON.parse(value);
-        //             if (val.boardIsWon.includes("won")) {
-        //                 console.log(`${val.boardIsWon}. Closing game-loop!`);
-        //                 process.exit(0);
-        //             }
-        //             rl.prompt();
-        //         })
-        //         .catch(err => {
-        //             console.log("FAILED: Could not place the marker.\nDetails: " + err);
-        //             rl.prompt();
-        //         });
-        //
-        //     }
-        //     break;
+        case "house" :
+            var house = args[1];
+            client.getBasedOnHouse(house)
+            .then(value => {
+                var parsed_array = JSON.parse(value);
+                //console.log(parsed_array.sal);
+                for (var item of parsed_array.sal){
+                    printRoomName(item);
+                }
+                rl.prompt();
+            })
+            .catch(err => {
+                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                rl.prompt();
+            });
+            break;
+
+        case "search" :
+            var query_string = args[1];
+            client.getBasedOnQuery(query_string)
+            .then(value => {
+                var search_result = JSON.parse(value);
+
+                for (var item of search_result.sal) {
+                    printAll(item);
+                }
+                rl.prompt();
+            })
+            .catch(err => {
+                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                rl.prompt();
+            });
+            break;
 
         case "url":
             console.log(`Use this URL to view the server in your browser: ${server}:${port}`);
