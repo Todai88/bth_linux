@@ -132,6 +132,24 @@ router.get("/room/search/:search", (req, res) => {
     });
 });
 
+router.get("/room/searchp/:search", (req, res) => {
+
+    var query = req.params.search;
+    var message = "Searching all room details for substring hits on your query.";
+    try {
+        server_body.getFromSearch_prio(query);
+    } catch (e) {
+        message = e.message;
+    }
+
+    // Send the response
+    sendJSONResponse(res, {
+        "message": message,
+        "query"  : query,
+        "sal"    : server_body.getFromSearch_prio(query)
+    });
+});
+
 
 /**
  * Create and export the server

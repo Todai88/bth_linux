@@ -39,7 +39,7 @@ class server_logic {
     }
 
     getRoom(id) {
-        return this.list.filter(function (el){ 
+        return this.list.filter(function (el){
             if (el.Salsnr === id) {
                 return el;
             }
@@ -105,6 +105,21 @@ class server_logic {
                 }
             }
         });
+    }
+    getPriority (object, query) {
+
+    }
+    getFromSearch_prio(query) {
+        var index = 0;
+        var list = this.list.filter(function (el){
+            index++;
+            return ["test", index];
+        });
+        console.log(list);
+        list = list.sort(function(a,b) {
+            return b[1] - a[1];
+        });
+        console.log(list);
     }
 
     getSize() {
