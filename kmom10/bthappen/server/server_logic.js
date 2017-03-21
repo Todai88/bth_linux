@@ -148,7 +148,6 @@ class server_logic {
         for (var key in object) {
             var score = 0;
             if (object.hasOwnProperty(key)) {
-                console.log(key + " -> " + object[key]);
                 if(object[key] !== null) {
                     if(object[key].toLowerCase().includes(query.toLowerCase())){
                         score+= this.keyPriority(key) + this.valuePriority(query, object[key]);
@@ -157,18 +156,18 @@ class server_logic {
             }
             out_list.push([key, score]);
         }
+        out_list = out_list.sort(function(a, b) {
+            return a[1] - b[1];
+        });
         console.log(out_list);
+        console.log("Highest: " + out_list[0]);
     }
     getFromSearch_prio(query) {
         var list = [];
         for (var object of this.list){
             //list.push(getPriority(object, query));
             this.getPriority(object, query);
-        }
-        list = list.sort(function(a,b) {
-            return b[1] - a[1];
-        });
-        console.log(list);
+        } 
     }
 
     getSize() {
