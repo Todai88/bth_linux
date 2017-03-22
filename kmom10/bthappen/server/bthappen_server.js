@@ -133,7 +133,7 @@ router.get("/room/search/:search", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "query"  : query,
+        "query"  : decodeURI(query),
         "sal"    : server_body.getFromSearch(decodeURI(query), max)
     });
 });
@@ -151,7 +151,7 @@ router.get("/room/searchp/:search", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "query"  : query,
+        "query"  : decodeURI(query),
         "sal"    : server_body.getFromSearch_prio(decodeURI(query))
     });
 });
