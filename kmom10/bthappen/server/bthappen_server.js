@@ -46,8 +46,8 @@ function sendJSONResponse(res, content, code = 200) {
                 out += "}";
                 console.log(out);
         } else console.log(content);
-    }
-} else console.log("Resulting dataset is empty. Try a different filter or filter on something else!");
+    } else console.log("Resulting dataset is empty. Try a different filter or filter on something else!");
+}
     res.end();
 }
 
