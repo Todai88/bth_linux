@@ -116,7 +116,8 @@ router.get("/room/view/house/:house", (req, res) => {
 
 router.get("/room/search/:search", (req, res) => {
     var queryData = url.parse(req.url, true).query;
-    console.log(queryData);
+    var max = (queryData.max !== undefined) ? queryData.max : null;
+    console.log(max);
     var query = req.params.search;
     var message = "Searching all room details for substring hits on your query.";
     try {
