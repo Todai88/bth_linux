@@ -181,8 +181,10 @@ class server_logic {
     getFromSearch_prio(query) {
         var list = [];
         for (var object of this.list){
-            //list.push(getPriority(object, query));
-            list.push(this.getPriority(object, query));
+            var temp = this.getPriority(object, query);
+            if (temp !== null) {
+                list.push(temp);
+            }
         }
         list = list.sort(function(a, b) {
             return b[1][1] - a[1][1];
