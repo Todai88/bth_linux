@@ -173,7 +173,9 @@ class server_logic {
         out_list = out_list.sort(function(a, b) {
             return b[1] - a[1];
         });
-        return [object, out_list[0]];
+        if (out_list[0][1] > 0){
+            return [object, out_list[0]];
+        }
     }
     getFromSearch_prio(query) {
         var list = [];
