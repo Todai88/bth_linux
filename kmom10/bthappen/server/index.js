@@ -18,7 +18,7 @@ var arg;
 
 // Get the server with defaults
 import server from "./bthappen_server.js";
-var m = require("bthappen_server.js");
+var m = require("./bthappen_server.js");
 //var srv = new server();
 
 var port = 1337; // default port.
