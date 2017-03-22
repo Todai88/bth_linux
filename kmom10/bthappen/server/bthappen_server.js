@@ -32,21 +32,22 @@ function sendJSONResponse(res, content, code = 200) {
     res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
     if(VERBOSE){
-        console.log(content);
-        if (content.result[0].length === 2) {
-             var out = (`{
+        if (!content.result !== undefined) {
+            if (content.result[0].length === 2) {
+                var out = (`{
 'message': ${content.message},
 'query':   ${content.query},
 'result':
 `);
-            for (var item of content.result) {
-                var tmp = JSON.stringify(item[0]);
-                out += "[[" + tmp + "], [" + item[1] + "]\n\n";
-            }
-            out += "}";
-            console.log(out);
+                for (var item of content.result) {
+                    var tmp = JSON.stringify(item[0]);
+                    out += "[[" + tmp + "], [" + item[1] + "]\n\n";
+                }
+                out += "}";
+                console.log(out);
         } else console.log(content);
     }
+} else console.log(content);
     res.end();
 }
 
