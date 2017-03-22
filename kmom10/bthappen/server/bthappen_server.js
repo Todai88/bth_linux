@@ -34,7 +34,11 @@ function sendJSONResponse(res, content, code = 200) {
     if(VERBOSE){
 
         if (content.result[0].length === 2) {
-             console.log(content.sal);
+             console.log(`
+message: ${content.message},
+query:   ${content.query},
+result:  ${content.result}
+`);
          } else console.log(content);
     }
     res.end();
