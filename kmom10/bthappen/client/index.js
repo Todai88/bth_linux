@@ -120,7 +120,7 @@ while ((arg = args.shift()) !== undefined) {
 /***********************************************/
 
           Development Environment: ON
-          
+
 /***********************************************/
 `);
             client.setVerbose(true);
@@ -142,12 +142,13 @@ function menu() {
     console.log(`
 Commands available:
 
- exit            Leave this program.
- menu            Print this menu.
- url             Get url to view this server in browser.
- view <id>       View the room with the selected id.
- house <house>   View the names of all rooms in this building (house).
- search <string> View the details of all matching rooms (one per row).
+ exit                   Leave this program.
+ menu                   Print this menu.
+ url                    Get url to view this server in browser.
+ view       <id>        View the room with the selected id.
+ house      <house>     View the names of all rooms in this building (house).
+ search     <string>    View the details of all matching rooms (one per row).
+ searchp    <string>    View the details of all matching rooms, prioritized.
  `);
 }
 
@@ -195,53 +196,9 @@ rl.on("line", function(line) {
         case "list" :
             client.listAll()
             .then(value => {
-                rl.prompt();
-            })
-            .catch(err => {
-                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
-                rl.prompt();
-            });
-            break;
-
-        case "view" :
-            var id = args[1];
-            client.getBasedOnNumber(id)
-            .then(value => {
-                //var temp = JSON.stringify(value).replace(/null/i, "\"\"");
-                //console.log(temp);
-                var parsed = JSON.parse(value);
-                printAll(parsed.sal[0]);
-                rl.prompt();
-            })
-            .catch(err => {
-                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
-                rl.prompt();
-            });
-            break;
-        case "house" :
-            var house = args[1];
-            client.getBasedOnHouse(house)
-            .then(value => {
                 var parsed_array = JSON.parse(value);
                 //console.log(parsed_array.sal);
-                for (var item of parsed_array.sal){
-                    printRoomName(item);
-                }
-                rl.prompt();
-            })
-            .catch(err => {
-                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
-                rl.prompt();
-            });
-            break;
-
-        case "search" :
-            var query_string = args[1];
-            client.getBasedOnQuery(query_string)
-            .then(value => {
-                var search_result = JSON.parse(value);
-
-                for (var item of search_result.sal) {
+                for (var item of parsed_array.result){
                     printAll(item);
                 }
                 rl.prompt();
@@ -252,19 +209,49 @@ rl.on("line", function(line) {
             });
             break;
 
-        case "searchp" :
-            var query_string = args[1];
-            client.getBasedOnAlgorithm(query_string)
+        case "view" :
+            var id = args[1];
+            if (id !== undefined){
+            client.getBasedOnNumber(id)
             .then(value => {
+                //var temp = JSON.stringify(value).replace(/null/i, "\"\"");
+                var parsed = JSON.parse(value);
+                if (parsed.result.length > 0){
+                    printAll(parsed.result[0]);
+                } else {
+                    console.log(`
+Allthough you have supplied a correct value (ie. Response-Code 200), the resulting dataset does not contain any items.
+Please try a different filter or change your filtering criteria!
+`);
+                }
 
-                var search_result = JSON.parse(value);
-                // var out = search_result.sal[0][0];
-                // var out2 = search_result.sal[0][1];
-                // console.log(search_result.sal[0]);
+                rl.prompt();
+            })
+            .catch(err => {
+                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                rl.prompt();
+            });
+        } else {
+            console.log("You didn't suply an argument. Please try again!");
+            rl.prompt();
+    }
 
-                for (var item of search_result.sal) {
-                    printAll(item[0]);
-                    console.log(`Highest priority based on key ${item[1][0]} with priority ${item[1][1] / 100}.`)
+            break;
+        case "house" :
+            var house = args[1];
+            if (house !== undefined) {
+                client.getBasedOnHouse(house)
+                .then(value => {
+                    var parsed_array = JSON.parse(value);
+                    if (parsed_array.result.length > 0) {
+                        for (var item of parsed_array.result){
+                            printRoomName(item);
+                        }
+                    } else {
+                        console.log(`
+Allthough you have supplied a correct value (ie. Response-Code 200), the resulting dataset does not contain any items.
+Please try a different filter or change your filtering criteria!
+`);
                 }
                 rl.prompt();
             })
@@ -272,6 +259,67 @@ rl.on("line", function(line) {
                 console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
                 rl.prompt();
             });
+        } else {
+            console.log("You didn't suply an argument. Please try again!");
+            rl.prompt();
+        }
+            break;
+
+        case "search" :
+            var query_string = args[1];
+            if (query_string !== undefined) {
+                client.getBasedOnQuery(query_string)
+                .then(value => {
+                    var search_result = JSON.parse(value);
+                    if (search_result.result.length > 0) {
+                        for (var item of search_result.result) {
+                            printAll(item);
+                        }
+                    } else {
+                        console.log(`
+Allthough you have supplied a correct value (ie. Response-Code 200), the resulting dataset does not contain any items.
+Please try a different filter or change your filtering criteria!
+`);
+                    }
+                    rl.prompt();
+                })
+                .catch(err => {
+                    console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                    rl.prompt();
+                });
+            } else {
+                console.log("You didn't suply an argument. Please try again!");
+                rl.prompt();
+            }
+            break;
+
+        case "searchp" :
+            var query_string = args[1];
+            if (query_string !== undefined) {
+                client.getBasedOnAlgorithm(query_string)
+                .then(value => {
+                    var search_result = JSON.parse(value);
+                    if (search_result.result.length > 0) {
+                        for (var item of search_result.result) {
+                            printAll(item[0]);
+                            console.log(`Highest priority based on key '${item[1][0]}' with priority ${item[1][1] / 100}.`)
+                        }
+                    } else {
+                        console.log(`
+Allthough you have supplied a correct value (ie. Response-Code 200), the resulting dataset does not contain any items.
+Please try a different filter or change your filtering criteria!
+`);
+                }
+                rl.prompt();
+            })
+            .catch(err => {
+                console.log("FAILED: Could not fetch the list.. \nDetails: " + err);
+                rl.prompt();
+            });
+        } else {
+            console.log("You didn't suply an argument. Please try again!");
+            rl.prompt();
+        }
             break;
 
         case "url":

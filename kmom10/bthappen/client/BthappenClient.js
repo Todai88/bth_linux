@@ -63,14 +63,17 @@ Attempting to send request to ${this.server + url}
                     data += chunk;
                 }).on('end', () => {
                     if (res.statusCode === 200) {
-                        if(this.VERBOSE) console.log(`
+                        if(this.VERBOSE){
+                            console.log(`
 /**********     DEVELOPMENT OUTPUT     ***************/
 
 Response code 200 OK. Parsing data for pretty printing.
 
 /*****************************************************/
 `);
+                        }
                         resolve(data);
+
                     } else {
                         if(this.VERBOSE) console.log("Response code not 200.. Failed. Status code: " + res.statusCode);
                         reject(data);

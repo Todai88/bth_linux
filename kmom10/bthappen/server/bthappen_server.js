@@ -65,7 +65,7 @@ var setVerbose = function () {
 router.get("/", (req, res) => {
 
     res.writeHead(200, "Content-Type: text/plain");
-    res.write("Welcome the GomokuBoard server. This is the API of what can be done.\n\n" +
+    res.write("Welcome to BTH's lecture hall API. This is what the API can help you with.\n\n" +
         " /                         Display this helptext.\n" +
         " /room/list                Show all halls." +
         " /room/view/id/:number     Show details of lecture hall with supplied :number.\n" +
