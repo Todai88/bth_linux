@@ -40,7 +40,8 @@ query:   ${content.query},
 result:
 `);
             for (var item of content.result) {
-                out += JSON.parse(item[0]) + ", " + item[1] + "\n";
+                var tmp = JSON.stringify(item[0]);
+                out += tmp + ", " + item[1] + "\n";
             }
             console.log(out);
          } else console.log(content);
