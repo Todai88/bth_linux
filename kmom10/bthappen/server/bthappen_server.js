@@ -130,7 +130,7 @@ router.get("/room/search/:search", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "query"  : query,
-        "sal"    : server_body.getFromSearch(query)
+        "sal"    : server_body.getFromSearch(query, max)
     });
 });
 
