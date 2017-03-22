@@ -42,7 +42,7 @@ result:
             for (var item of content.result) {
                 out += item;
             }
-            console.log(item);
+            console.log(out);
          } else console.log(content);
     }
     res.end();
