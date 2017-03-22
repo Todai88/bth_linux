@@ -174,11 +174,11 @@ class server_logic {
             return b[1] - a[1];
         });
         console.log(out_list[0][1]);
-        
+
         if (out_list[0][1] > 0){
             return [object, out_list[0]];
         }
-        return;
+        return null;
     }
     getFromSearch_prio(query) {
         var list = [];
