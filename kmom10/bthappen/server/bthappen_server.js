@@ -182,4 +182,4 @@ var server = http.createServer((req, res) => {
 });
 
 export default server;
-export.setVerbose = setVerbose;
+exports.setVerbose = setVerbose;
