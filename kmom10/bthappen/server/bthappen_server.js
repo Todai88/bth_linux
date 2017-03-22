@@ -41,10 +41,10 @@ function sendJSONResponse(res, content, code = 200) {
 `);
             for (var item of content.result) {
                 var tmp = JSON.stringify(item[0]);
-                out += "[[" + tmp + "], [" + item[1] + "]\n";
+                out += "[[" + tmp + "], [" + item[1] + "]\n\n";
             }
             out += "}";
-            console.log(JSON.parse(out));
+            console.log(out);
         } else console.log(content);
     }
     res.end();
