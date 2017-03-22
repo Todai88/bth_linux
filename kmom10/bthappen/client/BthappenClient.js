@@ -12,18 +12,20 @@ var http = require("http");
  */
 class BthappenClient {
 
-
-
     /**
      * Constructor.
      *
      */
     constructor() {
-
+        this.init();
     }
 
-
-
+    init() {
+        this.VERBOSE = false;
+    }
+    setVerbose(bool) {
+        this.VERBOSE = bool;
+    }
     /**
      * Set the url of the server to connect to.
      *
@@ -48,13 +50,29 @@ class BthappenClient {
         return new Promise((resolve, reject) => {
             http.get(this.server + url, (res) => {
                 var data = "";
+                if(this.VERBOSE){
+                    console.log(`
+/**********     DEVELOPMENT OUTPUT     ***************/
 
+Attempting to send request to ${this.server + url}
+
+/*****************************************************/`
+);
+                }
                 res.on('data', (chunk) => {
                     data += chunk;
                 }).on('end', () => {
                     if (res.statusCode === 200) {
+                        if(this.VERBOSE) console.log(`
+/**********     DEVELOPMENT OUTPUT     ***************/
+
+Response code 200 OK. Parsing data for pretty printing.
+
+/*****************************************************/
+`);
                         resolve(data);
                     } else {
+                        if(this.VERBOSE) console.log("Response code not 200.. Failed. Status code: " + res.statusCode);
                         reject(data);
                     }
                 }).on('error', (e) => {
@@ -72,7 +90,6 @@ class BthappenClient {
      */
 
     listAll() {
-        console.log(this.server + "/room/list");
         return this.httpGet("/room/list");
     }
 

@@ -16,6 +16,7 @@ var arg;
 
 
 
+
 // Get the server with defaults
 import BthappenClient from "./BthappenClient.js";
 
@@ -114,6 +115,17 @@ while ((arg = args.shift()) !== undefined) {
             }
             break;
 
+        case "--develop":
+            console.log(`
+/***********************************************/
+
+          Development Environment: ON
+          
+/***********************************************/
+`);
+            client.setVerbose(true);
+            break;
+
         default:
             badUsage("Unknown argument.");
             process.exit(1);
@@ -183,7 +195,6 @@ rl.on("line", function(line) {
         case "list" :
             client.listAll()
             .then(value => {
-                console.log(value);
                 rl.prompt();
             })
             .catch(err => {
