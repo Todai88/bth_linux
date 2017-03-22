@@ -18,7 +18,7 @@ var router = new Router();
 // Import the http server as base
 var http = require("http");
 var url = require("url");
-
+var VERBOSE = false;
 
 
 /**
@@ -32,8 +32,14 @@ function sendJSONResponse(res, content, code = 200) {
     res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
     res.end();
+    if(VERBOSE){
+        console.log(res);
+    }
 }
 
+function setVerbose() {
+    VERBOSE = true;
+}
 
 
 /**

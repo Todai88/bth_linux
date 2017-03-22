@@ -81,6 +81,11 @@ while ((arg = args.shift()) !== undefined) {
             }
             break;
 
+        case "--develop":
+            console.log("Development environment: ON");
+            server.setVerbose();
+            break;
+
         default:
             //remainingArgs.push(arg);
             badUsage("Unknown argument.");
