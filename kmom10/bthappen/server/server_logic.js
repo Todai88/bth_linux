@@ -57,12 +57,8 @@ class server_logic {
     }
 
     getFromSearch(query, max = null) {
-        
-        if(max !== null) {
-            console.log("Max = " + max);
-        }
 
-        return this.list.filter(function (el){
+        var out = this.list.filter(function (el){
 
             if (el.Salsnr !== null) {
                 if (el.Salsnr.toLowerCase().includes(query.toLowerCase())) {
@@ -110,6 +106,11 @@ class server_logic {
                 }
             }
         });
+        if (max !== null) {
+            return out.slice(0, max);
+        } else {
+            return out;
+        }
     }
 
     keyPriority(key) {
