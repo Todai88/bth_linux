@@ -32,7 +32,6 @@ function sendJSONResponse(res, content, code = 200) {
     res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
     if(VERBOSE){
-
         if (content.result[0].length === 2) {
              var out = (`{
 'message': ${content.message},
@@ -97,7 +96,7 @@ router.get("/room/list", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "rooms" : server_body.getList(max),
+        "result" : server_body.getList(max),
         "full list size": server_body.getSize()
     });
 });
