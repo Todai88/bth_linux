@@ -44,6 +44,7 @@ result:
                 out += tmp + ", " + item[1] + "\n";
             }
             out += "}";
+            console.log(out);
         } else console.log(JSON.parse(content));
     }
     res.end();
