@@ -354,6 +354,206 @@
             <div class="panel-body">
                     <ul>
 
+                        <h2> <b> Inledning </b> </h2>
+                        <br>
+                        Först och främst hittar ni all källkod här på <a href="https://github.com/Todai88/bth_linux"><b>BTH_linux på GitHub</b></a>.<br>
+                        Jag har, där jag kunnat, implementart ES6 lösningar. Mer specifikt lösningar som implementerar pilfunktioner (=>). Gärna med hjälp utav högre funktioner (filter, map...).<br>
+                        Bash-scripten löste jag likt de tidigare kursmomenten, där det finns tillgång till hjälptext och versionsnummer. Det finns även i fallet av delmoment 6 tillgång till<br>
+                        olika sätt att testa de olika funktionerna. Alla som tar någon form av input testas på tre olika sätt, en gång utan parameter (404 expected), en gång med en parameter som<br>
+                        inte ger något ('xxxxx') och sist med en parameter där jag vet ger resultat. I de två senare fallen får man en responskod på 200, då vi vet om att sidan finns, men i det tidigare<br>
+                        fallet ges som sagt inget resultat utan det ges istället en felkod.<br>
+                        <br>
+                        Det ska även nämnas att samtliga funktioner som tar en parameter kommer ge dig en 200, oavsett om det finns resultat eller ej. Dvs om du testar via klienten eller via URL så kommer<br>
+                        du alltså få en 200 så länge parameter ges (ex: /room/view/id/xxxx). Det ges antingen då ett tomt resultat (om du kör via URL) eller ett felmeddelande (om du kör via klienten).<br>
+                        <br>
+                        <h4><b>Servern</b></h4>
+                        <b><u>Servern är uppdelad i fyra .js-filer:</u></b> <br>
+                        <b>index.js</b> (hanterar dina options; -v, -h, --develop. startar även servern)
+                        <br>
+                        <b>bthappen_server.js</b> (hanterar navigeringen från routes -> logiken)
+                        <br>
+                        <b>server_logic.js</b> (hanterar då all logik, dvs allt som händer bakom scenerna.)
+                        <br>
+                        <b>router.js</b> (sist har vi alltså den redan definierade routes.js).
+                        <br>
+                        <h4><b>Klienten</b></h4>
+                        <b><u>Klienten är uppdelad i två .js-filer:</u></b> <br>
+                        <b>index.js</b> Här händer magin. JSON som skickas från routern till klienten parsas och skrivs ut enligt uppgiftsbeskrivningen.<br>
+                        <b>BthappenClient.js</b> Här skickas mina HTTP-requests till servern och responsen skickas till index.js för att parsas.<br><br>
+                        <hr>
+                        <li><b> Delmomenten </b></li>
+                        Här beskrivs hur jag löst delmomenten, mina tankar och mina reflektioner kring dem.<br><br>
+                        <ol>
+                            <li><u><b>Bash för att konvertera XLS till JSON</b></u></li>
+                            Utförandet här är ju rätt simpelt. I början hade jag lite strul med UTF-8 teckenkodning och CLRF EOL.
+                            Detta för att jag lyckades använda mig av excel istället för en mer *nix-baserad lösning.
+
+                            <br><br>
+
+                            När jag märkte detta så använde jag mig av Google Sheets. Detta löste bägge problemen ovan <br>
+                            och jag kunde därmed börja lösa uppgiften. <br>
+                            Utöver detta så var det rätt lätt att lösa uppgiften. Vi har ju nu tillgång till jq, vilket gör<br>
+                            att det är lättare att få ut information ur JSON-objekt. Dessutom så kommer det väl till hand <br>
+                            när man ska skapa JSON-objekt baserat på .CSV eller andra filer.<br>
+                            <br>
+                            Jag löste detta genom att först köra en split på antingen \n eller \r (alltså fungerar det på både <br>
+                            UNIX och på Windows). Därefter så splittas raderna efter komman (,).<br>
+                            En sådan lösning ger dig då tomma strängen "" på samtliga tomma värden, vilket inte är rätt enligt<br>
+                            uppgiftsbeskrivningen.<br>
+                            Det löste jag genom att istället för att spara min JSON-data i minnet och sedan använda mig av en <br>
+                            RegEx lösning för att byta alla "" mot null.<br>
+                            <br>
+                            Det gav mig då en välparsad salar.json som både <i>ser</i> bra ut och som även valideras väl online.
+                            <br><br>
+                            <li><u><b>Server för att visa och söka bland salar</b></u></li>
+
+                            Här skapas alltså servern (alla fyra filer nämnda ovan) för att hantera all logik som händer på <br>
+                            server-sidan. I mitt fall så har jag då valt att bryta upp min logik i fyra olika moduler för att <br>
+                            dels göra det lättare för mig att läsa och uppdatera filerna.
+
+                            <br><br>
+
+                            Jag har då en index-fil som hanterar samtliga samtliga routes (alla extrauppgifter) och options. <br>
+                            När servern startas (via index) så importeras servern från bthappen_server. Servern fungerar <br>
+                            som en slags mellanhand mellan routes och server_logik. I logik-filen så hanterar jag då min lista av <br>
+                            objekt (tagna från salar.json) som ligger i minnet och väntas på att tas om hand. Logiken tar alltså <br>
+                            ut objekten, filtrerar dem enligt beskrivning och skickar dem till servern. När servern får dem <br>
+                            så skapas mina HTTP-responses i form av JSON-arrayer eller listor av JSON-objekt (beroende på uppgift). <br>
+                            <br>
+
+                            Detta var väl delen av uppgiften som tog längst tid att få att fungera rent dynamiskt. Inte var det särskilt<br>
+                            svårt, men det tog helt enkelt tid att felsöka problem som man stötte på. Speciellt då extrauppgifterna <br>
+                            la till extra lager som då krävde att man gjorde om vissa delar i servern för att göra den mer dynamisk. <br>
+                            Riktigt kul delmoment, dock! :)
+                            <br><br>
+
+                            <li><b><u>Klient i Node.js för att testköra mot servern</u></b></li>
+                            Här börjar det roliga egentligen (om man tycker det är kul att debugga i cygwin...). -.- <br>
+                            Klienten har då även alla extrauppgifter implementerade (searchp och --develop). <br>
+                            Detta delmoment var nog det som tog minst tid egentligen. Här krävdes inget annat än en <br>
+                            grundläggande förståelse för hur JSON-parsing fungerar. <br>
+                            Det blev ju visserligen lite grötigare när man skulle implementera validering för att säkerställa <br>
+                            att tomma paramterar inte skulle funger osv. Men det var ändå rätt grundläggande. <br>
+                            <br>
+                            Det ska dock nämnas att jag valt att hantera null, undefined och andra non-values på lite olika sätt.<br>
+                            Jag vill alltså inte att de ska visas i klienten, utan visar specifikt utifall värden inte finns för <br>
+                            nycklar i mina JSON-objekt. Lite pretty print, liksom. :)
+                            <br><br>
+
+                            <li><b><u>Bättre sökalgoritm (optionell)</u></b></li>
+
+                            Här börjar det bli ordentligt kul! Låt mig börja med en tabell för att visa hur jag tänkt mig det skulle fungera:
+                            <br><br>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <table>
+                                            <tr>
+                                                <th> Priority </th>
+                                                <th> Points </th>
+                                            </tr>
+                                            <tr>
+                                                <td> Salsnummer </td>
+                                                <td> +25 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Salsnamn </td>
+                                                <td> +20 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Lat, Lang </td>
+                                                <td> +5 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Ort </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Hus </td>
+                                                <td> +15 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Våning </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Typ </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Storlek </td>
+                                                <td> +5 pts </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <table>
+                                            <tr>
+                                                <th> Träffyta </th>
+                                                <th> Points </th>
+                                            </tr>
+                                            <tr>
+                                                <td> Helträff </td>
+                                                <td> +50 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Början av delsträng </td>
+                                                <td> +30 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Query finns i delsträng </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            Nu när du har en tabell att se på så kan jag gå igenom min angripsplan. <br>
+                            Query skickas till servern som när man använder den normala sökningen, men <br>
+                            till skillnad från den vanliga sökningen så används alltså en lite mer <br>
+                            advancerad algoritm. <br>
+                            <br>
+                            1. Först söks samtliga nycklar igenom för att se om strängen finns i <br>
+                            nyckelns värde. Med andra ord söks <u>ALLA</u> objekts nycklar igenom <br>
+                            för att se utifal query-strängen finns (includes) i värdet. <br>
+                            Om värdet finns så testas alltså träffytan. <br><br>
+                            2. Testytan testas. Detta är rätt självförklarande. Jag ser alltså <br>
+                            efter hur stor utav ytan som träffas. Är det en helträff? +50 pts <br>
+                            Är det istället en träff på början av värdet (värdet.slice(0, query.length))?<br>
+                            +30pts. <br>
+                            Annars så VET vi ju redan att query-strängen finns i värdet. Då ges +10pts. <br>
+                            <br>
+                            Detta sker alltså på alla objekts värden i min lista av objekt. Så innan <br>
+                            min algoritm går från objekt 0 till objekt 1 så vill jag ju självklart <br>
+                            få ut det högsta värdet ur objekt 0 för att säkerställa en korrekt filtrering. <br>
+                            Detta skapar en två-dimensionel lista med ett nummer för varje nyckel i varje <br>
+                            objekt (Salsnr, salsnamn etc). <br>
+                            Det säkerställer att jag VET vilken nyckel som har det högsta prioriteringen.<br><br>
+                            <u>Exempel:</u> <br>
+                            <b>Query:</b> c. <br>
+                            <b>Objekt:</b> <br>
+                            {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Salsnr": "C236", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Salsnamn": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Lat": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Long": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Ort": "Karlskrona", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Hus": "C-huset", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Våning": "2", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Typ": "Föreläsningssal", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Storlek": "30" <br>
+                            }
+                            <br><br>
+                            Då skapas alltså en tvådimensionell lista som sådan:<br>
+                            [   ['Salsnr', 55], ['Salsnamn', 0], ['Lat', 0], ['Long', 0], ['Ort', 0], ['Hus', 45], ['Våning', 0], ['Typ', 0], ['Storlek', 0]    ] <br>
+                            Eftersom salsnummer ger +25 och detta salsnummer startar med 'c' så ges alltså +30. Detta ger högtsa nummret = 55pts. <br>
+                            Detta skickas sen tillbaka med min array av filtrerade objekt så man får lite mer meta-data. Schysst, va? :) <br>
+
+                            <br>
+                            Självklart så skickas endast objekt som har någon slags poäng tillbaka (alltså inget med 0 poäng) och dessa är då sorterade med <br>
+                            de högsta överst. I mitt fall så skickas 'searchp' tillbaka som stringifierade objekt istället för JSON-objekt. <br>
+                        </ol>
 
                    </ul>
             </div>
