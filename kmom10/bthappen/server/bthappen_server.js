@@ -32,10 +32,10 @@ function sendJSONResponse(res, content, code = 200) {
     res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
     if(VERBOSE){
-        console.log(content.result[0].length);
-        // if (content.result.length === 1) {
-        //     console.log(content.sal);
-        // } else console.log(content);
+
+        if (content.result[0].length === 2) {
+             console.log(content.sal);
+         } else console.log(content);
     }
     res.end();
 }
