@@ -35,9 +35,9 @@ function sendJSONResponse(res, content, code = 200) {
 
         if (content.result[0].length === 2) {
              var out = (`{
-message: ${content.message},
-query:   ${content.query},
-result:
+'message': ${content.message},
+'query':   ${content.query},
+'result':
 `);
             for (var item of content.result) {
                 var tmp = JSON.stringify(item[0]);
