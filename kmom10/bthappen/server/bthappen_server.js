@@ -44,8 +44,8 @@ result:
                 out += "[[" + tmp + "], [" + item[1] + "]\n";
             }
             out += "}";
-            console.log(out);
-        } else console.log(JSON.parse(content));
+            console.log(JSON.parse(out));
+        } else console.log(content);
     }
     res.end();
 }
