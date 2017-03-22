@@ -18,6 +18,7 @@ var arg;
 
 // Get the server with defaults
 import server from "./bthappen_server.js";
+var srv = new sever();
 
 var port = 1337; // default port.
 
@@ -82,8 +83,12 @@ while ((arg = args.shift()) !== undefined) {
             break;
 
         case "--develop":
-            console.log("Development environment: ON");
-            server.setVerbose();
+            console.log(`
+/***********************************************/
+        Development Environment: ON
+/***********************************************/
+`);
+            srv.setVerbose();
             break;
 
         default:
