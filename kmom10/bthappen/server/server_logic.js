@@ -186,7 +186,9 @@ class server_logic {
         list = list.sort(function(a, b) {
             return b[1][1] - a[1][1];
         });
-        return list;
+        return list.filter((x) => {
+            return x !== null;
+        });
     }
 
     getSize() {
