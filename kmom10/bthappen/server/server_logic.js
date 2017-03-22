@@ -33,9 +33,12 @@ class server_logic {
 
     }
 
-    getList() {
-        //return JSON.stringify(this.list);
-        return this.list;
+    getList(max = null) {
+        if (max !== null) {
+            return this.list.slice(0, max);
+        } else {
+            return this.list;
+        }
     }
 
     getRoom(id) {
@@ -46,14 +49,19 @@ class server_logic {
         });
     }
 
-    getRoomsOfHouse(house) {
-        return this.list.filter(function (el){
+    getRoomsOfHouse(house, max = null) {
+        var out = this.list.filter(function (el){
             if (el.Hus !== null){
                 if (el.Hus.toLowerCase() === house.toLowerCase()) {
                     return el;
                 }
             }
         });
+        if (max !== null) {
+            return out.slice(0, max);
+        } else {
+            return out;
+        }
     }
 
     getFromSearch(query, max = null) {

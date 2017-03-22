@@ -50,7 +50,8 @@ router.get("/", (req, res) => {
         " /room/list                Show all halls." +
         " /room/view/id/:number     Show details of lecture hall with supplied :number.\n" +
         " /room/view/house/:house   Show all lecture halls in the supplied :house.\n" +
-        " /room/search/:search      Search for supplied :search in all fields.\n"
+        " /room/search/:search      Search for supplied :search in all fields.\n" +
+        " /room/search/:searchp     Priority search. See documentation for full explanation!\n"
     );
     res.end();
 });
@@ -65,9 +66,11 @@ router.get("/", (req, res) => {
  */
 router.get("/room/list", (req, res) => {
 
+    var queryData = url.parse(req.url, true).query;
+    var max = (queryData.max !== undefined) ? queryData.max : null;
     var message = "Attempting to get a list of all rooms.";
     try {
-        server_body.getList();
+        server_body.getList(max);
     } catch (e) {
         message = e.message;
     }
@@ -75,8 +78,8 @@ router.get("/room/list", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "rooms" : server_body.getList(),
-        "boardSize": server_body.getSize()
+        "rooms" : server_body.getList(max),
+        "listsize": server_body.getSize()
     });
 });
 
@@ -99,10 +102,12 @@ router.get("/room/view/id/:number", (req, res) => {
 
 router.get("/room/view/house/:house", (req, res) => {
 
+    var queryData = url.parse(req.url, true).query;
+    var max = (queryData.max !== undefined) ? queryData.max : null;
     var house = req.params.number;
     var message = "Attempting to get a list of all rooms.";
     try {
-        server_body.getRoomsOfHouse(house);
+        server_body.getRoomsOfHouse(house, max);
     } catch (e) {
         message = e.message;
     }
@@ -110,14 +115,13 @@ router.get("/room/view/house/:house", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoomsOfHouse(house)
+        "sal"    : server_body.getRoomsOfHouse(house, max)
     });
 });
 
 router.get("/room/search/:search", (req, res) => {
     var queryData = url.parse(req.url, true).query;
     var max = (queryData.max !== undefined) ? queryData.max : null;
-    console.log(max);
     var query = req.params.search;
     var message = "Searching all room details for substring hits on your query.";
     try {
