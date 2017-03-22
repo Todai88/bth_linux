@@ -45,7 +45,7 @@ function sendJSONResponse(res, content, code = 200) {
                 }
                 out += "}";
                 console.log(out);
-        } else console.log(content);
+        } else console.log("Nothing to return!");
     }
 } else console.log(content);
     res.end();
