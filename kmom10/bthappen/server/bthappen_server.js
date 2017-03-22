@@ -37,7 +37,7 @@ function sendJSONResponse(res, content, code = 200) {
     res.end();
 }
 
-function setVerbose() {
+var setVerbose = function () {
     VERBOSE = true;
 }
 
@@ -181,4 +181,5 @@ var server = http.createServer((req, res) => {
     router.route(req, res);
 });
 
-export default server, VERBOSE;
+export default server;
+export.setVerbose = setVerbose;
