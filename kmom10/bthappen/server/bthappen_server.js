@@ -29,7 +29,7 @@ var url = require("url");
  * @param  Integer       code    HTTP status code
  */
 function sendJSONResponse(res, content, code = 200) {
-    res.writeHead(code, "Content-Type: application/json");
+    res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
     res.end();
 }
@@ -79,7 +79,7 @@ router.get("/room/list", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "rooms" : server_body.getList(max),
-        "listsize": server_body.getSize()
+        "full list size": server_body.getSize()
     });
 });
 
