@@ -34,19 +34,17 @@ function sendJSONResponse(res, content, code = 200) {
     if(VERBOSE){
 
         if (content.result[0].length === 2) {
-             var out = (`
+             var out = (`{
 message: ${content.message},
 query:   ${content.query},
 result:
 `);
             for (var item of content.result) {
-                //var tmp = JSON.stringify(item[0]);
-
-                //out += tmp + ", " + item[1] + "\n";
-                out += JSON.parse(item);
+                var tmp = JSON.stringify(item[0]);
+                out += tmp + ", " + item[1] + "\n";
             }
-            console.log(out);
-         } else console.log(content);
+            out += "}";
+        } else console.log(JSON.parse(content));
     }
     res.end();
 }
