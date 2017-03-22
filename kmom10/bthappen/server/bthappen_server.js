@@ -31,10 +31,10 @@ var VERBOSE = false;
 function sendJSONResponse(res, content, code = 200) {
     res.writeHead(code, "Content-Type: application/json; charset=utf8");
     res.write(JSON.stringify(content, null, "    "));
-    res.end();
     if(VERBOSE){
         console.log(res);
     }
+    res.end();
 }
 
 function setVerbose() {
