@@ -104,7 +104,7 @@ router.get("/room/view/id/:number", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoom(decodeURI(room))
+        "result"    : server_body.getRoom(decodeURI(room))
     });
 });
 
@@ -123,7 +123,7 @@ router.get("/room/view/house/:house", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoomsOfHouse(decodeURI(house), max)
+        "result"    : server_body.getRoomsOfHouse(decodeURI(house), max)
     });
 });
 
@@ -142,7 +142,7 @@ router.get("/room/search/:search", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "query"  : decodeURI(query),
-        "sal"    : server_body.getFromSearch(decodeURI(query), max)
+        "result"    : server_body.getFromSearch(decodeURI(query), max)
     });
 });
 
@@ -160,7 +160,7 @@ router.get("/room/searchp/:search", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "query"  : decodeURI(query),
-        "sal"    : server_body.getFromSearch_prio(decodeURI(query))
+        "result"    : server_body.getFromSearch_prio(decodeURI(query))
     });
 });
 
