@@ -176,6 +176,7 @@ class server_logic {
         if (out_list[0][1] > 0){
             return [object, out_list[0]];
         }
+        return;
     }
     getFromSearch_prio(query) {
         var list = [];
@@ -186,9 +187,7 @@ class server_logic {
         list = list.sort(function(a, b) {
             return b[1][1] - a[1][1];
         });
-        return list.filter((x) => {
-            return x !== null;
-        });
+        return list;
     }
 
     getSize() {
