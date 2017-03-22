@@ -56,7 +56,12 @@ class server_logic {
         });
     }
 
-    getFromSearch(query) {
+    getFromSearch(query, max = null) {
+        
+        if(max !== null) {
+            console.log("Max = " + max);
+        }
+
         return this.list.filter(function (el){
 
             if (el.Salsnr !== null) {
