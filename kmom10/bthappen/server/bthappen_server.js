@@ -181,4 +181,4 @@ var server = http.createServer((req, res) => {
     router.route(req, res);
 });
 
-export default server;
+export default server, VERBOSE;
