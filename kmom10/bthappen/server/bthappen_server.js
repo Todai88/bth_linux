@@ -40,7 +40,7 @@ query:   ${content.query},
 result:
 `);
             for (var item of content.result) {
-                out += item[0] + ", " + item[1] + "\n";
+                out += JSON.parse(item[0]) + ", " + item[1] + "\n";
             }
             console.log(out);
          } else console.log(content);
