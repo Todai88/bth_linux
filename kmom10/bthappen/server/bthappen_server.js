@@ -88,7 +88,7 @@ router.get("/room/view/id/:number", (req, res) => {
     var room = req.params.number;
     var message = "Attempting to get a list of all rooms.";
     try {
-        server_body.getRoom(room);
+        server_body.getRoom(decodeURI(room));
     } catch (e) {
         message = e.message;
     }
@@ -96,7 +96,7 @@ router.get("/room/view/id/:number", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoom(room)
+        "sal"    : server_body.getRoom(decodeURI(room))
     });
 });
 
@@ -107,7 +107,7 @@ router.get("/room/view/house/:house", (req, res) => {
     var house = req.params.number;
     var message = "Attempting to get a list of all rooms.";
     try {
-        server_body.getRoomsOfHouse(house, max);
+        server_body.getRoomsOfHouse(decodeURI(house), max);
     } catch (e) {
         message = e.message;
     }
@@ -115,7 +115,7 @@ router.get("/room/view/house/:house", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "sal"    : server_body.getRoomsOfHouse(house, max)
+        "sal"    : server_body.getRoomsOfHouse(decodeURI(house), max)
     });
 });
 
@@ -125,7 +125,7 @@ router.get("/room/search/:search", (req, res) => {
     var query = req.params.search;
     var message = "Searching all room details for substring hits on your query.";
     try {
-        server_body.getFromSearch(query, max);
+        server_body.getFromSearch(decodeURI(query), max);
     } catch (e) {
         message = e.message;
     }
@@ -134,7 +134,7 @@ router.get("/room/search/:search", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "query"  : query,
-        "sal"    : server_body.getFromSearch(query, max)
+        "sal"    : server_body.getFromSearch(decodeURI(query), max)
     });
 });
 
@@ -143,7 +143,7 @@ router.get("/room/searchp/:search", (req, res) => {
     var query = req.params.search;
     var message = "Searching all room details for substring hits on your query.";
     try {
-        server_body.getFromSearch_prio(query);
+        server_body.getFromSearch_prio(decodeURI(query));
     } catch (e) {
         message = e.message;
     }
@@ -152,7 +152,7 @@ router.get("/room/searchp/:search", (req, res) => {
     sendJSONResponse(res, {
         "message": message,
         "query"  : query,
-        "sal"    : server_body.getFromSearch_prio(query)
+        "sal"    : server_body.getFromSearch_prio(decodeURI(query))
     });
 });
 
