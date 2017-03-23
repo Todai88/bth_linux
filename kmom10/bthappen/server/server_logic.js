@@ -179,7 +179,7 @@ class server_logic {
         }
         return null;
     }
-    getFromSearch_prio(query) {
+    getFromSearch_prio(query, max) {
         var list = [];
         for (var object of this.list){
             var temp = this.getPriority(object, query);
@@ -190,7 +190,12 @@ class server_logic {
         list = list.sort(function(a, b) {
             return b[1][1] - a[1][1];
         });
-        return list;
+
+        if (max !== null) {
+            return list;
+        } else {
+            return list.slice(0, max);
+        }
     }
 
     getSize() {

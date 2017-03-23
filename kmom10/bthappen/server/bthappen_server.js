@@ -153,17 +153,17 @@ router.get("/room/search/:search", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "query"  : decodeURI(query),
-        "result"    : server_body.getFromSearch(decodeURI(query), max)
+        "result"    : server_body.getFromSearch(decodeURI(query), max),
+        "query"  : decodeURI(query)
     });
 });
 
 router.get("/room/searchp/:search", (req, res) => {
-
+    var max = (queryData.max !== undefined) ? queryData.max : null;
     var query = req.params.search;
     var message = "Searching all room details for substring hits on your query.";
     try {
-        server_body.getFromSearch_prio(decodeURI(query));
+        server_body.getFromSearch_prio(decodeURI(query, max));
     } catch (e) {
         message = e.message;
     }
@@ -171,8 +171,9 @@ router.get("/room/searchp/:search", (req, res) => {
     // Send the response
     sendJSONResponse(res, {
         "message": message,
-        "query"  : decodeURI(query),
-        "result"    : server_body.getFromSearch_prio(decodeURI(query))
+        "result"    : server_body.getFromSearch_prio(decodeURI(query), max),
+        "query"  : decodeURI(query)
+
     });
 });
 
