@@ -192,9 +192,9 @@ class server_logic {
         });
 
         if (max !== null) {
-            return list;
-        } else {
             return list.slice(0, max);
+        } else {
+            return list;
         }
     }
 
