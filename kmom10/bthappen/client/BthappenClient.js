@@ -92,22 +92,38 @@ Response code 200 OK. Parsing data for pretty printing.
      *
      */
 
-    listAll() {
+    listAll(max = null) {
+        if (max !== null) {
+            return this.httpGet("/room/list?max=" + max);
+        }
         return this.httpGet("/room/list");
     }
 
-    getBasedOnNumber(number) {
+    getBasedOnNumber(number, max = null) {
+        if (max !== null) {
+            return this.httpGet("/room/view/id/" + number + "?max=" + max);
+        }
         return this.httpGet("/room/view/id/" + number);
     }
-    getBasedOnHouse(house) {
+    getBasedOnHouse(house, max = null) {
+        if (max !== null) {
+            return this.httpGet("/room/view/house/" + house + "?max=" + max);
+        }
         return this.httpGet("/room/view/house/" + house);
     }
 
-    getBasedOnQuery(query) {
+    getBasedOnQuery(query, max = null) {
+        if (max !== null) {
+            return this.httpGet("/room/search/" + query + "?max=" + max);
+        }
         return this.httpGet("/room/search/" + query);
     }
 
-    getBasedOnAlgorithm(query) {
+    getBasedOnAlgorithm(query, max = null) {
+        if (max !== null) {
+            return this.httpGet("/room/searchp/" + query + "?max=" + max);
+        }
+
         return this.httpGet("/room/searchp/" + query);
     }
 }

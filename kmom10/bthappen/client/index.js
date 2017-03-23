@@ -182,7 +182,7 @@ rl.on("line", function(line) {
     args = args.filter(value => {
         return value !== "";
     });
-
+    var max = null;
     switch (args[0]) {
         case "exit":
             console.log("Bye!");
@@ -194,7 +194,18 @@ rl.on("line", function(line) {
             rl.prompt();
             break;
         case "list" :
-            client.listAll()
+            if (args[1] !== null && args[1] !== undefined){
+                if (args[1] === "max"){
+                    if (args[2] !== null && args[2] !== undefined && !isNaN(Number(args[2]))){
+                        max = args[2];
+                    } else {
+                        console.log("Max must be followed by a number! Try again.");
+                        rl.prompt();
+                        break;
+                    }
+                }
+            }
+            client.listAll(max)
             .then(value => {
                 var parsed_array = JSON.parse(value);
                 //console.log(parsed_array.sal);
@@ -211,8 +222,19 @@ rl.on("line", function(line) {
 
         case "view" :
             var id = args[1];
+            if (args[2] !== null && args[2] !== undefined){
+                if (args[2] === "max"){
+                    if (args[3] !== null && args[3] !== undefined && !isNaN(Number(args[3]))){
+                        max = args[3];
+                    } else {
+                        console.log("Max must be followed by a number! Try again.");
+                        rl.prompt();
+                        break;
+                    }
+                }
+            }
             if (id !== undefined){
-            client.getBasedOnNumber(id)
+            client.getBasedOnNumber(id, max)
             .then(value => {
                 //var temp = JSON.stringify(value).replace(/null/i, "\"\"");
                 var parsed = JSON.parse(value);
@@ -239,8 +261,19 @@ Please try a different filter or change your filtering criteria!
             break;
         case "house" :
             var house = args[1];
+            if (args[2] !== null && args[2] !== undefined){
+                if (args[2] === "max"){
+                    if (args[3] !== null && args[3] !== undefined && !isNaN(Number(args[3]))){
+                        max = args[3];
+                    } else {
+                        console.log("Max must be followed by a number! Try again.");
+                        rl.prompt();
+                        break;
+                    }
+                }
+            }
             if (house !== undefined) {
-                client.getBasedOnHouse(house)
+                client.getBasedOnHouse(house, max)
                 .then(value => {
                     var parsed_array = JSON.parse(value);
                     if (parsed_array.result.length > 0) {
@@ -267,8 +300,19 @@ Please try a different filter or change your filtering criteria!
 
         case "search" :
             var query_string = args[1];
+            if (args[2] !== null && args[2] !== undefined){
+                if (args[2] === "max"){
+                    if (args[3] !== null && args[3] !== undefined && !isNaN(Number(args[3]))){
+                        max = args[3];
+                    } else {
+                        console.log("Max must be followed by a number! Try again.");
+                        rl.prompt();
+                        break;
+                    }
+                }
+            }
             if (query_string !== undefined) {
-                client.getBasedOnQuery(query_string)
+                client.getBasedOnQuery(query_string, max)
                 .then(value => {
                     var search_result = JSON.parse(value);
                     if (search_result.result.length > 0) {
@@ -295,8 +339,19 @@ Please try a different filter or change your filtering criteria!
 
         case "searchp" :
             var query_string = args[1];
+            if (args[2] !== null && args[2] !== undefined){
+                if (args[2] === "max"){
+                    if (args[3] !== null && args[3] !== undefined && !isNaN(Number(args[3]))){
+                        max = args[3];
+                    } else {
+                        console.log("Max must be followed by a number! Try again.");
+                        rl.prompt();
+                        break;
+                    }
+                }
+            }
             if (query_string !== undefined) {
-                client.getBasedOnAlgorithm(query_string)
+                client.getBasedOnAlgorithm(query_string, max)
                 .then(value => {
                     var search_result = JSON.parse(value);
                     if (search_result.result.length > 0) {
