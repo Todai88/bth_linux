@@ -5,7 +5,11 @@
  *
  */
 "use strict";
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 const VERSION = "1.0.0";
 
 // For CLI usage

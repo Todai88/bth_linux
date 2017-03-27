@@ -1,7 +1,11 @@
 /**
  * Front for bthappen
  */
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 var http = require("http");
 
 
@@ -75,9 +79,13 @@ Response code 200 OK. Parsing data for pretty printing.
                         resolve(data);
 
                     } else {
+<<<<<<< HEAD
                         if(this.VERBOSE) {
                             console.log("Response code not 200.. Failed. Status code: " + res.statusCode);
                         }
+=======
+                        if(this.VERBOSE) console.log("Response code not 200.. Failed. Status code: " + res.statusCode);
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
                         reject(data);
                     }
                 }).on('error', (e) => {

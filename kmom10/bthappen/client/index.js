@@ -1,11 +1,19 @@
 #!/usr/bin/env babel-node
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 /**
  * Main program to run the bthappen client
  *
  */
 "use strict";
+<<<<<<< HEAD
 /* jshint ignore:start */
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 const VERSION = "1.0.0";
 
 // For CLI usage
@@ -140,22 +148,29 @@ while ((arg = args.shift()) !== undefined) {
  */
 function menu() {
     console.log(`
+<<<<<<< HEAD
 ***********************************************************************
 
             USAGE: [Command] <argument> [max] <number>
 
 ***********************************************************************
 
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 Commands available:
 
  exit                   Leave this program.
  menu                   Print this menu.
  url                    Get url to view this server in browser.
+<<<<<<< HEAD
  list                   Show all lecture halls.
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
  view       <id>        View the room with the selected id.
  house      <house>     View the names of all rooms in this building (house).
  search     <string>    View the details of all matching rooms (one per row).
  searchp    <string>    View the details of all matching rooms, prioritized.
+<<<<<<< HEAD
 
 -----------------------------EXAMPLE USAGE-----------------------------
 
@@ -166,6 +181,8 @@ Salar$ searchp karlskrona max 1
 The highest (max 1) item in the list filtered by advanced search on keyword 'karlskrona'.
 
 ***********************************************************************
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
  `);
 }
 
@@ -180,7 +197,11 @@ House     : ${(object.Hus) ? object.Hus : "/* Not defined in the list. */"}
 Floor     : ${(object.Våning) ? object.Våning : "/* Not defined in the list. */"}
 Type:     : ${(object.Typ) ? object.Typ : "/* Not defined in the list. */"}
 Size      : ${(object.Storlek) ? object.Storlek : "/* Not defined in the list. */"}
+<<<<<<< HEAD
 `);
+=======
+`)
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 function printRoomName(object) {
@@ -192,6 +213,10 @@ function printRoomName(object) {
  * Callbacks for game asking question.
  */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 rl.on("line", function(line) {
     // Split incoming line with arguments into an array
     var args = line.trim().split(" ");
@@ -354,7 +379,11 @@ Please try a different filter or change your filtering criteria!
             break;
 
         case "searchp" :
+<<<<<<< HEAD
             var query_stringp = args[1];
+=======
+            var query_string = args[1];
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
             if (args[2] !== null && args[2] !== undefined){
                 if (args[2] === "max"){
                     if (args[3] !== null && args[3] !== undefined && !isNaN(Number(args[3]))){
@@ -366,14 +395,23 @@ Please try a different filter or change your filtering criteria!
                     }
                 }
             }
+<<<<<<< HEAD
             if (query_stringp !== undefined) {
                 client.getBasedOnAlgorithm(query_stringp, max)
+=======
+            if (query_string !== undefined) {
+                client.getBasedOnAlgorithm(query_string, max)
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
                 .then(value => {
                     var search_result = JSON.parse(value);
                     if (search_result.result.length > 0) {
                         for (var item of search_result.result) {
                             printAll(item[0]);
+<<<<<<< HEAD
                             console.log(`This object's highest priority based on key '${item[1][0]}' with priority ${item[1][1] / 100}.`);
+=======
+                            console.log(`Highest priority based on key '${item[1][0]}' with priority ${item[1][1] / 100}.`)
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
                         }
                     } else {
                         console.log(`
@@ -420,4 +458,7 @@ console.log("Ready to talk to server url '" + server + "'.");
 console.log("Use 'menu' to get a list of commands.");
 rl.setPrompt("Salar$ ");
 rl.prompt();
+<<<<<<< HEAD
 /* jshint ignore:end */
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61

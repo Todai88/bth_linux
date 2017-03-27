@@ -2,7 +2,11 @@
  * Main program for the a game of Gomoku.
  */
 "use strict";
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 import GomokuBoard from "./GomokuBoard.js";
 
 

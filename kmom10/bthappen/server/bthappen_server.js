@@ -2,7 +2,11 @@
  * Front for GomokuServer
  */
 "use strict";
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 // The main class for the Gomoku game
 import server_logic from "./server_logic.js";
 var server_body = new server_logic();
@@ -45,19 +49,28 @@ function sendJSONResponse(res, content, code = 200) {
                 }
                 out += "}";
                 console.log(out);
+<<<<<<< HEAD
         } else {
             console.log(content);
         }
     } else {
         console.log("Resulting dataset is empty. Try a different filter or filter on something else!");
     }
+=======
+        } else console.log(content);
+    } else console.log("Resulting dataset is empty. Try a different filter or filter on something else!");
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
     res.end();
 }
 
 var setVerbose = function () {
     VERBOSE = true;
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 
 
 /**

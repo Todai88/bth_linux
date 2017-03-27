@@ -1,11 +1,19 @@
 
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 /*
 *
 * Class for the server logic.
 *
 */
+<<<<<<< HEAD
 /* jshint ignore:start */
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 class server_logic {
 
     constructor () {
@@ -26,9 +34,13 @@ class server_logic {
 
         var fs = require('fs');
         fs.readFile(__dirname + '/../salar.json', (err, data) => {
+<<<<<<< HEAD
             if (err) {
                 throw err;
             }
+=======
+            if (err) throw err;
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
             this.list = JSON.parse(data);
             this.size = this.list.length;
         });
@@ -208,4 +220,7 @@ class server_logic {
 
 
 export default server_logic;
+<<<<<<< HEAD
 /* jshint ignore:end */
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61

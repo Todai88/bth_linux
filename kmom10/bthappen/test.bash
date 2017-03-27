@@ -148,19 +148,27 @@ function app-route ()
 
 function app-list ()
 {
+<<<<<<< HEAD
 	printf "\n\t\tTESTING LIST\n\n"
     res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/list)
     printf "\n\t\tTesting without max\n\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/list" "${res}"
+=======
+    res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/list)
+    printf "\n\t\tTesting LIST\n\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/" "${res}"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/list)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
+<<<<<<< HEAD
 	res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/list?max=5)
     printf "\n\t\tTesting with max\n\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/list?max=5" "${res}"
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/list?max=5)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 ##
@@ -188,12 +196,17 @@ function app-id ()
 	fi
     printf "\n--------\n"
     res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123)
+<<<<<<< HEAD
     printf "Now testing with 'correct' :id\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123" "${res}"
+=======
+    printf "Finally testing with 'correct' :id\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123" "${res}"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
     printf "\n--------\n"
+<<<<<<< HEAD
 	res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123?max=1)
 	printf "Even though it's unnecessary (ID unique) I'll test with 'correct' :id and with max\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/id/J4123?max=1" "${res}"
 	if [ "$VERBOSE" = true ] ; then
@@ -201,6 +214,8 @@ function app-id ()
 		printf "\nResponse-Body: %s" "${res}"
 	fi
 	printf "\n--------\n"
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 ##
@@ -228,12 +243,17 @@ function app-house ()
 	fi
     printf "\n--------\n"
     res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset)
+<<<<<<< HEAD
     printf "Now testing with 'correct' :house\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset" "${res}"
+=======
+    printf "Finally testing with 'correct' :house\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset" "${res}"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
     printf "\n--------\n"
+<<<<<<< HEAD
 	res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset?max=2)
 	printf "Finally testing with 'correct' :house and with max.\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/view/house/C-huset?max=2" "${res}"
 	if [ "$VERBOSE" = true ] ; then
@@ -241,6 +261,8 @@ function app-house ()
 		printf "\nResponse-Body: %s" "${res}"
 	fi
 	printf "\n--------\n"
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 ##
@@ -268,12 +290,17 @@ function app-search ()
 	fi
     printf "\n--------\n"
     res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona)
+<<<<<<< HEAD
     printf "Now testing with 'correct' :search\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona" "${res}"
+=======
+    printf "Finally testing with 'correct' :search\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona" "${res}"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
     printf "\n--------\n"
+<<<<<<< HEAD
 	res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona?max=3)
 	printf "Finally testing with 'correct' :search and max.\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/search/karlskrona?max=3" "${res}"
 	if [ "$VERBOSE" = true ] ; then
@@ -281,6 +308,8 @@ function app-search ()
 		printf "\nResponse-Body: %s" "${res}"
 	fi
 	printf "\n--------\n"
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 ##
@@ -308,12 +337,17 @@ function app-searchp ()
 	fi
     printf "\n--------\n"
     res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona)
+<<<<<<< HEAD
     printf "Now testing with 'correct' :search\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona" "${res}"
+=======
+    printf "Finally testing with 'correct' :search\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona" "${res}"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 	if [ "$VERBOSE" = true ] ; then
 		res=$(curl -s ${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona)
 		printf "\nResponse-Body: %s" "${res}"
 	fi
     printf "\n--------\n"
+<<<<<<< HEAD
 	res=$(curl -o /dev/null --silent --write-out '%{http_code}\n' ${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona?max=3)
 	printf "Finally testing with 'correct' :search and max.\nURL:\t\t%s\nResponse-Code:\t%s" "${LINUX_SERVER}:${LINUX_PORT}/room/searchp/karlskrona?max=3" "${res}"
 	if [ "$VERBOSE" = true ] ; then
@@ -321,6 +355,8 @@ function app-searchp ()
 		printf "\nResponse-Body: %s" "${res}"
 	fi
 	printf "\n--------\n"
+=======
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 }
 
 #
@@ -343,7 +379,11 @@ do
 
 		--verbose )
 			VERBOSE=true
+<<<<<<< HEAD
 			app-check_values
+=======
+			echo "$VERBOSE"
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 			command=$2
 			app-"$command"
 			exit 0

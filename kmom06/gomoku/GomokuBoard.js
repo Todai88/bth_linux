@@ -1,13 +1,21 @@
 
 
 /* jshint ignore:start */
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 /**
  * Class for Gomoku board.
  *
  */
 class GomokuBoard {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
     /**
      * Constructor.
      *

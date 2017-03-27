@@ -1,5 +1,9 @@
 #!/usr/bin/env babel-node
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 /**
  * Main program to run the Gomoku server
  *

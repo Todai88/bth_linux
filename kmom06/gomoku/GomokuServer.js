@@ -2,7 +2,11 @@
  * Front for GomokuServer
  */
 "use strict";
+<<<<<<< HEAD
 // jscs:disable
+=======
+
+>>>>>>> 4ea76b5d41b436f0964e8f18bd02120fc8d84a61
 // The main class for the Gomoku game
 import GomokuBoard from "./GomokuBoard.js";
 var gameBoard = new GomokuBoard();
