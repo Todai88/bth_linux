@@ -17,7 +17,7 @@
  *
  */
 "use strict";
-// jscs:disable
+
 var url = require('url');
 
 /*import { buildResponse } from './response';
@@ -86,14 +86,14 @@ function buildResponse(req, res) {
         if (contentType) {
             this.setHeader('Content-Type', contentType);
         } else {
-            this.setHeader('Content-Type', 'text/html');
+            this.setHeader('Content-Type', 'text/html; charset=utf8');
         }
 
         // Switch on the type of the body.
         switch (typeof body) {
             case 'string':
                 if (!this.get('Content-Type')) {
-                    this.setHeader('Content-Type', 'text/html');
+                    this.setHeader('Content-Type', 'text/html; charset=utf8');
                 }
                 break;
 
@@ -122,9 +122,9 @@ function buildResponse(req, res) {
      */
     res.json = function sendJson(body) {
         if (!this.get('Content-Type')) {
-            this.setHeader('Content-Type', 'application/json');
+            this.setHeader('Content-Type', 'application/json; charset=utf8');
         }
-        return res.send(body, 'application/json', 200);
+        return res.send(body, 'application/json; charset=utf8', 200);
     };
 
     /**

@@ -2,7 +2,7 @@
  * Simple HTTP server returning Hello World as plain text.
  */
 "use strict";
-
+// jscs:disable
 // Require the module
 const http = require("http");
 const url = require("url");

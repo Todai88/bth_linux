@@ -275,7 +275,69 @@
         <div id="Kmom06" class="panel-collapse collapse">
             <div class="panel-body">
                     <ul>
+                        <li><b>Hur väl har du fått ordning på begreppen kring klient och server?</b></li>
+                        Det har känts rätt klockrent från början egentligen. Jag jobbar ju med både klienter och servrar på heltid annars, så begreppet känns rätt klart för mig.
+                        Jag kan dock förstå att det kan tänkas vara lite krångligt för personer som inte är fullt insatta i utveckling som tänker att det endast handlar
+                        om att utveckla på klient-sidan. Speciellt när det gäller JavaScript! :)
+                        Det har varit riktigt kul att jobba lite mer med NodeJS på servern, dock. Sett fram emot detta rätt ordentligt, faktiskt. Så det har känts bra och
+                        funkat rätt bra! :)
 
+                        <li><b>Hur känns det att utveckla i Node.js och den asynkrona programmeringsmodellen?</b></li>
+                        Jadu, det känns rätt bra egentligen. Det mesta som körts har ju ändå varit rätt synkront egentligen. Inget som har varit ordentligt nytt enligt mig egentligen.
+                        Det blev ju överlag ganska sekventiellt ändå! :)
+                        Men att jobba asynkront är definitvt kul. Synd bara att det inte riktigt är möjligt att jobba med fler trådar. Känns som 'asynkron' programmering i
+                        NodeJS är lite 'fulsälj' egentligen, då det egentligen handlar om att sätta upp 'flaggor' i serverns minne med hjälp av typ 'promises' så att
+                        flow-staten (eller vad mna vill kalla den..) kan nås vid senare tillfällen. Jag hade ju gärna sett att mna kunde programera med lite fler trådar osv! :)
+
+                        <li><b>Gick det bra med dina CLI-program i Node.js, några reflektioner kring dem?</b></li>
+                        Jodå, det gick bra. Jag kan ju knappast säga att jobba i CLI är något som jag aldrig gjort förut, så det kändes rätt klockrent detta också.
+                        Efter Python-kursen så är det ju nästan second-to-nature egentligen. Riktigt kul att se hur man kan skapa en CLI för NodeJS för att hantera
+                        klient-sidan och styra upp kontakten med servern, dock! Det var riktigt kul!
+                        Det svåra, enligt mig, med denna uppgiften var att jobba med AI:n och att hantera vinst-förhållandena! :)
+
+                        <li><b>Gjorde du något extra i uppgiften, eller förändrade grundkoden i Gomoku-spelet?</b></li>
+                        Yes, jag gjorde samtliga i uppgiften, men har inte 'förberett mig för Gomocup', dock tänker jag helt klart göra det - fast i ett annat språk.
+                        Känns inte riktigt helt nödvändigt att skapa en AI inom JS, enligt mig då. Mycket för att det går att vara betydligt mer energisnål med andra språk,
+                        vilket verkar vara grundtanken kring GomoCup (att skapa en AI som klarar av att göra beslut även med väldigt lite minne och prestanda).
+                        <br>
+                        Sen skrev jag ingen kod för den tredje uppgiften <b>"Om du hade byggt ut servern så att den styr upp klienterna så att de bara kan lägga om det är deras tur, samt stödja flera spel samtidigt. Hur hade du då gjort? Förklara i redovisningstexten, eller skriv koden för det."</b>
+                        <br>
+                        Dock skulle jag gärna vilja förklara hur jag hade löst det. Först och främst hade jag gjort som vi gjorde i förra kursmomentet där vi allokerade en spelare ett ID
+                        fast i detta fall skulle ID:t vara allokerat till ett spel. Så man startar alltså med att skicka en /init/ till servern som skickar tillbaka en request med ditt spels ID.
+                        Sen har man även ett ID för var spelare, så att man inte kan spela på sin gång. Så en curl-request till servern kan alltså se ut så här:
+                        <br>
+                        /gameid/playerid/place/x/y
+                        <br>
+                        Där gameid är ditt spels id (ett längre nummer som 18394), playerid är ditt spelarid (antingen 1 eller 2) och place/x/y som spelet specificerat.
+                        PlayerID fungerar alltså som en slags flagga för att säkerställa att det är rätt spelares tur. Så här kan en mer konkret request se ut:
+                        <br>
+                        /18394/1/place/3/5
+                        <br>
+                        Så när denna request skickats så ändras en flagga i serverns flow-state för att säkerställa att nästa spelare är player 2. Om jag försöker skicka en
+                        till request så säger den alltså ifrån, eftersom min klient blivit allokerad player 2. Som ni kanske förstår är detta int ehelt säkert, så det finns risk för
+                        fusk utifall du exempelvis skickar en manuell curl-request. Om man vill ha det mer säkert så kan man allokera ett spelarid (längre sträng)
+                        som är associerad med en IP eller inlogg. På så vis kan man koppla upp sig med sitt spelarid till servern och så får servern hantera vilket spelares tur det
+                        är.
+
+                        <br>
+                        <br>
+                        När det gäller koden i GomokuBoard är rätt mycket kod ändrad. Randomfunktionen använder sig av en rätt simpel algoritm som söker sig igenom hela brädet
+                        för att hitta en ruta som är ledig samt har högst poäng. Poängen räknas ut genom att 'peeka' på de närliggande rutorna, om en ruta exempelvis har
+                        samma markering som spelaren som randomizar så får rutan +2 poäng, om det är moståndarens ruta så får rutan +1 poäng. Sen fortsätter algoritmen att peeka
+                        till nästa ruta för att se utifall rutan är av samma form som den tidigare, isf så inkrementeras poängen. Alltså om du står på ruta 5, 5 så testas
+                        alla närliggande rutor (4,5. 5,6. 5, 4. 5, 6). Säg att 4, 5 har X (och du är O), då får du alltså +1 poäng samt att algoritmen forstätter att gå uppåt tills den
+                        stöter på en av dina (O) eller en tom ruta. För varje extra ruta som är O så får du alltså +1 poäng. På så vis så letar sig algoritmen sig fram för att hitta
+                        en ruta som ligger nära många av dina eller fiendens rutor.
+                        Inte är den alltför smart, men den funkar någorlunda...
+
+                        När det gäller vinstförhållanden så letar algoritmen först från vänster till höger, sen från upp till ner och sist de två diagonalerna. Så om du har 5, 5 igen så tittar algoritmen
+                        alltså från 0, 5 och fem steg åt höger för varje steg (0-5, 1-6, 2-7, 3-8, 4-9, 5-10) tills dess att den hittar en bricka som är ledig eller som tillhör fienden. För varje
+                        bricka som är din så används en counter för att se utifall du har fem i rad, om du har fem i rad så vinner du. Algoritmen körs VARJE gång som du lagt ut en bricka och stoppar
+                        spelet om du har fem i rad med ett vinstmeddelande. Detta gäller bägge spelarna!
+
+                        <li><b>Känner du dig sugen, och redo, på att skriva en deltagare till Gomocup?</b></li>
+                        Jo, men det gör jag! Det ska jag helt klart göra. Dock blir det nog i Python eller C++ samt så får jag ju faktiskt tänka lite mer på algoritmen.
+                        Känns som att man kanske bör använda sig av någon mer konkret algoritm för att ens ha en minimal chans för att klara spelet.
 
                    </ul>
             </div>
@@ -292,7 +354,326 @@
             <div class="panel-body">
                     <ul>
 
+                        <h2> <b> Inledning </b> </h2>
+                        <br>
+                        Först och främst hittar ni all källkod här på <a href="https://github.com/Todai88/bth_linux"><b>BTH_linux på GitHub</b></a>.<br>
+                        Ni kan även finna min server på min Digital Ocean droplet (som kommer stå på, utan att uppdateras efter inlämning) på: 178.62.110.17:1337. <br>
+                        När ni testar på era maskiner ska nämnas att jag använder mig av miljövariabler för att definiera server och port. Dvs att OM du har <br>
+                        LINUX_PORT och LINUX_SERVER satta redan, så kommer de att användas utifall du inte använder dig av --server och / eller --port. <br><br>
+                        Jag har, där jag kunnat, implementart ES6 lösningar. Mer specifikt lösningar som implementerar pilfunktioner. Gärna med hjälp utav högre funktioner (filter, map...).<br>
+                        Bash-scripten löste jag likt de tidigare kursmomenten, där det finns tillgång till hjälptext och versionsnummer. Det finns även i fallet av delmoment 6 tillgång till<br>
+                        olika sätt att testa de olika funktionerna. Alla som tar någon form av input testas på tre olika sätt, en gång utan parameter (404 expected), en gång med en parameter som<br>
+                        inte ger något ('xxxxx') och sist med en parameter där jag vet ger resultat. I de två senare fallen får man en responskod på 200, då vi vet om att sidan finns, men i det tidigare<br>
+                        fallet ges som sagt inget resultat utan det ges istället en felkod.<br>
+                        <br>
+                        Det ska även nämnas att samtliga funktioner som tar en parameter kommer ge dig en 200, oavsett om det finns resultat eller ej. Dvs om du testar via klienten eller via URL så kommer<br>
+                        du alltså få en 200 så länge parameter ges (ex: /room/view/id/xxxx). Det ges antingen då ett tomt resultat (om du kör via URL) eller ett felmeddelande (om du kör via klienten).<br>
+                        <br>
+                        <h4><b>Servern</b></h4>
+                        <b><u>Servern är uppdelad i fyra .js-filer:</u></b> <br>
+                        <b>index.js</b> (hanterar dina options; -v, -h, --develop. startar även servern)
+                        <br>
+                        <b>bthappen_server.js</b> (hanterar navigeringen från routes till logiken)
+                        <br>
+                        <b>server_logic.js</b> (hanterar då all logik, dvs allt som händer bakom scenerna.)
+                        <br>
+                        <b>router.js</b> (sist har vi alltså den redan definierade routes.js).
+                        <br>
+                        <h4><b>Klienten</b></h4>
+                        <b><u>Klienten är uppdelad i två .js-filer:</u></b> <br>
+                        <b>index.js</b> Här händer magin. JSON som skickas från routern till klienten parsas och skrivs ut enligt uppgiftsbeskrivningen.<br>
+                        <b>BthappenClient.js</b> Här skickas mina HTTP-requests till servern och responsen skickas till index.js för att parsas.<br><br>
+                        <hr>
+                        <li><b> Delmomenten </b></li>
+                        Här beskrivs hur jag löst delmomenten, mina tankar och mina reflektioner kring dem.<br><br>
+                        <ol>
+                            <li><u><b>Bash för att konvertera XLS till JSON</b></u></li>
+                            Utförandet här är ju rätt simpelt. I början hade jag lite strul med UTF-8 teckenkodning och CLRF EOL.
+                            Detta för att jag lyckades använda mig av excel istället för en mer *nix-baserad lösning.
 
+                            <br><br>
+
+                            När jag märkte detta så använde jag mig av Google Sheets. Detta löste bägge problemen ovan <br>
+                            och jag kunde därmed börja lösa uppgiften. <br>
+                            Utöver detta så var det rätt lätt att lösa uppgiften. Vi har ju nu tillgång till jq, vilket gör<br>
+                            att det är lättare att få ut information ur JSON-objekt. Dessutom så kommer det väl till hand <br>
+                            när man ska skapa JSON-objekt baserat på .CSV eller andra filer.<br>
+                            <br>
+                            Jag löste detta genom att först köra en split på antingen \n eller \r (alltså fungerar det på både <br>
+                            UNIX och på Windows). Därefter så splittas raderna efter komman (,).<br>
+                            En sådan lösning ger dig då tomma strängen "" på samtliga tomma värden, vilket inte är rätt enligt<br>
+                            uppgiftsbeskrivningen.<br>
+                            Det löste jag genom att istället för att spara min JSON-data i minnet och sedan använda mig av en <br>
+                            RegEx lösning för att byta alla "" mot null.<br>
+                            <br>
+                            Det gav mig då en välparsad salar.json som både <i>ser</i> bra ut och som även valideras väl online.
+                            <br><br>
+                            <li><u><b>Server för att visa och söka bland salar</b></u></li>
+
+                            Här skapas alltså servern (alla fyra filer nämnda ovan) för att hantera all logik som händer på <br>
+                            server-sidan. I mitt fall så har jag då valt att bryta upp min logik i fyra olika moduler för att <br>
+                            dels göra det lättare för mig att läsa och uppdatera filerna.
+
+                            <br><br>
+
+                            Jag har då en index-fil som hanterar samtliga samtliga routes (alla extrauppgifter) och options. <br>
+                            När servern startas (via index) så importeras servern från bthappen_server. Servern fungerar <br>
+                            som en slags mellanhand mellan routes och server_logik. I logik-filen så hanterar jag då min lista av <br>
+                            objekt (tagna från salar.json) som ligger i minnet och väntas på att tas om hand. Logiken tar alltså <br>
+                            ut objekten, filtrerar dem enligt beskrivning och skickar dem till servern. När servern får dem <br>
+                            så skapas mina HTTP-responses i form av JSON-arrayer eller listor av JSON-objekt (beroende på uppgift). <br>
+                            <br>
+
+                            Detta var väl delen av uppgiften som tog längst tid att få att fungera rent dynamiskt. Inte var det särskilt<br>
+                            svårt, men det tog helt enkelt tid att felsöka problem som man stötte på. Speciellt då extrauppgifterna <br>
+                            la till extra lager som då krävde att man gjorde om vissa delar i servern för att göra den mer dynamisk. <br>
+                            Riktigt kul delmoment, dock! :)
+                            <br><br>
+
+                            <li><b><u>Klient i Node.js för att testköra mot servern</u></b></li>
+                            Här börjar det roliga egentligen (om man tycker det är kul att debugga i cygwin...). -.- <br>
+                            Klienten har då även alla extrauppgifter implementerade (searchp och --develop). <br>
+                            Detta delmoment var nog det som tog minst tid egentligen. Här krävdes inget annat än en <br>
+                            grundläggande förståelse för hur JSON-parsing fungerar. <br>
+                            Det blev ju visserligen lite grötigare när man skulle implementera validering för att säkerställa <br>
+                            att tomma paramterar inte skulle funger osv. Men det var ändå rätt grundläggande. <br>
+                            <br>
+                            Det ska dock nämnas att jag valt att hantera null, undefined och andra non-values på lite olika sätt.<br>
+                            Jag vill alltså inte att de ska visas i klienten, utan visar specifikt utifall värden inte finns för <br>
+                            nycklar i mina JSON-objekt. Lite pretty print, liksom. :)
+                            <br><br>
+
+                            <li><b><u>Bättre sökalgoritm (optionell)</u></b></li>
+
+                            Här börjar det bli ordentligt kul! Låt mig börja med en tabell för att visa hur jag tänkt mig det skulle fungera:
+                            <br><br>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <table>
+                                            <tr>
+                                                <th> Priority </th>
+                                                <th> Points </th>
+                                            </tr>
+                                            <tr>
+                                                <td> Salsnummer </td>
+                                                <td> +25 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Salsnamn </td>
+                                                <td> +20 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Lat, Lang </td>
+                                                <td> +5 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Ort </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Hus </td>
+                                                <td> +15 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Våning </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Typ </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Storlek </td>
+                                                <td> +5 pts </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <table>
+                                            <tr>
+                                                <th> Träffyta </th>
+                                                <th> Points </th>
+                                            </tr>
+                                            <tr>
+                                                <td> Helträff </td>
+                                                <td> +50 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Början av delsträng </td>
+                                                <td> +30 pts </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Query finns i delsträng </td>
+                                                <td> +10 pts </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            Nu när du har en tabell att se på så kan jag gå igenom min angripsplan. <br>
+                            Query skickas till servern som när man använder den normala sökningen, men <br>
+                            till skillnad från den vanliga sökningen så används alltså en lite mer <br>
+                            advancerad algoritm. <br>
+                            <br>
+                            1. Först söks samtliga nycklar igenom för att se om strängen finns i <br>
+                            nyckelns värde. Med andra ord söks <u>ALLA</u> objekts nycklar igenom <br>
+                            för att se utifal query-strängen finns (includes) i värdet. <br>
+                            Om värdet finns så testas alltså träffytan. <br><br>
+                            2. Testytan testas. Detta är rätt självförklarande. Jag ser alltså <br>
+                            efter hur stor utav ytan som träffas. Är det en helträff? +50 pts <br>
+                            Är det istället en träff på början av värdet (värdet.slice(0, query.length))?<br>
+                            +30pts. <br>
+                            Annars så VET vi ju redan att query-strängen finns i värdet. Då ges +10pts. <br>
+                            <br>
+                            Detta sker alltså på alla objekts värden i min lista av objekt. Så innan <br>
+                            min algoritm går från objekt 0 till objekt 1 så vill jag ju självklart <br>
+                            få ut det högsta värdet ur objekt 0 för att säkerställa en korrekt filtrering. <br>
+                            Detta skapar en två-dimensionel lista med ett nummer för varje nyckel i varje <br>
+                            objekt (Salsnr, salsnamn etc). <br>
+                            Det säkerställer att jag VET vilken nyckel som har det högsta prioriteringen.<br><br>
+                            <u>Exempel:</u> <br>
+                            <b>Query:</b> c. <br>
+                            <b>Objekt:</b> <br>
+                            {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Salsnr": "C236", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Salsnamn": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Lat": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Long": null, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Ort": "Karlskrona", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Hus": "C-huset", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Våning": "2", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Typ": "Föreläsningssal", <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"Storlek": "30" <br>
+                            }
+                            <br><br>
+                            Då skapas alltså en tvådimensionell lista som sådan:<br>
+                            [   ['Salsnr', 55], ['Salsnamn', 0], ['Lat', 0], ['Long', 0], ['Ort', 0], ['Hus', 45], ['Våning', 0], ['Typ', 0], ['Storlek', 0]    ] <br>
+                            Eftersom salsnummer ger +25 och detta salsnummer startar med 'c' så ges alltså +30. Detta ger högtsa nummret = 55pts. <br>
+                            Detta skickas sen tillbaka med min array av filtrerade objekt så man får lite mer meta-data. Schysst, va? :) <br>
+
+                            <br>
+                            Självklart så skickas endast objekt som har någon slags poäng tillbaka (alltså inget med 0 poäng) och dessa är då sorterade med <br>
+                            de högsta överst. I mitt fall så skickas 'searchp' tillbaka som stringifierade objekt istället för JSON-objekt. <br>
+                            <br>
+                            <li><u><b>Filtrera antalet träffar (Optionell)</b></u></li>
+                            Denna uppgift var ju öppen för en hel del möjliga lösningar. Man kunde välja att endast hantera filtreringen <br>
+                            på servern eftersom det inte stod något om att man behövde hantera någon slags filtrering på klientsidan. <br>
+                            <br>
+                            Dock så har jag valt att göra det möjligt att filtrera via klienten, via URL och filtreringen sköts helt och <br>
+                            hållet på servern, vilket minskar belastningen på klienten. Detta kanske inte är något stort egentligen, men <br>
+                            det gör det betydligt bättre för mig som tänker utveckla en front-end för servern i form av en mobil-app. <br>
+                            Då vill man ju lägga så lite fokus på klienten som möjligt och istället hålla fokus på servern då den antagligen <br>
+                            har lite mer processorkraft. Alltså får man lite mindre lagg på klienten. <br><br>
+
+                            Om man vill filtrera via klienten så fungerar det på samtliga relevanta routes. Dvs alla förutom ID (ID är ju <br>
+                            unikt ändå!). <br>
+                            Detta löser man helt enkelt med att köra sitt kommando som vanligt, men med alternativet max och nummret. <br>
+                            Exempelvis: <b>searchp karlskrona max 1</b> för att få ut det högst prioriterade (max 1) objektet med nyckelordet <br>
+                            'karlskrona'.<br>
+                            Man kan ju även göra detta via url:en genom att köra <b>room/searchp/karlskrona?max=1</b>. Bägge fungerar fint och <br>
+                            har testats rätt ordentligt av mig och mina testcases i delmoment 6.<br>
+                            <br>
+
+                            Det ska alltså nämnas att jag gått lite längre än uppgiftsbeskrivningen som inte kräver att man ska kunna lösa <br>
+                            filtreringen på klienten. Det krävs inte heller någon filtrering på searchp i uppgiftsbeskrivnignen, vilket jag gjort.<br>
+
+                            <br><br>
+
+                            Filtreringen i sig är rätt simpel. Jag skär helt enkelt bort de högsta n (där n är max's värde) objekten i listan genom <br>
+                            att använda sig av en array.slice(0, max) om max är definierad i parameterna.
+                            <br>
+                            Endast nummer används, så utifall du skickar in en tom sträng så skippas filtreringen. Samma gäller ett icke-numrärt värde.
+                            <br><br>
+
+                            <li><b><u>Bättre testmöjligheter (optionell)</u></b></li>
+                            Här går jag än en gång lite längre än vad uppgiftsbeksrivningen kräver. <br>
+                            Målet här är alltså att skapa en --develop option på server och klient. På servern ska då ens JSON-respons visas. <br>
+                            Detta enligt vad Emil Folino nämnt till mig. <br>
+                            På klienten så ska URL:en som man använder för att skicka HTTP-requests visas, vilket är rätt lätt att lösas. I <br>
+                            mitt fall så har jag gått lite längre och även visar serverns Response-Code för att säkerställa att användaren vet <br>
+                            vad som händer.
+
+                            <br><br>
+
+                            Den sista biten är att skapa ett test-script som kör ett gäng definierade tester mot den servern som är definierad via <br>
+                            dina miljövariabler. Om ingen server / port är definierad så defaultar den till localhost och 1337, precis som tidigare. <br>
+                            Här ska även nämnas att jag tillämpat individuella tester på varje route samt ett test som kör samtliga tester. <br>
+                            Det finns även en hjälptext som man kan köra via "bash test.bash --help". Enligt kravet så stödjs även --verbose <br>
+                            för att skriva ut det svar som kommer i Response-Body, inte bara statuskoden. <br>
+                            <br>
+                            Ni kan alltså använda er av testet för att testa individuella routes: <br>
+                            $bash test.bash list <br>
+                            $$Ger er statuskoden på ett anrod (cURL) på listan (/room/list). <br>
+                            Eller om ni vill köra alla så kör ni helt enkelt:<br>
+                            $bash test.bash all<br>
+                            <br>
+                            Samtliga val stödjer alltså --verbose.
+                            <br><br>
+                            <hr>
+                            <p class="lead strong"> Där har ni alltså mitt projekt. Förhoppningsvis så var det, samt redovisningstexten bra nog! :)<br>
+                            Jag ber så hemskt mycket om ursäkt för den sena inlämningen, men jag tappade helt enkelt bort tiden. <br>
+                            Jag har försökt lösa ett par personliga bekymmer och har varit hem till Sverige på begravning under helgen <br>
+                            förra veckan (16/03 - 20/03).</p><br><br>
+                        </ol>
+
+                        <li><b> Reflektioner kring projektet </b></li>
+
+                        Överlag så var det ett väl genomtänkt projekt där vi arbetade med många av sakerna som vi löste i tidigare kursmoment <br>
+                        Dock finns det ju självklart saker som kanske kunde gjorts bättre. Dels kan jag tycka att de optionella delmomenten var <br>
+                        rätt lätta; det sagt så tog de tid att göra. Så det är ju helt klart värt att notera att delmomenten i projektet tog <br>
+                        tid att genomföra, speciellt om man vill felsöka sin kod manuellt (som jag föredrar att göra). <br>
+                        <br>
+                        Sen ogillade jag inte riktigt att mycket av koden kunde återanvändas mellan moduler och delmoment. <br>
+                        Det kanske bara var jag som såg till att lösa mina funktioner på ett dynamiskt vis, vilket alltså <br>
+                        kan ha gjort det lättare för mig ju längre in i projektet jag kom. Men jag kan inte skaka av mig <br>
+                        känslan att man speciellt i de optionella delmomenten kunde återanvända sig av rätt mycket kod. <br>
+                        Exempelvis filtreringen (max) kunde lösas inom ett par minuter genom att helt enkelt skicka in en <br>
+                        liten optionell variabel till sina GET-funktioner.
+                        <br><br>
+                        Men som nämnt ovan känner jag att projektet var bra utifrån vad vi lärde oss tidigare i kursen. <br>
+                        Det som jag kanske saknar är väl mer bash. Självklart förstår jag ju att bash är ett betydligt <br>
+                        mindre eftersökt språk, men det känns ändå som att bash användes betydligt mycket mer i <br>
+                        delmomenten än vad man kan se i projektet. <br>
+                        Annars var det väldigt välutformat och genomtänkt.
+
+                        <br><br>
+
+                        Det var inget som var speciellt svårt, som sagt. Men vissa saker tog väl mer tid än andra. <br>
+                        Som nämnt i mina beskrivningar ovan så kan ni ju se att mycket av min tid lades till att <br>
+                        få min server att fungera väl. När den väl var uppe och rullade så var det inte så mycket <br>
+                        mer som behövdes lösas än att man skulle parsa JSON-objekten och printa dem till skärmen.
+                        <br><br>
+
+                        Jag får även referrera till mina redovisningar på delmomenten, då det inte finns så mycket mer <br>
+                        att säga.
+                        <br><br>
+
+                        <li><b> Reflektioner kring kursen </b></li>
+                        Här kan det ju bli lite värre, dock. Kursen har överlag varit väldigt bra, jag uppskattade verkligen <br>
+                        att lära mig mer om server-utveckling, då detta är något jag gör väldigt sällan. Det är ju även <br>
+                        relevant för mig då jag velat lära mig mer om den delen pga. mina penetrationstest. <br>
+                        <br>
+                        Dock kan jag tycka att det kanske skulle ha varit smart att lägga mer energi på att lära ut mer vettiga <br>
+                        sätt att hantera särskilda saker. Som exempel har vi ju jq och hur vi skulle parsa JSON-objekt i kursmomenten.<br>
+                        Detta är ju egentligen inte ett större bekymmer, om jag ska vara helt ärlig. Men så mycket av det jag personligen <br>
+                        tycker är bra med dessa db-kurser är att vi lär oss saker som är relevanta inom industrin just nu. <br>
+                        Och det är överlag inte relevant för en framtida arbetsgivare att se utifall du kan parsa csv objekt, <br>
+                        men det är istället väldigt intressant att se utifall du kan parsa JSON-objekt.
+                        <br><br>
+                        Självklart förstår jag att det finns flertalet studenter som inte vet hur man parsar JSON-objekt. <br>
+                        Men nog kan vi väl åtminstone ha i åtanke att installera våra servrar med saker som faktiskt anses <br>
+                        vara best practice inom industrin? <br>
+
+                        <br>
+                        Nu har ju iof jq blivit introducerat till servrarna, vilket hjälpte under sista delmomentet för oss <br>
+                        som vill lära oss något nytt och vill jobba mot att lära oss något som är relevant på den moderna marknaden.<br>
+                        Detta gillar jag skarpt, att det tog ett par dagar för er att ta till vara feedbacken som jag gav. <br>
+                        Jag kan inte säga att jag är överdrivet nöjd med kursen, men det har egentligen bara varit det problemet <br>
+                        som jag faktiskt haft.
+                        <br><br>
+                        Så kursen får en klar 7/10 denna gång. Det finns saker att tänka på, men överlag var det bra jobbat! :)
                    </ul>
             </div>
         </div>

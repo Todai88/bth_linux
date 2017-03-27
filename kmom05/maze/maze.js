@@ -2,7 +2,7 @@
  *
  */
 "use strict";
-
+// jscs:disable
 // To parse the route from the url
 var url = require('url');
 

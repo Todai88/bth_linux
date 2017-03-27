@@ -3,7 +3,7 @@
  *
  */
 "use strict";
-
+// jscs:disable
 //const path = require("path");
 // const fs = require("fs");
 // const server = require("./server.js");

@@ -1,0 +1,25 @@
+Då valde jag alltså att huvudsakligen köra på en digital ocean droplet för detta
+kursmoment. Huvudsakligen för att lära mig något nytt samt att 
+få lite erfarenhet av molnet! :)
+
+Nedan har ni lite viktiga grejor:
+
+#------- Servernamn -----------#
+
+Servernamnet är på en VMWare installation som jag gjort vid sidan av min droplet.
+Detta bara för att ha 'gjort' det. I resterande moment kommer dropleten användas!
+
+Servernamn:	Debian_Jessie
+
+#------- IP -----------#
+
+Droplet: 178.62.110.17
+Debian_Jessie: 192.168.47.135
+
+#------- Uname -a -----------#
+
+Linux bth-debian-1 3.16.0-4-amd64 #1 SMP Debian 3.16.36-1+deb8u2 (2016-10-19) x86_64 GNU/Linux
+
+#------- Asciinema -----------#
+
+https://asciinema.org/a/4r6sm23sq2xpwohhoow37pp8z
