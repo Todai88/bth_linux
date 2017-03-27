@@ -1,5 +1,5 @@
 Då valde jag alltså att huvudsakligen köra på en digital ocean droplet för detta
-kursmoment. Huvudsakligen för att lära mig något nytt samt att 
+kursmoment. Huvudsakligen för att lära mig något nytt samt att
 få lite erfarenhet av molnet! :)
 
 Nedan har ni lite viktiga grejor:
